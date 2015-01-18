@@ -25,6 +25,11 @@ class TwilioResponsesController < ApplicationController
     response << "<Response>";
     if account != nil
       response << "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" transcribeCallback=\"https://tellmeaboutit.herokuapp.com/handle_response\"/>";
+      response << "<Gather timeout=\"10\" numDigits=\"1\">"
+        response << "<Say>If you are happy with your recording, press pound.</Say>"
+        response << "<Say>If you would like to listen to the recording, press 1.</Say>"
+        response << "<Say>If you would like to re-record your message, ppress *.</Say>"
+      response << "</Gather>"
     else
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
       response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
