@@ -12,12 +12,14 @@ class TwilioResponsesController < ApplicationController
 
   def id_number
     id = params[:id]
+    error_log 'id entered: ' + id.to_s
     response = query_for_id id
     render text: response
   end
 
   def query_for_id id
     account = Account.where(:uid => id)
+    error_log 'occount: ' + account.to_s
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     if account != nil
