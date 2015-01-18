@@ -11,6 +11,14 @@ class TwilioResponsesController < ApplicationController
     render text: response
   end
 
+  def after_recording
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response << "<Response>";
+    response << provide_options
+    response << "</Response>";
+    render text: response
+  end
+
   def provide_options
     response = "<Gather timeout=\"10\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
 
