@@ -21,9 +21,7 @@ class TwilioResponsesController < ApplicationController
 
   def provide_options
     response = "<Gather timeout=\"10\" method=\"POST\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
-    response << "<Say>If you are happy with your recording, press pound.</Say>"
-    response << "<Say>If you would like to listen to the recording, press 1.</Say>"
-    response << "<Say>If you would like to re-record your message, ppress *.</Say>"
+    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
     response << "</Gather>"
     return response
   end
@@ -44,7 +42,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def proceed_forward
-    response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/5-thank-you.wav</Play>"
+    response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/8-beep.wav</Play>"
     return response
   end
 
@@ -89,7 +87,7 @@ class TwilioResponsesController < ApplicationController
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     # if account != nil
-      response << "<Say>Begin speaking after the beep</Say>"
+      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
       response << content_for_record
     # else
     #   response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
