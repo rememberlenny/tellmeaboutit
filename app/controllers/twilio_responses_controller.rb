@@ -58,7 +58,7 @@ class TwilioResponsesController < ApplicationController
       response << proceed_forward
     elsif d == "1"
       response << listen_back
-      response <<
+      response << provide_options
     elsif d == "*"
       response << rerecord
     end
