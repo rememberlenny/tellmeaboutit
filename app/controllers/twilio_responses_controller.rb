@@ -11,7 +11,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def id_number
-    id = params[:id]
+    id = params[:Digits]
     puts 'id entered: ' + id.to_s
     response = query_for_id id
     render text: response
