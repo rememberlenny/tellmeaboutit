@@ -24,9 +24,9 @@ class TwilioResponsesController < ApplicationController
       response << "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" transcribeCallback=\"https://tellmeaboutit.herokuapp.com/handle_response\"/>";
     else
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-      response << "<Gather action=\"https://tellmeaboutit.herokuapp.com/getid\" method=\"GET\">";
-      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-      response << "</Gather>";
+      response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
+      response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+      response << "</Record>";
     end
     response << "</Response>";
     return response

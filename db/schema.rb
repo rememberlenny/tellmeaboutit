@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118030703) do
+ActiveRecord::Schema.define(version: 20150118150318) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "recording_length"
+    t.string   "recording_url"
   end
 
   create_table "unique_ids", force: :cascade do |t|
