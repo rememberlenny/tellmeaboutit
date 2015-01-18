@@ -18,6 +18,33 @@ class TwilioResponsesController < ApplicationController
     render text: response
   end
 
+  def proceed_forward
+    response = "<Say>Thank you!</Say>"
+  end
+
+  def listen_back
+    response = "<Say>Listen again!</Say>"
+  end
+
+  def rerecord
+    response = "<Say>Do you want to rerecord?</Say>"
+  end
+
+  def check_recording
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response << "<Response>";
+      d = params[:Digits]
+      if d == "#"
+        response << proceed_forward
+      elsif d == "1"
+        response << listen_back
+      elsif d == "*"
+        response << rerecord
+      end
+    response << "</Response>";
+    render text: response
+  end
+
   def query_for_id id
     account = Account.where(:uid => id)
     puts 'occount: ' + account.to_s
@@ -25,7 +52,7 @@ class TwilioResponsesController < ApplicationController
     response << "<Response>";
     if account != nil
       response << "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" transcribeCallback=\"https://tellmeaboutit.herokuapp.com/handle_response\"/>";
-      response << "<Gather timeout=\"10\" numDigits=\"1\">"
+      response << "<Gather timeout=\"10\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
         response << "<Say>If you are happy with your recording, press pound.</Say>"
         response << "<Say>If you would like to listen to the recording, press 1.</Say>"
         response << "<Say>If you would like to re-record your message, ppress *.</Say>"
