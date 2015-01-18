@@ -10,7 +10,7 @@ class TwilioResponsesController < ApplicationController
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     if account != nil
       response << "<Response>";
-      response << "<Record transcribe=\"true\" transcribeCallback=\"https://tellmeaboutit.herokuapp.com/handle_response\"/>";
+      response << "<Record transcribe=\"true\"  timeout=\"45\" transcribeCallback=\"https://tellmeaboutit.herokuapp.com/handle_response\"/>";
       response << "</Response>";
       # It works
     else
