@@ -33,14 +33,14 @@ class TwilioResponsesController < ApplicationController
   def check_recording
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-      d = params[:Digits]
-      if d == "#"
-        response << proceed_forward
-      elsif d == "1"
-        response << listen_back
-      elsif d == "*"
-        response << rerecord
-      end
+    d = params[:Digits]
+    if d == "#"
+      response << proceed_forward
+    elsif d == "1"
+      response << listen_back
+    elsif d == "*"
+      response << rerecord
+    end
     response << "</Response>";
     render text: response
   end

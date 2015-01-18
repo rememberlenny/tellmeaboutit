@@ -17,7 +17,7 @@ class HandleResponseController < ApplicationController
     response << "<Say>If you would like to re-record your message, ppress *.</Say>"
     response << "</Gather>"
     response << "</Response>";
-    return response
+    render text: response
   end
 
   def double_check
