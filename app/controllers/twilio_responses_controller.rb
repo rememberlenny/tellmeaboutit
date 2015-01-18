@@ -9,12 +9,14 @@ class TwilioResponsesController < ApplicationController
     account = Accounts.where(:uid => id)
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     if account != nil
-      response << "<Response><Say>You entered " +  + "</Say></Response>";
+      response << "<Response>";
+      response << "<Record transcribe=\"true\" transcribeCallback=\"https://tellmeaboutit.herokuapp.com/handle_response\"/>";
+      response << "</Response>";
       # It works
     else
       response << "<Response>"
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-      response << "<Gather action="https://tellmeaboutit.herokuapp.com/getid" method="GET">";
+      response << "<Gather action=\"https://tellmeaboutit.herokuapp.com/getid\" method=\"GET\">";
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
       response << "</Gather>";
       response << "</Response>";

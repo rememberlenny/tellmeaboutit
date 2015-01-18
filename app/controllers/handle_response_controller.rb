@@ -1,0 +1,2 @@
+class HandleResponseController < ApplicationController
+end
