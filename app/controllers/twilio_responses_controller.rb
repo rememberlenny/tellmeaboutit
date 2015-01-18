@@ -6,6 +6,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def self.query_for_id id
+
     if
       # Try again
     else
