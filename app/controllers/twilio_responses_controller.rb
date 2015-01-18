@@ -58,6 +58,8 @@ class TwilioResponsesController < ApplicationController
     return response
   end
 
+
+
   def check_recording
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
