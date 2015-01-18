@@ -19,7 +19,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def proceed_forward
-    response = "<Say>Thank you!</Say>"
+    response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/5-thank-you.wav</Say>"
   end
 
   def listen_back
@@ -27,7 +27,8 @@ class TwilioResponsesController < ApplicationController
   end
 
   def rerecord
-    response = "<Say>Do you want to rerecord?</Say>"
+    response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/4-record-again.wav</Say>"
+    response = content_for_record
   end
 
   def check_recording
@@ -45,13 +46,18 @@ class TwilioResponsesController < ApplicationController
     render text: response
   end
 
+  def content_for_record
+    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\"/>";
+    return response
+  end
+
   def query_for_id id
     account = Account.where(:uid => id)
     puts 'occount: ' + account.to_s
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     if account != nil
-      response << "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\"/>";
+      response << content_for_record
     # else
     #   response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
     #   response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
