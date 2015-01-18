@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   match 'get_id',          to: 'twilio_responses#id_number', :via => [:post, :get]
   match 'handle_response', to: 'handle_response#save',       :via => [:post, :get]
 
-  root 'static_page#home'
+  root 'static_pages#home'
 end
