@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'getid/?Digits=:id' => 'twilio_responses#id_number'
+  get 'get_id' => 'twilio_responses#id_number'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
