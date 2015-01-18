@@ -20,8 +20,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def provide_options
-    response = "<Gather timeout=\"10\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
-
+    response = "<Gather timeout=\"10\" method=\"POST\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
     response << "<Say>If you are happy with your recording, press pound.</Say>"
     response << "<Say>If you would like to listen to the recording, press 1.</Say>"
     response << "<Say>If you would like to re-record your message, ppress *.</Say>"
@@ -65,6 +64,8 @@ class TwilioResponsesController < ApplicationController
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     d = params[:Digits]
+    puts "###############"
+    puts "We got this " + d
     if d == "#"
       response << proceed_forward
     elsif d == "1"
