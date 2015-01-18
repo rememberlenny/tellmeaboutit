@@ -77,6 +77,7 @@ class TwilioResponsesController < ApplicationController
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     if account != nil
+      response << "<Say>Begin speaking after the beep</Say>"
       response << content_for_record
     # else
     #   response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
