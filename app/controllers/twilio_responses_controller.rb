@@ -37,6 +37,7 @@ class TwilioResponsesController < ApplicationController
 
   def proceed_forward
     response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/5-thank-you.wav</Play>"
+    return response
   end
 
   def listen_back
@@ -47,7 +48,8 @@ class TwilioResponsesController < ApplicationController
 
   def rerecord
     response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/4-record-again.wav</Play>"
-    response = content_for_record
+    response << content_for_record
+    return response
   end
 
   def check_recording
@@ -67,7 +69,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def content_for_record
-    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\"/>";
+    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"https://tellmeaboutit.herokuapp.com/after_recording\"/>";
     return response
   end
 
