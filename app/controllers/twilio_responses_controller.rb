@@ -6,11 +6,11 @@ class TwilioResponsesController < ApplicationController
   end
 
   def self.query_for_id id
-
-    if
-      # Try again
-    else
+    account = Accounts.where(:id => id)
+    if account != nil
       # It works
+    else
+      # Try again
     end
   end
 end
