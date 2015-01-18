@@ -1,5 +1,13 @@
 class TwilioResponsesController < ApplicationController
 
+  def say_intro
+    response << "<Response>";
+      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
+      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+    response << "</Response>";
+    render text: response
+  end
+
   def id_number
     id = params[:id]
     response = query_for_id id
