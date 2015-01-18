@@ -2,7 +2,7 @@ class TwilioResponsesController < ApplicationController
   def id_number
     id = params[:id]
     response = query_for_id id
-    render json: params[:Digit]
+    render text: response
   end
 
   def self.query_for_id id
@@ -20,5 +20,6 @@ class TwilioResponsesController < ApplicationController
       response << "</Gather>";
       response << "</Response>";
     end
+    return response
   end
 end
