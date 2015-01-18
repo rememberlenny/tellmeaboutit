@@ -76,7 +76,7 @@ class TwilioResponsesController < ApplicationController
     puts 'occount: ' + account.to_s
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    if account != nil
+    # if account != nil
       response << "<Say>Begin speaking after the beep</Say>"
       response << content_for_record
     # else
@@ -84,7 +84,7 @@ class TwilioResponsesController < ApplicationController
     #   response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
     #   response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
     #   response << "</Record>";
-    end
+    # end
     response << "</Response>";
     return response
   end
