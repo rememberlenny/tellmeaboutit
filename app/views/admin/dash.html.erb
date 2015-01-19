@@ -4,9 +4,11 @@
 <div class="panel">
   Stuff goes here
 </div>
+</div>
 
+<div class="row">
 
-<h3>Options</h3>
-<a href="" class="button secondary">View all recordings</a>
-<a href="" class="button secondary">View all stories</a>
+  <h3>Options</h3>
+  <%= link_to "View all recordings", recordings_path, :class=>"button secondary"%>
+  <%= link_to "View all stories", stories_path, :class=>"button secondary"%>
 </div>
