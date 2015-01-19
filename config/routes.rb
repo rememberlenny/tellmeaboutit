@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   resources :recordings
-
-  get 'stories' => 'stories#index'
-  get 'story/:id' => 'stories#show'
-
-  # resources :stories
+  resources :stories
 
 
   get 'say_intro' =>        'twilio_responses#say_intro'

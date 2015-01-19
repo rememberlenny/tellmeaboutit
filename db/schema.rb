@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118150318) do
+ActiveRecord::Schema.define(version: 20150119165552) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "uid"
@@ -19,6 +19,23 @@ ActiveRecord::Schema.define(version: 20150118150318) do
     t.datetime "updated_at",       null: false
     t.string   "recording_length"
     t.string   "recording_url"
+  end
+
+  create_table "recordings", force: :cascade do |t|
+    t.string   "url"
+    t.string   "length"
+    t.string   "transcript"
+    t.string   "twilio_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.integer  "recording_id"
+    t.string   "name"
+    t.string   "person"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "unique_ids", force: :cascade do |t|
