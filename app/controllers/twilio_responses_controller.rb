@@ -11,19 +11,30 @@ class TwilioResponsesController < ApplicationController
     render text: response
   end
 
+  def check_recording
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response << "<Response>";
+    d = params[:Digits]
+    puts "###############"
+    puts "We got this " + d
+    if d == "#"
+      response << proceed_forward
+    elsif d == "1"
+      response << listen_back
+      response << provide_options
+    elsif d == "*"
+      response << rerecord
+    end
+    response << "</Response>";
+    render text: response
+  end
+
   def after_recording
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << provide_options
     response << "</Response>";
     render text: response
-  end
-
-  def provide_options
-    response = "<Gather timeout=\"10\" method=\"POST\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
-    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
-    response << "</Gather>"
-    return response
   end
 
   def check_response
@@ -41,6 +52,14 @@ class TwilioResponsesController < ApplicationController
     render text: response
   end
 
+
+  def provide_options
+    response = "<Gather timeout=\"10\" method=\"POST\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
+    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
+    response << "</Gather>"
+    return response
+  end
+
   def proceed_forward
     response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/8-beep.wav</Play>"
     return response
@@ -56,26 +75,6 @@ class TwilioResponsesController < ApplicationController
     response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/4-record-again.wav</Play>"
     response << content_for_record
     return response
-  end
-
-
-
-  def check_recording
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    response << "<Response>";
-    d = params[:Digits]
-    puts "###############"
-    puts "We got this " + d
-    if d == "#"
-      response << proceed_forward
-    elsif d == "1"
-      response << listen_back
-      response << provide_options
-    elsif d == "*"
-      response << rerecord
-    end
-    response << "</Response>";
-    render text: response
   end
 
   def content_for_record
