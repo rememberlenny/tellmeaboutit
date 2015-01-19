@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :stories
+  get 'stories' => 'stories#index'
+  get 'story/:id' => 'stories#show'
+
+  # resources :stories
+
 
   get 'say_intro' =>        'twilio_responses#say_intro'
   get 'get' =>              'static_pages#home'
