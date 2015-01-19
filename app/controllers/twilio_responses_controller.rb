@@ -1,6 +1,11 @@
 class TwilioResponsesController < ApplicationController
 
   def say_intro
+    sid = params['CallSid']
+    call = TwilioCall.new
+    call.sid = sid
+    call.save
+
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
