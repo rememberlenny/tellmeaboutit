@@ -1,28 +1,31 @@
+base_url = 'http://702a8fa.ngrok.com'
+
 class TwilioResponsesController < ApplicationController
 
   def say_intro
-    sid = params['CallSid']
-    from = params['From']
-    FromCity = params['FromCity']
-    FromState = params['FromState']
-    FromZip = params['FromZip']
-    FromCountry = params['FromCountry']
+    sid = params[:CallSid]
+    from = params[:From]
+    fromCity = params[:FromCity]
+    fromState = params[:FromState]
+    fromZip = params[:FromZip]
+    fromCountry = params[:FromCountry]
 
-    call = TwilioCall.new(
-      :sid => sid
-      :from => from
-      :FromCity => FromCity
-      :FromState => FromState
-      :FromZip => FromZip
-      :FromCountry => FromCountry
+    call = TwilioCall.create(
+      sid:          sid,
+      from:         from,
+      fromCity:     fromCity,
+      fromState:    fromState,
+      fromZip:      fromZip,
+      fromCountry:  fromCountry,
       )
 
+    puts call
     call.save
 
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
-    response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"http://tellmeaboutit.herokuapp.com/get_id\" method=\"GET\">"
+    response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
     response << "</Gather>"
     response << "</Response>";
@@ -51,16 +54,12 @@ class TwilioResponsesController < ApplicationController
 
   def after_recording
     sid = params['CallSid']
-    call = TwilioCall.where(sid: => sid)
+    call = TwilioCall.where(sid: sid)
 
     url = params['RecordingUrl']
     length = params['RecordingDuration']
 
-    recording = Recording.new(
-        :url => url
-        :length => length
-        :twilio_id => call.id
-      )
+    recording = Recording.create( url: url, length: length, twilio_id: call.id )
 
     recording.save
 
@@ -117,19 +116,18 @@ class TwilioResponsesController < ApplicationController
   end
 
   def query_for_id id
-    account = Account.where(:uid => id)
-    puts 'occount: ' + account.to_s
+    a = Account.where(:uid => id)
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    # if account != nil
+    if a.first != nil
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
       response << content_for_record
-    # else
-    #   response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-    #   response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
-    #   response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-    #   response << "</Record>";
-    # end
+    else
+      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+      response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
+      response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+      response << "</Record>";
+    end
     response << "</Response>";
     return response
   end
