@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :stories
+
   get 'say_intro' =>        'twilio_responses#say_intro'
   get 'get' =>              'static_pages#home'
   match 'get_id',          to: 'twilio_responses#id_number',       :via => [:post, :get]
