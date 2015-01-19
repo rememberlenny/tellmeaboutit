@@ -2,26 +2,41 @@ class TwilioResponsesController < ApplicationController
 
   def say_intro
     sid = params['CallSid']
-    call = TwilioCall.new
-    call.sid = sid
+    from = params['From']
+    FromCity = params['FromCity']
+    FromState = params['FromState']
+    FromZip = params['FromZip']
+    FromCountry = params['FromCountry']
+
+    call = TwilioCall.new(
+      :sid => sid
+      :from => from
+      :FromCity => FromCity
+      :FromState => FromState
+      :FromZip => FromZip
+      :FromCountry => FromCountry
+      )
+
     call.save
 
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
     response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"http://tellmeaboutit.herokuapp.com/get_id\" method=\"GET\">"
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
     response << "</Gather>"
     response << "</Response>";
+
     render text: response
   end
 
   def check_recording
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    response << "<Response>";
     d = params[:Digits]
     puts "###############"
     puts "We got this " + d
+
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response << "<Response>";
     if d == "#"
       response << proceed_forward
     elsif d == "1"
@@ -41,10 +56,12 @@ class TwilioResponsesController < ApplicationController
     url = params['RecordingUrl']
     length = params['RecordingDuration']
 
-    recording = Recording.new
-    recording.url = url
-    recording.length = length
-    recording.twilio_id = call.id
+    recording = Recording.new(
+        :url => url
+        :length => length
+        :twilio_id => call.id
+      )
+
     recording.save
 
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
