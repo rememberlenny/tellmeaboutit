@@ -30,6 +30,9 @@ class TwilioResponsesController < ApplicationController
   end
 
   def after_recording
+    sid = params['CallSid']
+    url = params['RecordingUrl']
+    length = params['RecordingDuration']
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << provide_options
