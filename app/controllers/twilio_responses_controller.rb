@@ -19,14 +19,14 @@ class TwilioResponsesController < ApplicationController
       fromZip:      fromZip,
       fromCountry:  fromCountry,
       )
-
-    puts call
     call.save
+
+    puts 'twilio_call created id: ' + call.id.to_s
 
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
-    gather_id_prompt
+    response << gather_id_prompt
     response << "</Response>";
 
     render text: response
@@ -117,7 +117,7 @@ class TwilioResponsesController < ApplicationController
   def gather_id_prompt
       response = ''
       response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
-      response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
       response << "</Gather>";
       return response
   end

@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20150119171409) do
   create_table "twilio_calls", force: :cascade do |t|
     t.string   "sid"
     t.string   "from"
-    t.string   "FromCity"
-    t.string   "FromState"
-    t.string   "FromZip"
-    t.string   "FromCountry"
+    t.string   "fromCity"
+    t.string   "fromState"
+    t.string   "fromZip"
+    t.string   "fromCountry"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
