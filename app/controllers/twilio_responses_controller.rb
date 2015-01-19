@@ -1,6 +1,7 @@
-base_url = 'http://702a8fa.ngrok.com'
-
 class TwilioResponsesController < ApplicationController
+  def base_url
+    return 'http://702a8fa.ngrok.com'
+  end
 
   def say_intro
     sid = params[:CallSid]
@@ -76,7 +77,7 @@ class TwilioResponsesController < ApplicationController
     render text: response
   end
 
-  def id_number
+  def get_id
     id = params[:Digits]
     puts 'id entered: ' + id.to_s
     response = query_for_id id
@@ -122,14 +123,17 @@ class TwilioResponsesController < ApplicationController
   end
 
   def query_for_id id
-    a = Account.where(:uid => id)
+    a = Account.where(uid: id.to_i)
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     if a.first != nil
+      puts 'id was matched: ' + id
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
       response << content_for_record
     else
-      respace << gather_id_prompt
+      puts 'id did not match'
+      response << '<Say>ID did not match. You entered ' + id + '</Say>'
+      response << gather_id_prompt
     end
     response << "</Response>";
     return response
