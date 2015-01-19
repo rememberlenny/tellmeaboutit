@@ -31,8 +31,17 @@ class TwilioResponsesController < ApplicationController
 
   def after_recording
     sid = params['CallSid']
+    call = TwilioCall.where(sid: => sid)
+
     url = params['RecordingUrl']
     length = params['RecordingDuration']
+
+    recording = Recording.new
+    recording.url = url
+    recording.length = length
+    recording.twilio_id = call.id
+    recording.save
+
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << provide_options
