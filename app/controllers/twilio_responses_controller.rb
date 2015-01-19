@@ -25,9 +25,7 @@ class TwilioResponsesController < ApplicationController
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
-    response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
-    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-    response << "</Gather>"
+    gather_id_prompt
     response << "</Response>";
 
     render text: response
@@ -87,7 +85,7 @@ class TwilioResponsesController < ApplicationController
 
 
   def provide_options
-    response = "<Gather timeout=\"10\" method=\"POST\" action=\"https://tellmeaboutit.herokuapp.com/check_recording\" numDigits=\"1\">"
+    response = "<Gather timeout=\"10\" method=\"POST\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
     response << "</Gather>"
     return response
@@ -115,6 +113,14 @@ class TwilioResponsesController < ApplicationController
     return response
   end
 
+  def gather_id_prompt
+      response = ''
+      response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
+      response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+      response << "</Gather>";
+      return response
+  end
+
   def query_for_id id
     a = Account.where(:uid => id)
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -123,10 +129,7 @@ class TwilioResponsesController < ApplicationController
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
       response << content_for_record
     else
-      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-      response << "<Record action=\"https://tellmeaboutit.herokuapp.com/handle_response\" method=\"GET\">";
-      response << " <Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-      response << "</Record>";
+      respace << gather_id_prompt
     end
     response << "</Response>";
     return response
