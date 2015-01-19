@@ -1,6 +1,6 @@
 class TwilioResponsesController < ApplicationController
   def base_url
-    return 'http://702a8fa.ngrok.com'
+    return 'http://65a03275.ngrok.com'
   end
 
   def say_intro
@@ -53,7 +53,8 @@ class TwilioResponsesController < ApplicationController
 
   def after_recording
     sid = params['CallSid']
-    call = TwilioCall.where(sid: sid)
+    call_array = TwilioCall.where(sid: sid)
+    call = call_array.first
 
     url = params['RecordingUrl']
     length = params['RecordingDuration']
@@ -78,6 +79,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def get_id
+    puts 'Ran get_id'
     id = params[:Digits]
     puts 'id entered: ' + id.to_s
     response = query_for_id id
@@ -86,7 +88,7 @@ class TwilioResponsesController < ApplicationController
 
 
   def provide_options
-    response = "<Gather timeout=\"10\" method=\"POST\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
+    response = "<Gather timeout=\"10\" method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
     response << "</Gather>"
     return response
@@ -110,13 +112,13 @@ class TwilioResponsesController < ApplicationController
   end
 
   def content_for_record
-    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"https://tellmeaboutit.herokuapp.com/after_recording\"/>";
+    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"" + base_url + "/after_recording\"/>";
     return response
   end
 
   def gather_id_prompt
-      response = ''
-      response << "<Gather timeout=\"10\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
+      puts 'Ran gather_id_prompt'
+      response =  "<Gather timeout=\"10\" numDigits=\"6\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
       response << "</Gather>";
       return response
