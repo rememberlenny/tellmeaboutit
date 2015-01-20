@@ -107,7 +107,7 @@ class TwilioResponsesController < ApplicationController
 
 
   def provide_options
-    response = "<Gather timeout=\"10\" method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
+    response = "<Gather method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
     response << "</Gather>"
     return response
@@ -141,7 +141,7 @@ class TwilioResponsesController < ApplicationController
 
   def gather_id_prompt
       puts 'Ran gather_id_prompt'
-      response =  "<Gather timeout=\"10\" numDigits=\"6\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"POST\">"
+      response =  "<Gather numDigits=\"6\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
       response << "</Gather>";
       return response
