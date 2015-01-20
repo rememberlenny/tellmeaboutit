@@ -3,6 +3,12 @@ class StoriesController < ApplicationController
 
   respond_to :html
 
+  def generate_account
+    number = rand(10 ** 6)
+    return number
+  end
+  helper_method :generate_account
+
   def index
     @stories = Story.all.where(was_checked: true)
     respond_with(@stories)
