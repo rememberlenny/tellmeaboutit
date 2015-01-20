@@ -26,7 +26,7 @@ class TwilioResponsesController < ApplicationController
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
-    response << gather_id_prompti
+    response << gather_id_prompt
     response << "</Response>";
 
     render text: response
