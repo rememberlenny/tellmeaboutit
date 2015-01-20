@@ -61,7 +61,7 @@ class TwilioResponsesController < ApplicationController
     if d == "#"
       response << proceed_forward
     elsif d == "1"
-      response << listen_back
+      response << listen_back sid
       response << provide_options
     elsif d == "*"
       response << rerecord
@@ -118,7 +118,7 @@ class TwilioResponsesController < ApplicationController
     return response
   end
 
-  def listen_back
+  def listen_back sid
     call_array = TwilioCall.where(sid: sid)
     call = call_array.first
     call_id = call.id
