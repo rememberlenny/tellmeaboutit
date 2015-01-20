@@ -20,8 +20,10 @@ $(function(){ $(document).foundation(); });
 
 $('.generate-id').on('click', function(e){
   e.preventDefault();
+  console.log('Clicked generate-id');
   $.getJSON( "/generate", function( data ) {
     var uid = data;
-    $('.id-field').text(uid);
+    console.log('Grabbed /generate');
+    $('.id-field').html(uid);
   }
 })
