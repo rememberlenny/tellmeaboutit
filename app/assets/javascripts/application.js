@@ -20,16 +20,17 @@ $(function(){ $(document).foundation(); });
 
 (function($){
   console.log('Ran');
-  $('.generate-id').on('click', function(e){
+  var $button = $('.generate-id');
+  var $field = $('.id-field');
+  $button.on('click', function(e){
     e.preventDefault();
     console.log('Clicked generate-id');
-    var $field = $('.id-field');
     if($field.disabled != true){
       $.getJSON( "/generate", function( data ) {
         var uid = data;
         console.log('Grabbed /generate');
+        $button.prop('disabled', true);
         $field.html(uid);
-        $field.prop('disabled', true);
       });
     }
   });
