@@ -33,28 +33,24 @@ class TwilioResponsesController < ApplicationController
   end
 
   def check_recording
-    # sid = params[:CallSid]
-    # call_array = TwilioCall.where(sid: sid)
-    # call = call_array.first
+    sid = params[:CallSid]
 
-    # call_id = call.id
+    d = params[:Digits]
 
-    # d = params[:Digits]
+    puts "We got this " + d
 
-    # puts "We got this " + d
-
-    # response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    # response << "<Response>"
-    # if d == "#"
-    #   response << proceed_forward
-    # elsif d == "1"
-    #   response << listen_back call_id
-    #   response << provide_options
-    # elsif d == "*"
-    #   response << rerecord
-    # end
-    # response << "</Response>"
-    # render text: response
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    response << "<Response>"
+    if d == "#"
+      response << proceed_forward
+    elsif d == "1"
+      response << listen_back
+      response << provide_options
+    elsif d == "*"
+      response << rerecord
+    end
+    response << "</Response>"
+    render text: response
   end
 
   def after_recording
@@ -105,7 +101,10 @@ class TwilioResponsesController < ApplicationController
     return response
   end
 
-  def listen_back call_id
+  def listen_back
+    call_array = TwilioCall.where(sid: sid)
+    call = call_array.first
+    call_id = call.id
     recordings = Recording.where(twilio_id: call_id)
     recording = recordings.last + '.mp3'
     response = "<Play>" + recording + "</Play>"
