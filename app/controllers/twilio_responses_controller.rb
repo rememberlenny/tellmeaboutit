@@ -135,7 +135,7 @@ class TwilioResponsesController < ApplicationController
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     if a.first != nil
-      puts 'id was matched: ' + id
+      puts 'id was matched: ' + id.to_s
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
       response << content_for_record
     else
