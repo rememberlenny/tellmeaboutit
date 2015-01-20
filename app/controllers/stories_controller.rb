@@ -14,7 +14,6 @@ class StoriesController < ApplicationController
       generate
     end
   end
-  helper_method :generate
 
   def index
     @stories = Story.all.where(was_checked: true)
