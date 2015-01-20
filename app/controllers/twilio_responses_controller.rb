@@ -39,7 +39,7 @@ class TwilioResponsesController < ApplicationController
     call_id = call.id
 
     d = params[:Digits]
-    puts "###############"
+
     puts "We got this " + d
 
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
