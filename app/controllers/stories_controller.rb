@@ -5,8 +5,14 @@ class StoriesController < ApplicationController
 
   def generate
     number = rand(10 ** 6)
-    a = Account.create(uid: number)
-    render json: a.uid
+
+    existing = Account.where(uid: number)
+    if existing.first == nil
+      a = Account.create(uid: number)
+      render json: a.uid
+    else
+      generate
+    end
   end
   helper_method :generate
 
