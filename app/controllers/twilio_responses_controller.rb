@@ -124,7 +124,7 @@ class TwilioResponsesController < ApplicationController
 
   def gather_id_prompt
       puts 'Ran gather_id_prompt'
-      response =  "<Gather timeout=\"10\" numDigits=\"6\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"POST\">"
+      response =  "<Gather timeout=\"10\" numDigits=\"6\" finishOnKey=\"#\" action=\"" + base_url + "/get_id\" method=\"GET\">"
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
       response << "</Gather>";
       return response
