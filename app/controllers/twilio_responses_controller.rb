@@ -42,7 +42,7 @@ class TwilioResponsesController < ApplicationController
 
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    response =  "<Gather  method=\"GET\" numDigits=\"6\" action=\"" + base_url + "/get_id\">";
+    response << "<Gather  method=\"GET\" numDigits=\"6\" action=\"" + base_url + "/get_id\">";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
     response << "</Gather>";
