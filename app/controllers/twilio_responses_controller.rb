@@ -26,13 +26,18 @@ class TwilioResponsesController < ApplicationController
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
-    response << gather_id_prompt
+    response << gather_id_prompti
     response << "</Response>";
 
     render text: response
   end
 
   def check_recording
+    sid = params[:CallSid]
+    call_array = TwilioCall.where(sid: sid)
+    call = call_array.first
+    call_id = call.id
+
     d = params[:Digits]
     puts "###############"
     puts "We got this " + d
@@ -42,7 +47,7 @@ class TwilioResponsesController < ApplicationController
     if d == "#"
       response << proceed_forward
     elsif d == "1"
-      response << listen_back
+      response << listen_back call_id
       response << provide_options
     elsif d == "*"
       response << rerecord
@@ -99,8 +104,9 @@ class TwilioResponsesController < ApplicationController
     return response
   end
 
-  def listen_back
-    recording = params[:recording_url] + '.mp3'
+  def listen_back call_id
+    recordings = Recording.where(twilio_id: call_id)
+    recording = recordings.last + '.mp3'
     response = "<Play>" + recording + "</Play>"
     return response
   end
