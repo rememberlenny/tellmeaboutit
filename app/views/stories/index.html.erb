@@ -2,13 +2,15 @@
 
 <!-- views/stories/index.html -->
 
+<%= generate_account %>
+
 <div class="row">
     <% @stories.each do |story| %>
       <div class="row full-height">
         <h1><%= story.name %></h1>
         <p><%= story.person %></p>
         <h3><%= story.age %></h3>
-        <h4><%= story.local %></h4>
+        <h4><%= story.location %></h4>
         <h2><%= link_to '', story %></h2>
         <p></p>
       </div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'say_intro' =>        'twilio_responses#say_intro'
   get 'get' =>              'static_pages#home'
   get 'admin' =>            'admin#dash'
+  get 'generate' =>         'stories#generate'
 
   match 'get_id',          to: 'twilio_responses#get_id',          :via => [:post, :get]
   match 'handle_response', to: 'twilio_responses#save',            :via => [:post, :get]
