@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   respond_to :html
 
   def index
-    @stories = Story.all
+    @stories = Story.all.where(was_checked: true)
     respond_with(@stories)
   end
 
