@@ -1,6 +1,6 @@
 class TwilioResponsesController < ApplicationController
   def base_url
-    return 'http://tellmeaboutit.herokuapp.com'
+    return 'http://tellmebout.it'
   end
 
   def say_intro
