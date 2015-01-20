@@ -140,7 +140,7 @@ class TwilioResponsesController < ApplicationController
       response << content_for_record
     else
       puts 'id did not match'
-      response << '<Say>ID did not match. You entered ' + id + '</Say>'
+      response << '<Say>ID did not match. You entered ' + id.to_s + '</Say>'
       response << gather_id_prompt
     end
     response << "</Response>";
