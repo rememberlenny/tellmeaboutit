@@ -1,6 +1,6 @@
 class TwilioResponsesController < ApplicationController
   def base_url
-    return 'http://tellmebout.it'
+    return ENV['TMAI_URL']
   end
 
   def save
@@ -140,6 +140,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def gather_id_prompt
+
       puts 'Ran gather_id_prompt'
       response =  "<Gather  method=\"GET\" numDigits=\"6\" action=\"" + base_url + "/get_id\">";
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
