@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120045108) do
+ActiveRecord::Schema.define(version: 20150120135309) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "uid"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150120045108) do
     t.integer  "age"
     t.string   "location"
     t.boolean  "was_checked",  default: false
+    t.string   "account_id"
   end
 
   create_table "twilio_calls", force: :cascade do |t|
