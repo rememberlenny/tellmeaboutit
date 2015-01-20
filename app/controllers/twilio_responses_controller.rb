@@ -123,7 +123,7 @@ class TwilioResponsesController < ApplicationController
     call = call_array.first
     call_id = call.id
     recordings = Recording.where(twilio_id: call_id)
-    recording = recordings.last.recording_url + '.mp3'
+    recording = recordings.last.url + '.mp3'
     response = "<Play>" + recording + "</Play>"
     return response
   end
