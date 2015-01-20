@@ -17,3 +17,11 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$('.generate-id').on('click', function(e){
+  e.preventDefault();
+  $.getJSON( "/generate", function( data ) {
+    var uid = data;
+    $('.id-field').text(uid);
+  }
+})
