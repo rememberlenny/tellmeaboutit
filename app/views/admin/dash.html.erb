@@ -2,17 +2,30 @@
 
 <h1>Admin</h1>
 <div class="panel">
+  <h1>Stories</h1>
   <% @stories.each do |story| %>
     <div class="row">
       <%= story.to_json %>
     </div>
   <% end %>
+</div>
 
+<div class="panel">
+  <h1>Recordings</h1>
   <% @recordings.each do |recording| %>
     <div class="row">
       <%= recording.to_json %>
+    </div>
   <% end %>
 </div>
+
+<div class="panel">
+  <h1>Calls</h1>
+  <% @twiliocalls.each do |call| %>
+    <div class="row">
+      <%= call.to_json %>
+    </div>
+  <% end %>
 </div>
 
 <div class="row">
