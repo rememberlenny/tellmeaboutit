@@ -17,7 +17,10 @@ class AdminController < ApplicationController
     accounts.each do |account|
       a = {}
       account_id = account.id
-      a[:account] = account
+      a[:id] = account.id
+      a[:uid] = account.uid
+      a[:created_at] = account.created_at
+      a[:twilio_call_id] = account.twilio_call_id
       a[:stories] = full_stories account_id
 
       @hash[:accounts] << a
