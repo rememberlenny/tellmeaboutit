@@ -23,7 +23,7 @@ class AdminController < ApplicationController
         a[:created_at] = account.created_at
         a[:fromCity] = call.fromCity
         a[:fromZip] = call.fromZip
-        a[:fromCounty] = call.fromCountry
+        a[:fromCountry] = call.fromCountry
         a[:fromState] = call.fromState
         a[:stories] = full_stories account_id
         @hash << a
