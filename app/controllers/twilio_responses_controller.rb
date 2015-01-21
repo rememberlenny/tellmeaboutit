@@ -51,7 +51,6 @@ class TwilioResponsesController < ApplicationController
 
   def check_recording
     sid = params[:CallSid]
-
     d = params[:Digits]
 
     puts "We got this " + d
@@ -75,11 +74,16 @@ class TwilioResponsesController < ApplicationController
     call_array = TwilioCall.where(sid: sid)
     call = call_array.first
 
+    accounts = Account.where(uid: id.to_i, twilio_call_id: params[:CallSid])
+    a = accounts.first
+
+    story_array = Story.where(account_id: a.id)
+    story = story_array.first
+
     url = params['RecordingUrl']
     length = params['RecordingDuration']
 
-    recording = Recording.create( url: url, length: length, twilio_id: call.id )
-
+    recording = Recording.create( url: url, length: length, twilio_id: call.id, story_id: story.id )
     recording.save
 
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -141,16 +145,16 @@ class TwilioResponsesController < ApplicationController
 
   def gather_id_prompt
 
-      puts 'Ran gather_id_prompt'
-      response =  "<Gather  method=\"GET\" numDigits=\"6\" action=\"" + base_url + "/get_id\">";
-      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
-      response << "</Gather>";
-      return response
+    puts 'Ran gather_id_prompt'
+    response =  "<Gather  method=\"GET\" numDigits=\"6\" action=\"" + base_url + "/get_id\">";
+    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/3-please-enter-your-id.wav</Play>";
+    response << "</Gather>";
+    return response
   end
 
   def query_for_id id
     puts 'query_for_id received: ' + id.to_s
-    accounts = Account.where(uid: id.to_i)
+    accounts = Account.where(uid: id.to_i, twilio_call_id: params[:CallSid])
     a = accounts.first
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
