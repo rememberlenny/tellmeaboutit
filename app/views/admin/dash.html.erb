@@ -15,7 +15,7 @@
           <% country = account[:fromCountry] %>
           <% location = '' %>
           <% location << account[:fromCity] + ', ' + account[:fromState] %>
-          <% if !country.empty? %>
+          <% if country != '' %>
           <% location << '|' + location + ', ' + account[:fromCountry] %>
           <% end %>
           <% location = url_encode(location) %>
