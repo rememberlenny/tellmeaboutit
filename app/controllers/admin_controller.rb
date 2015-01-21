@@ -5,10 +5,11 @@ class AdminController < ApplicationController
 
   def full_accounts
     @accounts = Account.all
-
+    @stories = []
     @accounts.each do |account|
       stories = []
       stories = full_stories account
+      @stories << stories
     end
   end
 
