@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150121055127) do
     t.string   "url"
     t.string   "length"
     t.string   "transcript"
-    t.string   "twilio_id"
+    t.integer  "twilio_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "story_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150121055127) do
     t.integer  "age"
     t.string   "location"
     t.boolean  "was_checked",  default: false
-    t.string   "account_id"
+    t.integer  "account_id"
   end
 
   create_table "twilio_calls", force: :cascade do |t|
