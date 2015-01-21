@@ -15,11 +15,11 @@
           <% location = '' %>
           <% location << account[:fromCity] + ', ' + account[:fromState] %>
           <% if !account[:fromCountry].empty? %>
-          <% location << '|' + location + ', ' account[:fromCountry] %>
+          <% location << '|' + location + ', ' + account[:fromCountry] %>
           <% end %>
           <% location = url_encode(location) %>
 
-          <img src="http://maps.google.com/maps/api/staticmap?center=35.281124,-102.574262&zoom=3&markers=size:mid|<%= location %>&size=300x250&sensor=TRUE_OR_FALSE">
+          <img src="http://maps.google.com/maps/api/staticmap?center=35.281124,-102.574262&zoom=3&markers=size:small|<%= location %>&size=300x250&sensor=TRUE_OR_FALSE">
         </div>
         <div class="large-8 medium-8 column">
 
