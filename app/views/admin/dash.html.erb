@@ -5,7 +5,10 @@
   <h2>Datas</h2>
   <% @hash.each do |hash| %>
     <div class="row">
-      <%= hash.to_json %>
+      <script>
+        var hash = <%= hash.to_json %>;
+        console.log(hash);
+      </script>
     </div>
   <% end %>
 </div>
