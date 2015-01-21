@@ -7,10 +7,9 @@ class AdminController < ApplicationController
     @hash = {}
     @hash[:accounts] = []
 
-    @accounts = Account.all
-    @stories = []
+    accounts = Account.all
 
-    @accounts.each do |account|
+    saccounts.each do |account|
       a = {}
       id = account.id
       a[:account] = account
