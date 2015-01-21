@@ -7,7 +7,7 @@ class AdminController < ApplicationController
     @accounts = Account.all
 
     @accounts.each do |account|
-      account.stories = []
+      account[:stories] = []
       full_stories account
     end
   end
