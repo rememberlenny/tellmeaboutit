@@ -48,7 +48,7 @@ class AdminController < ApplicationController
 
     recordings.each do |recording|
       r = {}
-      if recording.story_id == story_id
+      if recording.story_id.to_i == story_id
         r[:recording] << recording
       end
       recordings_obj[:recordings] << r
