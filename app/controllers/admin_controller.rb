@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   def dash
-    @stories = Stories.all
-    @recordings = Recordings.all
+    @stories = Story.all
+    @recordings = Recording.all
   end
 end
