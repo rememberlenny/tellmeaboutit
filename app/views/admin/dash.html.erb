@@ -2,6 +2,15 @@
 
 <h1>Admin</h1>
 <div class="panel">
+  <h1>Accounts</h1>
+  <% @accounts.each do |account| %>
+    <div class="row">
+      <%= account.to_json %>
+    </div>
+  <% end %>
+</div>
+
+<div class="panel">
   <h1>Stories</h1>
   <% @stories.each do |story| %>
     <div class="row">
