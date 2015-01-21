@@ -1,6 +1,6 @@
 class TwilioResponsesController < ApplicationController
   def base_url
-    return 'http://2af57a1a.ngrok.com'
+    return ENV['TMAI_URL']
   end
 
   def save
