@@ -31,7 +31,7 @@ gem 'devise-token_authenticatable'
 # gem 'omniauth-linkedin'
 
 # # Analytics
-# gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 
 # Sitemap
 # gem 'sitemap_generator'
