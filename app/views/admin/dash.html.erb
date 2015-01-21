@@ -2,19 +2,10 @@
 
 <h1>Admin</h1>
 <div class="panel">
-  <h2>Accounts</h2>
-  <% @accounts.each do |account| %>
+  <h2>Datas</h2>
+  <% @hash.each do |hash| %>
     <div class="row">
-      <%= account.to_json %>
-    </div>
-  <% end %>
-</div>
-
-<div class="panel">
-  <h2>Stories</h2>
-  <% @stories.each do |story| %>
-    <div class="row">
-      <%= story.to_json %>
+      <%= hash.to_json %>
     </div>
   <% end %>
 </div>
