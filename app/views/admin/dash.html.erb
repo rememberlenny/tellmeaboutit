@@ -6,19 +6,21 @@
 <div class="panel">
   <h2>Accounts</h2>
     <% @hash.each do |account| %>
-      <%= account[:id] %>
-      <%= account[:uid] %>
-      <%= account[:created_at] %>
-      <%= account[:fromCity] %>
-      <%= account[:fromState] %>
-      <%= account[:fromCountry] %>
+      <p>id: <%= account[:id] %></p>
+      <p>uid: <%= account[:uid] %></p>
+      <p>created_at: <%= account[:created_at] %></p>
+      <p>fromCity: <%= account[:fromCity] %></p>
+      <p>fromState: <%= account[:fromState] %></p>
+      <p>fromCountry: <%= account[:fromCountry] %></p>
+      <h4>Stories</h4>
       <% account[:stories].each do |story| %>
-        <%= story[:id] %>
-        <%= story[:was_checked] %>
+        <p>id: <%= story[:id] %></p>
+        <p>was_checked: <%= story[:was_checked] %></p>
+        <h5>Recordings</h5>
         <% story[:recordings].each do |recording| %>
-          <%= recording[:id] %>
-          <%= recording[:url] %>
-          <%= recording[:length] %>
+          <p>id: <%= recording[:id] %></p>
+          <p>url: <%= recording[:url] %></p>
+          <p>length: <%= recording[:length] %></p>
         <% end %>
       <% end %>
     <% end %>
