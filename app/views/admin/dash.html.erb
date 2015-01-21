@@ -5,7 +5,7 @@
 
 <div class="panel">
   <h2>Accounts</h2>
-    <% @hash.each do |account| %>
+    <% @hash.first.each do |account| %>
       <%= account.id %>
       <%= account.uid %>
       <%= account.created_at %>
