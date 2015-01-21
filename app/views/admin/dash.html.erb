@@ -1,14 +1,22 @@
 <div class="row">
 
 <h1>Admin</h1>
+<p>Note: window.hash is available via JS</p>
+
 <div class="panel">
-  <h2>Datas</h2>
-    <div class="row">
-      <script>
-        var hash = <%= raw(@hash.to_json) %>;
-        console.log(hash);
-      </script>
-    </div>
+  <h2>Accounts</h2>
+    <% @hash.each do |hash| %>
+      <div class="row">
+        <h3>Account id: <%= hash.account.id %></h3>
+        <% hash.stories.each do |story| %>
+          <% story.recordings.each do |recording| %>
+            <p>Recording id: <%= recording.id %></p>
+            <p>Length: <%= recording.length %> seconds</p>
+            <p>Url: <a href="<%= recording.url %>.mp3"><%= recording.url %>.mp3</a></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
 </div>
 
 <div class="row">
@@ -17,3 +25,8 @@
   <%= link_to "View all recordings", recordings_path, :class=>"button secondary"%>
   <%= link_to "View all stories", stories_path, :class=>"button secondary"%>
 </div>
+
+<script>
+  window.hash = <%= raw(@hash.to_json) %>;
+  console.log(hash);
+</script>
