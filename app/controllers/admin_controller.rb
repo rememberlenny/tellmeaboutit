@@ -9,24 +9,25 @@ class AdminController < ApplicationController
   end
 
   def full_accounts
-    @hash = {}
-    @hash[:accounts] = []
+    @hash = []
 
     accounts = Account.all
 
     accounts.each do |account|
-      call = TwilioCall.find(account.twilio_call_id)
-      a = {}
-      account_id = account.id
-      a[:id] = account.id
-      a[:uid] = account.uid
-      a[:created_at] = account.created_at
-      a[:fromCity] = call.fromCity
-      a[:fromZip] = call.fromZip
-      a[:fromCounty] = call.fromCountry
-      a[:fromState] = call.fromState
-      a[:stories] = full_stories account_id
-      @hash[:accounts] << a
+      if account.twilio_call_id != nil
+        call = TwilioCall.find(account.twilio_call_id)
+        a = {}
+        account_id = account.id
+        a[:id] = account.id
+        a[:uid] = account.uid
+        a[:created_at] = account.created_at
+        a[:fromCity] = call.fromCity
+        a[:fromZip] = call.fromZip
+        a[:fromCounty] = call.fromCountry
+        a[:fromState] = call.fromState
+        a[:stories] = full_stories account_id
+        @hash << a
+      end
     end
     return @hash
   end
