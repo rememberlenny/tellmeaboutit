@@ -18,7 +18,7 @@ class AdminController < ApplicationController
       a = {}
       account_id = account.id
       a[:account] = account
-      a[:account][:stories] = full_stories account_id
+      a[:stories] = full_stories account_id
 
       @hash[:accounts] << a
     end
