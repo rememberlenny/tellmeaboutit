@@ -10,17 +10,17 @@
         <h3>Account id: <%= hash.account.first.id %></h3>
         <% hash.stories.each do |story| %>
           <% story.story.each do |story| %>
-            <h4>Story id: <%= story.first.id %></h4>
-            <p><b>Accepted: <%= story.first.was_checked %></b></p>
+            <h4>Story id: <%= story.id %></h4>
+            <p><b>Accepted: <%= story.was_checked %></b></p>
           <% end %>
 
           <% story.recordings.each do |recording| %>
-            <% call = TwilioCall.find(recording.first.twilio_id) %>
+            <% call = TwilioCall.find(recording.twilio_id) %>
             <p>Caller id: <%= call.sid %></p>
             <p>Caller Zip code: <%= call.fromZip %></p>
-            <p>Recording id: <%= recording.first.id %></p>
-            <p>Length: <%= recording.first.length %> seconds</p>
-            <p>Url: <a href="<%= recording.url %>.mp3"><%= recording.first.url %>.mp3</a></p>
+            <p>Recording id: <%= recording.id %></p>
+            <p>Length: <%= recording.length %> seconds</p>
+            <p>Url: <a href="<%= recording.url %>.mp3"><%= recording.url %>.mp3</a></p>
           <% end %>
         <% end %>
       </div>
