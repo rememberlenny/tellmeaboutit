@@ -28,7 +28,7 @@ class AdminController < ApplicationController
     recordings = []
     stories.each do |story|
       s = {}
-      s[:story] << story
+      s[:story] = story
       s[:recordings] = []
       if story.account_id == account.id
         recordings = full_recording story
