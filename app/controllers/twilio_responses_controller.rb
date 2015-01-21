@@ -74,7 +74,7 @@ class TwilioResponsesController < ApplicationController
     call_array = TwilioCall.where(sid: sid)
     call = call_array.first
 
-    accounts = Account.where(uid: id.to_i, twilio_call_id: params[:CallSid])
+    accounts = Account.where(uid: id.to_i, twilio_call_id: call.id)
     a = accounts.first
 
     story_array = Story.where(account_id: a.id)
@@ -154,7 +154,9 @@ class TwilioResponsesController < ApplicationController
 
   def query_for_id id
     puts 'query_for_id received: ' + id.to_s
-    accounts = Account.where(uid: id.to_i, twilio_call_id: params[:CallSid])
+    call_array = TwilioCall.where(sid: params[:CallSid])
+    call = call_array.first
+    accounts = Account.where(uid: id.to_i, twilio_call_id: call.id)
     a = accounts.first
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
