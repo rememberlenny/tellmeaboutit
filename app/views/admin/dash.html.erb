@@ -5,8 +5,22 @@
 
 <div class="panel">
   <h2>Accounts</h2>
-    <% @hash.each do |hash| %>
-      <%= hash.inspect %>
+    <% @hash.each do |account| %>
+      <%= account.id %>
+      <%= account.uid %>
+      <%= account.created_at %>
+      <%= account.fromCity %>
+      <%= account.fromState %>
+      <%= account.fromCountry %>
+      <% account.stories.each do |story| %>
+        <%= story.id %>
+        <%= story.was_checked %>
+        <% story.recordings.each do |recording| %>
+          <%= recording.id %>
+          <%= recording.url %>
+          <%= recording.length %>
+        <% end %>
+      <% end %>
     <% end %>
 </div>
 
