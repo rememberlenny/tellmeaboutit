@@ -15,14 +15,17 @@ class AdminController < ApplicationController
     accounts = Account.all
 
     accounts.each do |account|
+      call = TwilioCall.find(account.twilio_call_id)
       a = {}
       account_id = account.id
       a[:id] = account.id
       a[:uid] = account.uid
       a[:created_at] = account.created_at
-      a[:twilio_call_id] = account.twilio_call_id
+      a[:fromCity] = call.fromCity
+      a[:fromZip] = call.fromZip
+      a[:fromCounty] = call.fromCountry
+      a[:fromState] = call.fromState
       a[:stories] = full_stories account_id
-
       @hash[:accounts] << a
     end
     return @hash
@@ -34,11 +37,12 @@ class AdminController < ApplicationController
     recordings = []
     stories.each do |story|
       s = {}
-      s[:story] = story
+      s[:id] = story.id
+      s[:was_checked] = story.was_checked
       if story.account_id == account_id
         story_id = story.id
-        recordings = full_recording story_id
-        stories_obj << recordings
+        s[:recordings] = full_recording story_id
+        stories_obj << s
       end
     end
 
@@ -46,11 +50,16 @@ class AdminController < ApplicationController
   end
 
   def full_recording story_id
-    recordings_obj = {}
-
+    recordings_array = []
     recordings = Recording.where(story_id: story_id.to_s)
-    recordings_obj[:recordings] = recordings
-
-    return recordings_obj
+    recordings.each do |recording|
+      recording_obj = {}
+      recording_obj[:id] = recording.id
+      recording_obj[:url] = recording.url
+      recording_obj[:length] = recording.length
+      recording_obj[:created_at] = recording.created_at
+      recordings_array << recording_obj
+    end
+    return recordings_array
   end
 end
