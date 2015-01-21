@@ -2,19 +2,8 @@
 
 <h1>Admin</h1>
 <div class="panel">
-  <h1>Accounts</h1>
-  <% @accounts.each do |account| %>
-    <% account.stories = [] %>
-      <% @stories.each do |story| %>
-        <% if story.account_id == account.id %>
-          <% account.stories.push story  %>
-        <% end %>
-        <% @recordings.each do |recording| %>
-          <% if recording.story_id == story.id %>
-            <% account.stories.push recording %>
-          <% end %>
-        <% end %>
-      <% end %>
+  <h2>Accounts</h2>
+  <% @account.each do |account| %>
     <div class="row">
       <%= account.to_json %>
     </div>
@@ -22,14 +11,10 @@
 </div>
 
 <div class="panel">
-  <h1>Recordings</h1>
-</div>
-
-<div class="panel">
-  <h1>Calls</h1>
-  <% @twiliocalls.each do |call| %>
+  <h2>Stories</h2>
+  <% @stories.each do |story| %>
     <div class="row">
-      <%= call.to_json %>
+      <%= story.to_json %>
     </div>
   <% end %>
 </div>
