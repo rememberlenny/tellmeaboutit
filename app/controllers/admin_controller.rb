@@ -44,15 +44,8 @@ class AdminController < ApplicationController
     recordings_obj = {}
     recordings_obj[:recordings] = []
 
-    recordings = Recording.where(story_id: story_id)
-
-    recordings.each do |recording|
-      r = {}
-      if recording.story_id.to_i == story_id
-        r[:recording] << recording
-      end
-      recordings_obj[:recordings] << r
-    end
+    recordings = Recording.where(story_id: story_id.to_s)
+    recordings_obj[:recordings] << recordings
 
     return recordings_obj
   end
