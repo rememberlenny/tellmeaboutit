@@ -28,7 +28,11 @@
                   <h5>Recordings</h5>
                   <% story[:recordings].each do |recording| %>
                     <p>id: <%= recording[:id] %></p>
-                    <p>url: <%= recording[:url] %></p>
+                    <p>
+                      <audio controls>
+                        <source src="<%= recording[:url] %>" type="audio/mpeg">
+                      </audio>
+                    </p>
                     <p>length: <%= recording[:length] %></p>
                   <% end %>
                 </div>
