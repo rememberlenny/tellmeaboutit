@@ -150,10 +150,12 @@ class TwilioResponsesController < ApplicationController
 
   def query_for_id id
     puts 'query_for_id received: ' + id.to_s
-    a = Account.where(uid: id.to_i)
+    accounts = Account.where(uid: id.to_i)
+    a = accounts.first
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    if a.first != nil
+    if a != nil
+      Story.create(account_id: a.id)
       puts 'id was matched: ' + id.to_s
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
       response << content_for_record
