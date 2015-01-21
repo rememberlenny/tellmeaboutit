@@ -74,7 +74,7 @@ class TwilioResponsesController < ApplicationController
     call_array = TwilioCall.where(sid: sid)
     call = call_array.first
 
-    accounts = Account.where(uid: id.to_i, twilio_call_id: call.id)
+    accounts = Account.where(uid: id.to_i)
     a = accounts.first
 
     story_array = Story.where(account_id: a.id)
