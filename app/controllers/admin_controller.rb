@@ -6,7 +6,7 @@ class AdminController < ApplicationController
   def full_accounts
     @accounts = Account.all
 
-    accounts.each do |account|
+    @accounts.each do |account|
       account.stories = []
       full_stories account
     end
