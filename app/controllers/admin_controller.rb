@@ -4,39 +4,56 @@ class AdminController < ApplicationController
   end
 
   def full_accounts
+    @hash = {}
+    @hash[:accounts] = []
+
     @accounts = Account.all
     @stories = []
+
     @accounts.each do |account|
-      stories = []
-      stories = full_stories account
-      @stories << stories
+      a = {}
+
+      a[:account] = account
+      a[:stories] = full_stories account
+
+      @hash[:accounts] << a
     end
   end
 
   def full_stories account
-    @stories = Story.all
-    stories = []
+    stories_obj = {}
+    stories_obj[:stories] = []
 
-    @stories.each do |story|
+    stories = Story.all
+    recordings = []
+    stories.each do |story|
+      s = {}
+      s[:story] << story
+      s[:recordings] = []
       if story.account_id == account.id
         recordings = full_recording story
+        s[:recordings] << recordings
       end
-      stories.push story
+      stories_obj[:stories] << s
     end
 
-    return stories
+    return stories_obj
   end
 
   def full_recording story
-    @recordings = Recording.all
-    reocrdings = []
+    recordings_obj = {}
+    recordings_obj[:recordings] = []
 
-    @recordings.each do |recording|
+    recordings = Recording.all
+
+    recordings.each do |recording|
+      r = {}
       if recording.story_id == story.id
-        recordings.push recording
+        r[:recording] << recording
       end
+      recordings_obj[:recordings] << r
     end
 
-    return recordings
+    return recordings_obj
   end
 end
