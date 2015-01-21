@@ -125,7 +125,7 @@ class TwilioResponsesController < ApplicationController
   def listen_back sid
     call_array = TwilioCall.where(sid: sid)
     call = call_array.first
-    call_id = call.twilio_call_id
+    call_id = call.id
     recordings = Recording.where(twilio_id: call_id)
     recording = recordings.last.url + '.mp3'
     response = "<Play>" + recording + "</Play>"
