@@ -11,9 +11,7 @@
           <h3>Account id: <%= account[:id] %></h3>
           <p>uid: <%= account[:uid] %></p>
           <p>created_at: <%= account[:created_at] %></p>
-          <p>fromCity: <%= account[:fromCity] %></p>
-          <p>fromState: <%= account[:fromState] %></p>
-          <p>fromCountry: <%= account[:fromCountry] %></p>
+          <img src="http://maps.google.com/maps/api/staticmap?center=35.281124,-102.574262&zoom=3&markers=size:mid|<%= url_encode account[:fromCity] %>, <%= url_encode account[:fromState] %><% if !account[:fromCountry].empty? %>, <%= url_encode account[:fromCountry] %><% end %>&size=300x250&sensor=TRUE_OR_FALSE">
         </div>
         <div class="large-8 medium-8 column">
 
