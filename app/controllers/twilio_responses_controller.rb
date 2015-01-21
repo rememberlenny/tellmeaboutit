@@ -86,6 +86,9 @@ class TwilioResponsesController < ApplicationController
     recording = Recording.create( url: url, length: length, twilio_id: call.id, story_id: story.id )
     recording.save
 
+    story.recording_id = recording.id
+    story.save
+
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << provide_options
