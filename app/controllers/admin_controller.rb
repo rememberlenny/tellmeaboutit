@@ -32,13 +32,11 @@ class AdminController < ApplicationController
     stories.each do |story|
       s = {}
       s[:story] = story
-      s[:recordings] = []
       if story.account_id == account_id
         story_id = story.id
         recordings = full_recording story_id
-        s[:recordings] << recordings
+        stories_obj << recordings
       end
-      stories_obj << s
     end
 
     return stories_obj
