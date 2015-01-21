@@ -156,11 +156,13 @@ class TwilioResponsesController < ApplicationController
     puts 'query_for_id received: ' + id.to_s
     call_array = TwilioCall.where(sid: params[:CallSid])
     call = call_array.first
-    accounts = Account.where(uid: id.to_i, twilio_call_id: call.id)
+    accounts = Account.where(uid: id.to_i)
     a = accounts.first
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     if a != nil
+      a.twilio_call_id = call.id
+      a.save
       Story.create(account_id: a.id)
       puts 'id was matched: ' + id.to_s
       response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
