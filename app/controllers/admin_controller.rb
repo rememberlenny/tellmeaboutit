@@ -1,6 +1,11 @@
 class AdminController < ApplicationController
   def dash
-    @content = full_accounts
+    @hash = full_accounts
+  end
+
+  def index
+    @hash = full_accounts
+    render json: @hash
   end
 
   def full_accounts
@@ -17,6 +22,7 @@ class AdminController < ApplicationController
 
       @hash[:accounts] << a
     end
+    return @hash
   end
 
   def full_stories account_id
