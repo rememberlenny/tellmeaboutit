@@ -9,7 +9,7 @@ class AdminController < ApplicationController
 
     accounts = Account.all
 
-    saccounts.each do |account|
+    accounts.each do |account|
       a = {}
       id = account.id
       a[:account] = account
