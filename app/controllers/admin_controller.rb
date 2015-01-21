@@ -11,7 +11,7 @@ class AdminController < ApplicationController
 
     accounts.each do |account|
       a = {}
-      id = account.id
+      account_id = account.id
       a[:account] = account
       a[:stories] = full_stories account_id
 
