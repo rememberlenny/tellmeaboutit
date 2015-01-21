@@ -12,9 +12,10 @@
           <p>uid: <%= account[:uid] %></p>
           <p>created_at: <%= account[:created_at] %></p>
 
+          <% country = account[:fromCountry] %>
           <% location = '' %>
           <% location << account[:fromCity] + ', ' + account[:fromState] %>
-          <% if !account[:fromCountry].empty? %>
+          <% if !country.empty? %>
           <% location << '|' + location + ', ' + account[:fromCountry] %>
           <% end %>
           <% location = url_encode(location) %>
