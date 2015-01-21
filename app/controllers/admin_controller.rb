@@ -42,10 +42,9 @@ class AdminController < ApplicationController
 
   def full_recording story_id
     recordings_obj = {}
-    recordings_obj[:recordings] = []
 
     recordings = Recording.where(story_id: story_id.to_s)
-    recordings_obj[:recordings] << recordings
+    recordings_obj[:recordings] = recordings
 
     return recordings_obj
   end
