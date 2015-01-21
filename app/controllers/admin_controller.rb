@@ -3,7 +3,7 @@ class AdminController < ApplicationController
     @content = full_accounts
   end
 
-  def full_accounts accounts
+  def full_accounts
     @accounts = Account.all
 
     accounts.each do |account|
