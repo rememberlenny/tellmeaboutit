@@ -7,29 +7,35 @@ class AdminController < ApplicationController
     @accounts = Account.all
 
     @accounts.each do |account|
-      account[:stories] = []
-      full_stories account
+      stories = []
+      stories = full_stories account
     end
   end
 
   def full_stories account
     @stories = Story.all
+    stories = []
 
     @stories.each do |story|
       if story.account_id == account.id
-        account.stories.push story
-        full_recording story
+        recordings = full_recording story
       end
+      stories.push story
     end
+
+    return stories
   end
 
   def full_recording story
     @recordings = Recording.all
+    reocrdings = []
 
     @recordings.each do |recording|
       if recording.story_id == story.id
-        story.stories.push recording
+        recordings.push recording
       end
     end
+
+    return recordings
   end
 end
