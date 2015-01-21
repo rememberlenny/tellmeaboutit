@@ -2,7 +2,16 @@
 
 <h1>Admin</h1>
 <div class="panel">
-  Stuff goes here
+  <% @stories.each do |story| %>
+    <div class="row">
+      <%= story.to_json %>
+    </div>
+  <% end %>
+
+  <% @recordings.each do |recording| %>
+    <div class="row">
+      <%= recording.to_json %>
+  <% end %>
 </div>
 </div>
 
