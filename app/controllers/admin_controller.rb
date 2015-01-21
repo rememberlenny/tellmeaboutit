@@ -12,26 +12,27 @@ class AdminController < ApplicationController
 
     @accounts.each do |account|
       a = {}
-
+      id = account.id
       a[:account] = account
-      a[:stories] = full_stories account
+      a[:stories] = full_stories account_id
 
       @hash[:accounts] << a
     end
   end
 
-  def full_stories account
+  def full_stories account_id
     stories_obj = {}
     stories_obj[:stories] = []
 
-    stories = Story.all
+    stories = Story.where(account_id: account_id)
     recordings = []
     stories.each do |story|
       s = {}
       s[:story] = story
       s[:recordings] = []
       if story.account_id == account.id
-        recordings = full_recording story
+        story_id = story.id
+        recordings = full_recording story_id
         s[:recordings] << recordings
       end
       stories_obj[:stories] << s
@@ -40,11 +41,11 @@ class AdminController < ApplicationController
     return stories_obj
   end
 
-  def full_recording story
+  def full_recording story_id
     recordings_obj = {}
     recordings_obj[:recordings] = []
 
-    recordings = Recording.all
+    recordings = Recording.where(story_id: story_id)
 
     recordings.each do |recording|
       r = {}
