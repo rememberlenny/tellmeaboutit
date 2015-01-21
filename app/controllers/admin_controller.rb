@@ -18,7 +18,7 @@ class AdminController < ApplicationController
       a = {}
       account_id = account.id
       a[:account] = account
-      a[:stories] = full_stories account_id
+      a[:account][:stories] = full_stories account_id
 
       @hash[:accounts] << a
     end
@@ -26,9 +26,7 @@ class AdminController < ApplicationController
   end
 
   def full_stories account_id
-    stories_obj = {}
-    stories_obj[:stories] = []
-
+    stories_obj = []
     stories = Story.where(account_id: account_id)
     recordings = []
     stories.each do |story|
@@ -40,7 +38,7 @@ class AdminController < ApplicationController
         recordings = full_recording story_id
         s[:recordings] << recordings
       end
-      stories_obj[:stories] << s
+      stories_obj << s
     end
 
     return stories_obj
