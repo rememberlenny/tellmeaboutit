@@ -31,15 +31,23 @@
               <div class="row was_checked-<%= story[:was_checked] %>">
                 <div class="large-4 medium-4 column">
                   <h4>Story id: <%= story[:id] %></h4>
+
                   <% @story = Story.find(story[:id]) %><br>
-                  <%= @story.name %><br>
-                  <%= @story.age %><br>
-                  <%= @story.location %><br>
-                  <%= @story.person %><br>
+                  <p>
+                    Name: <%= @story.name %><br>
+                    Age: <%= @story.age %><br>
+                    Location: <%= @story.location %><br>
+                    Gender: <%= @story.person %><br>
+                  </p>
+                  <%= link_to 'View', story_path(@story), :class=>"small button large-12 " %>
+                  <%= link_to 'Edit', edit_story_path(@story), :class=>"small button large-12 success" %>
+                  <%= link_to 'Delete', story_path(@story), :method => 'delete', data: {confirm: "Are you sure?"}, :class=>"small button large-12 alert" %>
                 </div>
                 <div class="large-8 medium-8 column">
                   <h5>Recordings</h5>
                   <% story[:recordings].each do |recording| %>
+                    <% @recording = Recording.find(recording[:id]) %>
+
                     <p>recording_id: <%= recording[:id] %></p>
                     <p>Length: <%= recording[:length] %> seconds</p>
                     <p>
@@ -47,6 +55,12 @@
                         <source src="<%= recording[:url] %>" type="audio/mpeg">
                       </audio>
                     </p>
+                    <div class="">
+                        <%= link_to 'View', recording_path(@recording), :class=>"tiny button large-4 column even medium-4 secondary" %>
+                        <%= link_to 'Edit', edit_recording_path(@recording), :class=>"tiny button large-4 column even medium-4 secondary" %>
+                        <%= link_to 'Delete', recording_path(@recording), :method => 'delete', data: {confirm: "Are you sure?"}, :class=>"tiny button large-4 column even medium-4 secondary" %>
+                    </div>
+                    <hr>
                   <% end %>
                 </div>
               </div>
