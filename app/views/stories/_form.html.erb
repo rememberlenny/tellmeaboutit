@@ -1,10 +1,24 @@
+
 <%= simple_form_for(@story) do |f| %>
   <%= f.error_notification %>
+  <div class="row">
+    <div class="form-inputs text-left">
+      <div class="large-6 column">
+        <%= f.input :name %>
+      </div>
+      <div class="large-6 column">
+        <%= f.input :person %>
+      </div>
+      <div class="large-6 column">
+        <%= f.input :age %>
+      </div>
+      <div class="large-6 column">
+        <%= f.input :location %>
+      </div>
+    </div>
 
-  <div class="form-inputs">
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'button success' %>
+    </div>
   </div>
 <% end %>
