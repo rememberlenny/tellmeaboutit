@@ -35,8 +35,12 @@
                 <% if @story.selected_recording_id != nil %>
                   <% selected_recording = @story.selected_recording_id %>
                 <% else %>
-                  <% story_recordings = Recording.where(story_id: @story.id) %>
-                  <% selected_recording = story_recordings.last.id %>
+                  <% if @story.id != nil%>
+                    <% story_recordings = Recording.where(story_id: @story.id) %>
+                    <% selected_recording = story_recordings.last.id %>
+                  <% else %>
+                    <% selected_recording = 'none' %>
+                  <% end %>
                 <% end %>
                 <h5>Name: <%= @story.name %></h5>
                 <p>
