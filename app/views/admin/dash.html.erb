@@ -22,6 +22,7 @@
           <% end %>
           <% location = url_encode(location) %>
           <%= city + ', ' + state + ', ' + country %><br>
+
           <img src="http://maps.google.com/maps/api/staticmap?center=35.281124,-102.574262&zoom=7&markers=size:small|<%= location %>&size=300x250&sensor=TRUE_OR_FALSE">
         </div>
         <div class="large-8 medium-8 column">

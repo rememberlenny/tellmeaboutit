@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<div class="story-<%= @story.id %> row">
+  <% @recordings.each do |recording| %>
+    <div class="row recording-<%= recording.id %>">
+      <audio src="<%= recording.url %>" controls>
+      </audio>
+    </div>
+  <% end %>
+</div>
+
+
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>
