@@ -2,6 +2,12 @@
 
 <div class="story-<%= @story.id %> row">
   <% @recordings.each do |recording| %>
+    <div class="row person">
+      <%= @story.name %><br>
+      <%= @story.age %><br>
+      <%= @story.location %><br>
+      <%= @story.person %><br>
+    </div>
     <div class="row recording-<%= recording.id %>">
       <audio src="<%= recording.url %>" controls>
       </audio>
