@@ -33,11 +33,18 @@
                   <h4>Story id: <%= story[:id] %></h4>
 
                   <% @story = Story.find(story[:id]) %><br>
+                  <% if @story.selected_recording_id != nil %>
+                    <% selected_recording = @story.selected_recording_id %>
+                  <% else %>
+                    <% story_recordings = Recording.where(story_id: @story.id) %>
+                    <% selected_recording = story_recordings.last.id %>
+                  <% end %>
+                  <h5>Name: <%= @story.name %></h5>
                   <p>
-                    Name: <%= @story.name %><br>
                     Age: <%= @story.age %><br>
                     Location: <%= @story.location %><br>
                     Gender: <%= @story.person %><br>
+                    Selected Recording: <%= selected_recording %>
                   </p>
                   <%= link_to 'View', story_path(@story), :class=>"small button large-12 " %>
                   <%= link_to 'Edit', edit_story_path(@story), :class=>"small button large-12 success" %>
