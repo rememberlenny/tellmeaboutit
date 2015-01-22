@@ -15,3 +15,12 @@
  *= require foundation_and_overrides
 
  */
+
+
+body a:visited{
+  color: white;
+}
+
+a.vertical-button{
+  margin-bottom: 0em;
+}
