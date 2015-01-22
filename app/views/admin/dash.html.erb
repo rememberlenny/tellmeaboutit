@@ -32,7 +32,7 @@
                 <h4>Story id: <%= story[:id] %></h4>
 
                 <% @story = Story.find(story[:id]) %><br>
-                  <% if @story != nil %>
+                  <% if @story.id != nil %>
                     <% if @story.selected_recording_id != nil %>
                       <% selected_recording = @story.selected_recording_id %>
                     <% else %>
