@@ -32,16 +32,16 @@
                 <h4>Story id: <%= story[:id] %></h4>
 
                 <% @story = Story.find(story[:id]) %><br>
-                <% if @story.selected_recording_id != nil %>
-                  <% selected_recording = @story.selected_recording_id %>
-                <% else %>
-                  <% if @story.id != nil%>
-                    <% story_recordings = Recording.where(story_id: @story.id) %>
-                    <% selected_recording = story_recordings.last.id %>
+                  <% if @story != nil %>
+                    <% if @story.selected_recording_id != nil %>
+                      <% selected_recording = @story.selected_recording_id %>
+                    <% else %>
+                      <% story_recordings = Recording.where(story_id: @story.id) %>
+                      <% selected_recording = story_recordings.last.id %>
+                    <% end %>
                   <% else %>
-                    <% selected_recording = 'none' %>
+                    <% selected_recording = 'No recordings' %>
                   <% end %>
-                <% end %>
                 <h5>Name: <%= @story.name %></h5>
                 <p>
                   Age: <%= @story.age %><br>
