@@ -31,6 +31,11 @@
               <div class="row was_checked-<%= story[:was_checked] %>">
                 <div class="large-4 medium-4 column">
                   <h4>Story id: <%= story[:id] %></h4>
+                  <% @story = Story.find(story[:id]) %><br>
+                  <%= @story.name %><br>
+                  <%= @story.age %><br>
+                  <%= @story.location %><br>
+                  <%= @story.person %><br>
                 </div>
                 <div class="large-8 medium-8 column">
                   <h5>Recordings</h5>
