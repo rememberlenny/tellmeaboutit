@@ -54,6 +54,9 @@
                 <%= link_to 'Delete', story_path(@story), :method => 'delete', data: {confirm: "Are you sure?"}, :class=>"vertical-button small button large-12 alert" %>
               </div>
               <div class="large-8 medium-8 column">
+                <% if story[:recordings] == nil %>
+                <h5>No recordings</h5>
+                <% end %>
                 <% story[:recordings].each do |recording| %>
                   <h5>Recording id: <%= recording[:id] %></h5>
                   <% @recording = Recording.find(recording[:id]) %>
