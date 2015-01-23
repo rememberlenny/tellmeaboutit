@@ -60,10 +60,11 @@
                 <% story[:recordings].each do |recording| %>
                   <h5>Recording id: <%= recording[:id] %></h5>
                   <% @recording = Recording.find(recording[:id]) %>
+                  <% transcription = '' %>
                   <% if @recording.sid != nil %>
-                  <% recording_sid = @recording.sid %>
-                  <% recording_obj = @client.account.recordings.get(recording_sid) %>
-                  <% transcription = recording_obj.transcription.transcription_text %>
+                    <% recording_sid = @recording.sid %>
+                    <% recording_obj = @client.account.recordings.get(recording_sid) %>
+                    <% transcription = recording_obj.transcriptions.list.first.transcription_text %>
                   <% end %>
                   <% selected_recording_class = '' %>
                   <% if @recording.id == selected_recording %>
@@ -74,6 +75,9 @@
                       <audio controls>
                         <source src="<%= recording[:url] %>" type="audio/mpeg">
                       </audio>
+                    </p>
+                    <p>
+                      <%= transcription %>
                     </p>
                     <div class="row">
                       <div class="column">
