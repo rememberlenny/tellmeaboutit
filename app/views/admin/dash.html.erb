@@ -60,6 +60,11 @@
                 <% story[:recordings].each do |recording| %>
                   <h5>Recording id: <%= recording[:id] %></h5>
                   <% @recording = Recording.find(recording[:id]) %>
+                  <% if @recording.sid != nil %>
+                  <% recording_sid = @recording.sid %>
+                  <% recording_obj = @client.account.recordings.get(recording_sid) %>
+                  <% transcription = recording_obj.transcription.transcription_text %>
+                  <% end %>
                   <% selected_recording_class = '' %>
                   <% if @recording.id == selected_recording %>
                   <% selected_recording_class = 'selected-recording' %>
