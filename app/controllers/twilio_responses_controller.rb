@@ -82,8 +82,9 @@ class TwilioResponsesController < ApplicationController
 
     url = params['RecordingUrl']
     length = params['RecordingDuration']
+    sid = params['RecordingSid']
 
-    recording = Recording.create( url: url, length: length, twilio_id: call.id, story_id: story.id )
+    recording = Recording.create( url: url, length: length, twilio_id: call.id, story_id: story.id, sid: sid )
     recording.save
 
     story.recording_id = recording.id
