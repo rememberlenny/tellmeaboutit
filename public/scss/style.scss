@@ -34,9 +34,11 @@ audio{
 	background-color: rgba(0,0,0,.9);
 }
 
-h1{
+h1, h2{
 	font-family: $h-font;
 }
+
+
 
 .top-bar-section li.active:not(.has-form) a:not(.button) {
 	background: $yellow;

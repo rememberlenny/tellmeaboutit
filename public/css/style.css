@@ -16,7 +16,7 @@ audio {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9); }
 
-h1 {
+h1, h2 {
   font-family: 'Ovo', garamond, serif; }
 
 .top-bar-section li.active:not(.has-form) a:not(.button) {
