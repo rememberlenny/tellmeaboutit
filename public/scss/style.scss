@@ -34,21 +34,12 @@ audio{
 	background-color: rgba(0,0,0,.9);
 }
 
+h1{
+	font-family: $h-font;
+}
 
-// #video-mobile{
-// 	display:none;
-// 	@media screen and (max-width: $break-large) {
-// 		display:inline-block;
-// 	}
-
-// }
-
-
-.caption {
-        font-family: $p-font;
-		font-size: 12px;
-		margin: 10px 0;
-		color: $light-gray;
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+	background: $yellow;
 }
 
 .row{

@@ -16,11 +16,11 @@ audio {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9); }
 
-.caption {
-  font-family: 'Muli', Helvetica, arial, sans-serif;
-  font-size: 12px;
-  margin: 10px 0;
-  color: #A9A9A9; }
+h1 {
+  font-family: 'Ovo', garamond, serif; }
+
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  background: #dbbc3d; }
 
 .row {
   clear: both;
