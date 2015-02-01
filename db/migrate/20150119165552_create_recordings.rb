@@ -4,7 +4,7 @@ class CreateRecordings < ActiveRecord::Migration
       t.string :url
       t.string :length
       t.string :transcript
-      t.string :twilio_id
+      t.integer :twilio_id
 
       t.timestamps null: false
     end

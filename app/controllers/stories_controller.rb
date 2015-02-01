@@ -16,7 +16,8 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = Story.all.where(was_checked: true)
+    @stories = Story.all
+    # @stories = Story.all.where(was_checked: true)
     respond_with(@stories)
   end
 
@@ -51,9 +52,11 @@ class StoriesController < ApplicationController
   private
     def set_story
       @story = Story.find(params[:id])
+      @recordings = Recording.where(story_id: params[:id])
     end
 
     def story_params
-      params[:story]
+      accessible = [ :name, :person, :age, :location, :was_checked, :selected_recording_id ] # extend with your own params
+      params.require(:story).permit(accessible)
     end
 end

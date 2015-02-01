@@ -42,6 +42,6 @@ class RecordingsController < ApplicationController
     end
 
     def recording_params
-      params.require(:recording).permit(:url, :length, :transcript, :twilio_id)
+      params.require(:recording).permit(:url, :length, :transcript, :twilio_id, :sid)
     end
 end

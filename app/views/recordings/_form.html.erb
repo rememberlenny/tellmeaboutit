@@ -1,11 +1,23 @@
 <%= simple_form_for(@recording) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :url %>
-    <%= f.input :length %>
-    <%= f.input :transcript %>
-    <%= f.input :twilio_id %>
+  <div class="row">
+    <div class="form-inputs">
+      <div class="large-6 column">
+        <%= f.input :url %>
+      </div>
+      <div class="large-6 column">
+        <%= f.input :length %>
+      </div>
+      <div class="large-6 column">
+        <%= f.input :twilio_id %>
+      </div>
+      <div class="large-6 column">
+        <%= f.input :sid %>
+      </div>
+      <div class="large-12 column">
+        <%= f.input :transcript %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">
