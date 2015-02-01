@@ -22,10 +22,11 @@ body {
 }
 
 h1 {
-	font-family: Helvetica, arial, sans-serif;
+	font-family: 'Unica One', Helvetica, arial, sans-serif;
+	text-transform: uppercase;
 	color: #FFF;
 	font-weight: 100;
-	font-size: 4em;
+	font-size: 5em;
 	// padding-top: 20%;
 }
 
@@ -45,6 +46,7 @@ h3{
 
 
 label {
+	font-family: 'Unica One', Helvetica, arial, sans-serif;
 	font-size: 1rem;
 	color: #fff;
 	cursor: pointer;
