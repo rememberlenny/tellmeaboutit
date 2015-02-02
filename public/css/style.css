@@ -1,9 +1,11 @@
 body {
   font-family: 'Muli', Helvetica, arial, sans-serif;
   margin: 0px;
-  color: #5F5F5F;
+  color: #FFFFFF;
   font-size: 13pt;
-  text-align: left; }
+  font-weight: 100;
+  text-align: left;
+  background-color: #01b988; }
 
 a {
   color: #dbbc3d;
@@ -17,14 +19,40 @@ audio {
   background-color: rgba(0, 0, 0, 0.9); }
 
 h1, h2 {
-  font-family: 'Ovo', garamond, serif; }
+  font-family: 'Ovo', garamond, serif;
+  color: #e4cc6d; }
+
+h1 {
+  font-size: 1.7em;
+  text-align: center;
+  margin: 1em 0; }
+
+p {
+  line-height: 1.5em;
+  text-align: justify;
+  font-weight: 100; }
+
+.wrapper {
+  width: 600px;
+  margin: 0 auto 50px auto; }
+  @media all and (min-width: 600) {
+    .wrapper {
+      width: 95%; } }
+
+.top-bar {
+  background-color: #3d183c; }
 
 .top-bar-section li.active:not(.has-form) a:not(.button) {
   background: #dbbc3d; }
 
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #3d183c; }
+
+.top-bar-section li.active:not(.has-form) a:not(.button):hover, .top-bar-section li:not(.has-form) a:not(.button):hover {
+  background: #f563f1; }
+
 .row {
-  clear: both;
-  margin: 20px 0; }
+  clear: both; }
 
 .breakup-pullquote {
   position: relative;
@@ -32,6 +60,9 @@ h1, h2 {
   width: 70%;
   color: #ffffff;
   top: 20%; }
+  @media screen and (max-width: 768px) {
+    .breakup-pullquote {
+      width: 95%; } }
   .breakup-pullquote .breakup-pullquote-text {
     font-family: 'Muli', Helvetica, arial, sans-serif;
     font-weight: 100;
@@ -39,6 +70,10 @@ h1, h2 {
     text-align: center;
     line-height: 1.6em;
     margin: 0 3em; }
+    @media screen and (max-width: 768px) {
+      .breakup-pullquote .breakup-pullquote-text {
+        margin: 0 auto;
+        width: 90%; } }
   .breakup-pullquote .breakup-pullquote-text:before {
     content: "\“";
     font-family: garamond, serif;
@@ -47,6 +82,9 @@ h1, h2 {
     line-height: 0.8em;
     left: 0;
     color: rgba(0, 0, 0, 0.25); }
+    @media screen and (max-width: 768px) {
+      .breakup-pullquote .breakup-pullquote-text:before {
+        font-size: 3em; } }
   .breakup-pullquote .breakup-pullquote-text:after {
     content: "\”";
     font-family: garamond, serif;
@@ -55,6 +93,9 @@ h1, h2 {
     line-height: 0.8em;
     right: 0;
     color: rgba(0, 0, 0, 0.25); }
+    @media screen and (max-width: 768px) {
+      .breakup-pullquote .breakup-pullquote-text:after {
+        font-size: 3em; } }
   .breakup-pullquote .breakup-pullquote-author {
     font-family: 'Ovo', garamond, serif;
     font-weight: 100;
@@ -73,12 +114,6 @@ h1, h2 {
 
 .breakup-tile-container .breakup-tile {
   border: 3px solid #dbbc3d; }
-
-.orbit-container .orbit-prev, .orbit-container .orbit-next {
-  margin-top: 33%; }
-
-.orbit-container {
-  overflow: inherit; }
 
 .orbit-container .orbit-next > span {
   border-left-color: #FFFFFF; }

@@ -1,7 +1,10 @@
 // variables
 $magenta: #f563f1;
+$dark-magenta: #3d183c;
+$light-yellow: #e4cc6d;
 $yellow: #dbbc3d;
-$body-font: #5F5F5F;
+$teal: #01b988;
+$body-font: #FFFFFF;
 $light-gray: #A9A9A9;
 $p-font: 'Muli', Helvetica, arial, sans-serif;
 $h-font:'Ovo', garamond, serif; 
@@ -15,7 +18,9 @@ body {
 	margin: 0px;
 	color: $body-font;
 	font-size: 13pt;
+	font-weight:100;
 	text-align: left;
+	background-color: $teal;
 	
 }
 
@@ -36,17 +41,53 @@ audio{
 
 h1, h2{
 	font-family: $h-font;
+	color: $light-yellow;
 }
 
+h1{
+	font-size: 1.7em;
+	text-align: center;
+	margin: 1em 0;
 
+}
+
+p{
+	line-height:1.5em;
+	text-align: justify;
+	font-weight: 100;
+
+}
+
+.wrapper {
+	width: 600px;
+	margin: 0 auto 50px auto;
+	@media all and (min-width: 600){
+		width:95%;
+
+	}
+}
+
+.top-bar{
+	background-color: $dark-magenta;
+}
 
 .top-bar-section li.active:not(.has-form) a:not(.button) {
 	background: $yellow;
 }
 
+.top-bar-section li:not(.has-form) a:not(.button){
+	background: $dark-magenta;
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button):hover,
+.top-bar-section li:not(.has-form) a:not(.button):hover{
+	background: $magenta;
+}
+
+
+
 .row{
 	clear:both;
-	margin: 20px 0;
 
 }
 
@@ -58,6 +99,11 @@ h1, h2{
 	color: #ffffff;
 	top: 20%;
 
+	@media screen and (max-width: $break-large){
+		width:95%;
+
+	}
+
 	.breakup-pullquote-text{
 		font-family: $p-font;
 		font-weight: 100;
@@ -65,6 +111,12 @@ h1, h2{
 		text-align: center;
 		line-height: 1.6em;
 		margin: 0 3em;
+
+		@media screen and (max-width: $break-large) {
+			margin: 0 auto;
+			width:90%;
+
+  		}
 	}
 
 	.breakup-pullquote-text:before{
@@ -74,7 +126,11 @@ h1, h2{
 		position: absolute;
 		line-height: 0.8em;
 		left: 0;
-		color: rgba(0, 0, 0, 0.25)
+		color: rgba(0, 0, 0, 0.25);
+
+		@media screen and (max-width: $break-large) {
+			font-size:3em;
+  		}
 	}
 	.breakup-pullquote-text:after{
 		content: "\”" ;
@@ -83,7 +139,13 @@ h1, h2{
 		position: absolute;
 		line-height: 0.8em;
 		right: 0;
-		color: rgba(0, 0, 0, 0.25)	}
+		color: rgba(0, 0, 0, 0.25);
+
+		@media screen and (max-width: $break-large) {
+			font-size:3em;
+  		}
+
+	}
 
 	.breakup-pullquote-author{
 		font-family: $h-font;
@@ -115,13 +177,6 @@ h1, h2{
 	}
 }
 
-.orbit-container .orbit-prev, .orbit-container .orbit-next{
-	margin-top:33%;
-}
-
-.orbit-container{
-	overflow:inherit;
-}
 
 .orbit-container .orbit-next > span {
 	border-left-color: #FFFFFF;
