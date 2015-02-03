@@ -124,7 +124,8 @@ p {
   background: #832981; }
 
 .row {
-  clear: both; }
+  clear: both;
+  width: 100%; }
 
 .breakup-pullquote {
   position: relative;
