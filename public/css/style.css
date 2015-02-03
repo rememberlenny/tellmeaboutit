@@ -32,6 +32,78 @@ p {
   text-align: justify;
   font-weight: 100; }
 
+.light-yellow {
+  color: #e4cc6d; }
+
+.yellow {
+  color: #dbbc3d; }
+
+.dark-yellow {
+  color: #9d800a; }
+
+.light-magenta {
+  color: #f9a1f6; }
+
+.magenta {
+  color: #832981; }
+
+.dark-magenta {
+  color: #3d183c; }
+
+.light-teal {
+  color: #99fbe1; }
+
+.teal {
+  color: #01b988; }
+
+.dark-teal {
+  color: #003d2d; }
+
+.light-blue {
+  color: #cbf4ff; }
+
+.blue {
+  color: #00ceff; }
+
+.dark-blue {
+  color: #009abe; }
+
+.light-yellow-background {
+  background-color: #e4cc6d; }
+
+.yellow-background {
+  background-color: #dbbc3d; }
+
+.dark-yellow-background {
+  background-color: #9d800a; }
+
+.light-magenta-background {
+  background-color: #f9a1f6; }
+
+.magenta-background {
+  background-color: #832981; }
+
+.dark-magenta-background {
+  background-color: #3d183c; }
+
+.light-teal-background {
+  background-color: #99fbe1; }
+
+.teal-background {
+  background-color: #01b988; }
+
+.dark-teal-background {
+  background-color: #003d2d; }
+
+.light-blue-background {
+  background-color: #cbf4ff; }
+
+.blue-background {
+  background-color: #00ceff; }
+
+.dark-blue-background {
+  background-color: #009abe; }
+
 .wrapper {
   width: 600px;
   margin: 0 auto 50px auto; }
@@ -49,7 +121,7 @@ p {
   background: #3d183c; }
 
 .top-bar-section li.active:not(.has-form) a:not(.button):hover, .top-bar-section li:not(.has-form) a:not(.button):hover {
-  background: #f563f1; }
+  background: #832981; }
 
 .row {
   clear: both; }
@@ -112,102 +184,35 @@ p {
     text-align: center;
     color: #cccccc; }
 
-.breakup-tile-container .breakup-tile {
-  border: 3px solid #dbbc3d; }
-
 .orbit-container .orbit-next > span {
   border-left-color: #FFFFFF; }
 
-/* Main container for all */
-.onepcssgrid-600, .onepcssgrid-700, .onepcssgrid-1000, .onepcssgrid-1200 {
-  margin: 0 auto;
-  padding: 0 0 0 1%;
-  /* THAT'S THE NAME ;) */ }
+form {
+  font-size: 0.8em;
+  line-height: 1.2em; }
 
-.onepcssgrid-1200 {
-  max-width: 1220px; }
+input[type="submit"] {
+  text-align: center;
+  background-color: #e4cc6d;
+  font-family: #FFFFFF;
+  font-size: 1.4em;
+  border: 2px solid #dbbc3d;
+  color: #9d800a;
+  padding: 15px 38px;
+  cursor: pointer; }
 
-.onepcssgrid-1000 {
-  max-width: 1020px; }
-
-.onepcssgrid-700 {
-  max-width: 700px; }
-
-.onepcssgrid-600 {
-  max-width: 600px; }
-
-.onerow {
-  clear: both;
-  padding: 0 10px; }
-
-/* *********************************************************************************************************************
- * Common columns definitions
- */
-.col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
-  float: left;
-  margin: 0 1% 0 0;
-  padding: 10px; }
-
-.col1.last, .col2.last, .col3.last, .col4.last, .col5.last, .col6.last, .col7.last, .col8.last, .col9.last, .col10.last, .col11.last, .col12 {
-  margin: 0; }
-
-.col1 {
-  width: 5.5%; }
-
-.col2 {
-  width: 14%; }
-
-.col3 {
-  width: 21%; }
-
-.col4 {
-  width: 29%; }
-
-.col5 {
-  width: 39.5%; }
-
-.col6 {
-  width: 45%; }
-
-.col7 {
-  width: 56.5%; }
-
-.col8 {
-  width: 63%; }
-
-.col9 {
-  width: 73.5%; }
-
-.col10 {
-  width: 82%; }
-
-.col11 {
-  width: 90.5%; }
-
-.col12 {
-  width: 99%;
-  margin: 0; }
-
-.col1 img, .col2 img, .col3 img, .col4 img, .col5 img, .col6 img, .col7 img, .col8 img, .col9 img, .col10 img, .col11 img, .col12 img {
-  width: 100%;
-  height: auto;
-  display: block;
+.personal-code {
+  text-align: center;
+  background-color: #99fbe1;
+  padding: 20px 10px;
   margin: 1em 0; }
+  .personal-code p {
+    text-align: center;
+    color: #003d2d;
+    line-height: 2em;
+    font-size: 1em;
+    margin-bottom: 0; }
 
-/* *********************************************************************************************************************
- * Disable padding left/right 10px if I'm 1024 or gibber - correct percentage math
- */
-@media all and (min-width: 1024px) {
-  .onepcssgrid-1000 {
-    max-width: 1000px; }
-  .onepcssgrid-1000 .onerow {
-    padding: 0; } }
-
-/* *********************************************************************************************************************
- * Small devices
- */
-@media all and (max-width: 768px) {
-  .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
-    float: left;
-    width: 95%;
-    /*padding: 0;*/ } }
+span.breakup-question {
+  font-size: 1.3em;
+  line-height: 1.6em; }
