@@ -3,19 +3,21 @@
   <%= render 'stories/sidebar' %>
 </div>
 <div class="large-9 column medium-12">
-  <div class="story-<%= @story.id %> row">
-    <% @recordings.each do |recording| %>
-      <div class="row person">
-        <%= @story.name %><br>
-        <%= @story.age %><br>
-        <%= @story.location %><br>
-        <%= @story.person %><br>
-      </div>
-      <div class="row recording-<%= recording.id %>">
-        <audio src="<%= recording.url %>" controls>
-        </audio>
-      </div>
-    <% end %>
+  <div class="row panel background-light-magenta">
+    <div class="story-<%= @story.id %> column">
+      <% @recordings.each do |recording| %>
+        <div class="row person">
+          <%= @story.name %>,
+          <%= @story.age %>,
+          <%= @story.location %><br>
+          <%= @story.person %>
+        </div>
+        <div class="row recording-<%= recording.id %>">
+          <audio src="<%= recording.url %>" controls>
+          </audio>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to 'Back', stories_path, :class => 'button small secondary' %>
   </div>
 </div>
-<%= link_to 'Back', stories_path %>
