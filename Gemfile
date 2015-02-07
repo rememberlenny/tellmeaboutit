@@ -13,6 +13,7 @@ gem 'twilio-ruby'
 gem 'chronic'
 
 # Frontend
+gem 'acts-as-taggable-on', '~> 3.4'
 gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
