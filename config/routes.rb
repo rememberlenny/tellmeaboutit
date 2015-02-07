@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   match 'check_response',  to: 'twilio_responses#check_response',  :via => [:post, :get]
   match 'after_recording', to: 'twilio_responses#after_recording', :via => [:post, :get]
 
-  root 'static_pages#signup'
+  root 'static_pages#home'
 end
