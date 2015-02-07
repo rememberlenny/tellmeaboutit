@@ -65,4 +65,3 @@ class StoriesController < ApplicationController
       params.require(:story).permit(accessible)
     end
 end
-
