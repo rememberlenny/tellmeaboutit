@@ -16,6 +16,10 @@
 
  */
 
+h3.yellow-text{
+  color: #e4cc6d;
+}
+
 .left{
   float: left;
 }

@@ -3,10 +3,10 @@ class Story < ActiveRecord::Base
   acts_as_taggable_on :breakup_type
 
   def previous
-    Story.where(["id < ?", id]).last
+    Story.where(["id < ?", id]).where(was_checked: true).last
   end
 
   def next
-    Story.where(["id > ?", id]).first
+    Story.where(["id > ?", id]).where(was_checked: true).first
   end
 end
