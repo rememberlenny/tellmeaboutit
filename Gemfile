@@ -11,6 +11,7 @@ gem 'spring',        group: :development
 gem 'simple_form'
 gem 'twilio-ruby'
 gem 'chronic'
+gem 'ransack'
 
 # Frontend
 gem 'acts-as-taggable-on', '~> 3.4'
