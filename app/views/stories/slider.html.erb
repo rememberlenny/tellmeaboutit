@@ -1,5 +1,5 @@
 <div class=" large-3 medium-3 column">
-  <h1>Tell Me 'Bout It</h1>
+  <h2>Tell Me 'Bout It</h2>
   <p>Explore this gallery of user submitted stories about their breakups</p>
   <div class="panel dark-magenta-background">
     <label for="">Search for:</label>
@@ -12,6 +12,11 @@
     <%= link_to 'Share Your Story', submit_path, :class=>'button large large-12' %>
   </div>
 </div>
-<div class=" large-9 medium-9 column">
-  <%= render 'stories/slide' %>
+<div class="large-9 medium-9 column">
+<div class="row">
+  <h4>Featured Stories</h4>
+</div>
+  <div class="panel background-light-teal">
+    <%= render 'stories/slide' %>
+  </div>
 </div>
