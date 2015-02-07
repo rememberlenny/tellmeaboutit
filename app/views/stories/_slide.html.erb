@@ -1,23 +1,22 @@
-<% @stories.each do |story| %>
-  <% if story.selected_recording_id %>
-  <% r = Recording.find(story.selected_recording_id) %>
-  <% else %>
-  <% r = Recording.first %>
-  <% end %>
-  <div class="item breakup-container dark-magenta-background ">
-    <audio controls="">
-      <source src="<%= r.url %>" type="audio/mpeg">
-    </audio>
-    <div class="breakup-pullquote">
-      <div class="breakup-pullquote-text">
-        <%= story.pullquote %>
-      </div>
-      <div class="breakup-pullquote-author">
-        <%= story.name %>, <%= story.age %>, <%= story.location %>
-      </div>
-      <div class="breakup-pullquote-tags">
+<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+  <% @stories.each do |story| %>
+    <% if story.selected_recording_id %>
+    <% r = Recording.find(story.selected_recording_id) %>
+    <% else %>
+    <% r = Recording.first %>
+    <% end %>
+    <li class="panel breakup-container dark-magenta-background ">
+      <audio controls="">
+        <source src="<%= r.url %>" type="audio/mpeg">
+      </audio>
+      <div class="breakup-pullquote">
+        <div class="breakup-pullquote-author">
+          <%= story.name %>, <%= story.age %>, <%= story.location %>
+        </div>
+        <div class="breakup-pullquote-tags">
 
+        </div>
       </div>
-    </div>
-  </div>
-<% end %>
+    </li>
+  <% end %>
+</ul>

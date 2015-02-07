@@ -1,23 +1,11 @@
-<div id="demo">
-  <div class="container">
-    <div id="owl-demo" class="owl-carousel">
-      <%= render 'stories/slide' %>
-    </div>
-  </div>
+<div class=" large-3 medium-3 column">
+  <ul class="side-nav">
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+  </ul>
 </div>
-
-<script>
-  var config = {
-    autoplay: false,
-    items:    1,
-    lazyLoad: true,
-    loop:   true,
-    nav:    true,
-    dots:   true,
-    margin:   0
-  }
-
-  $(document).ready(function() {
-    $("#owl-demo").owlCarousel(config);
-  });
-</script>
+<div class=" large-9 medium-9 column">
+  <%= render 'stories/slide' %>
+</div>
