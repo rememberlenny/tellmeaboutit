@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'admin' =>            'admin#dash'
   get 'admin/all' =>        'admin#index'
   get 'generate' =>         'stories#generate'
-  get 'listen' =>           'stories#slider'
+  get 'listen' =>           'stories#index'
   get 'about' =>            'static_pages#about'
   get 'submit' =>           'stories#new'
   match 'get_id',          to: 'twilio_responses#get_id',          :via => [:post, :get]

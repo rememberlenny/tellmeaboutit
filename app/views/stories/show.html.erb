@@ -5,12 +5,14 @@
 <div class="large-9 column medium-12">
   <div class="row panel background-light-magenta">
     <div class="row">
-      <% if @story.previous %>
-        <%= link_to "Previous Story", @story.previous, :class => 'button small secondary' %>
-      <% end %>
-      <% if @story.next %>
-        <%= link_to "Next  Story", @story.next, :class => 'button small secondary' %>
-      <% end %>
+      <div class="column">
+        <% if @story.previous %>
+          <%= link_to "Previous Story", @story.previous, :class => 'button small secondary left' %>
+        <% end %>
+        <% if @story.next %>
+          <%= link_to "Next  Story", @story.next, :class => 'button small secondary right' %>
+        <% end %>
+      </div>
     </div>
     <div class="story-<%= @story.id %> column">
       <% @recordings.each do |recording| %>

@@ -16,6 +16,14 @@
 
  */
 
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
 .story-item:hover{
   background: #b84ab4;
 }
