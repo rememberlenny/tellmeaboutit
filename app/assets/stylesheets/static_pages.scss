@@ -1,0 +1,66 @@
+// Place all the styles related to the staticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.pullquote{
+
+}
+
+.fullscreen{
+
+}
+
+.description{
+
+}
+
+body {
+	background-color: #01f7b6;
+	text-align: center;
+	color: #FFF;
+}
+
+h1 {
+	font-family: 'Unica One', Helvetica, arial, sans-serif;
+	text-transform: uppercase;
+	color: #FFF;
+	font-weight: 100;
+	font-size: 5em;
+	// padding-top: 20%;
+}
+
+h3{
+	color: #fff;
+	font-size: 1.3em;
+	// font-weight: 100;
+	padding-bottom: 50px;
+
+}
+
+.indicates-required {
+	// font-style: italic;
+	font-size: 0.8em;
+	color: #fff;
+}
+
+
+label {
+	font-family: 'Unica One', Helvetica, arial, sans-serif;
+	font-size: 1rem;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	font-weight: normal;
+	line-height: 1.5;
+	margin-bottom: 0;
+	padding: 0px;
+
+}
+
+button.success, .button.success{
+	background-color: #dbbc3d;
+	border-color: #9d800a;
+	color: white;
+}

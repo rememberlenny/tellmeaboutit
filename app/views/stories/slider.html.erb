@@ -1,0 +1,23 @@
+<div id="demo">
+  <div class="container">
+    <div id="owl-demo" class="owl-carousel">
+      <%= render 'stories/slide' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  var config = {
+    autoplay: false,
+    items:    1,
+    lazyLoad: true,
+    loop:   true,
+    nav:    true,
+    dots:   true,
+    margin:   0
+  }
+
+  $(document).ready(function() {
+    $("#owl-demo").owlCarousel(config);
+  });
+</script>
