@@ -16,6 +16,10 @@
 
  */
 
+.story-item:hover{
+  background: #b84ab4;
+}
+
 .background-light-teal{
   background: #cbfdf0;
 }

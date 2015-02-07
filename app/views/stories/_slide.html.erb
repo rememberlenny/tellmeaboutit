@@ -5,13 +5,12 @@
     <% else %>
     <% r = Recording.first %>
     <% end %>
-    <li class="panel breakup-container dark-magenta-background ">
-      <audio controls="">
-        <source src="<%= r.url %>" type="audio/mpeg">
-      </audio>
+    <li class="breakup-container story-item dark-magenta-background ">
       <div class="breakup-pullquote">
         <div class="breakup-pullquote-author">
-          <%= story.name %>, <%= story.age %>, <%= story.location %>
+          <%= link_to story do %>
+          <%= story.name %>
+          <% end %>
         </div>
         <div class="breakup-pullquote-tags">
 
