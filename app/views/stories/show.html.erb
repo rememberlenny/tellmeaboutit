@@ -1,20 +1,21 @@
 <p id="notice"><%= notice %></p>
-
-<div class="story-<%= @story.id %> row">
-  <% @recordings.each do |recording| %>
-    <div class="row person">
-      <%= @story.name %><br>
-      <%= @story.age %><br>
-      <%= @story.location %><br>
-      <%= @story.person %><br>
-    </div>
-    <div class="row recording-<%= recording.id %>">
-      <audio src="<%= recording.url %>" controls>
-      </audio>
-    </div>
-  <% end %>
+<div class="large-3 column medium-12">
+  <%= render 'stories/sidebar' %>
 </div>
-
-
-<%= link_to 'Edit', edit_story_path(@story) %> |
+<div class="large-9 column medium-12">
+  <div class="story-<%= @story.id %> row">
+    <% @recordings.each do |recording| %>
+      <div class="row person">
+        <%= @story.name %><br>
+        <%= @story.age %><br>
+        <%= @story.location %><br>
+        <%= @story.person %><br>
+      </div>
+      <div class="row recording-<%= recording.id %>">
+        <audio src="<%= recording.url %>" controls>
+        </audio>
+      </div>
+    <% end %>
+  </div>
+</div>
 <%= link_to 'Back', stories_path %>
