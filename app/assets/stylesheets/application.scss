@@ -16,6 +16,12 @@
 
  */
 
+
+.sticky *{
+  background: #01b988;
+  border-bottom: darken(#01b988, 10%) 5px solid;
+}
+
 h3.yellow-text{
   color: #e4cc6d;
 }
@@ -75,7 +81,8 @@ h1, h2 {
 h1 {
   font-size: 1.7em;
   text-align: center;
-  margin: 1em 0; }
+  margin: 0 0 .5em 0;
+  padding: .5em 0;}
 
 p {
   line-height: 1.5em;
