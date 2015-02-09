@@ -3,12 +3,17 @@
   <%= simple_form_for(@story) do |f| %>
     <%= f.error_notification %>
 
+      <% if user_signed_in? %>
+        <% f.input :was_checked %>
+      <% end %>
+
       <%= f.input :name %>
       <%= f.input :age %>
       <%= f.input :location %>
       <%= f.input :contact %>
       <label for="">What is your gender?</label>
       <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+
 
       <h1>Tell us more about the breakup</h1>
       <div class="row">

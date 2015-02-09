@@ -42,6 +42,9 @@ class StoriesController < ApplicationController
   end
 
   def edit
+    if user_signed_in?
+      redirect_to root_url
+    end
   end
 
   def create
