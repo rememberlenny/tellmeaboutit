@@ -5,11 +5,13 @@
     <% else %>
     <% r = Recording.first %>
     <% end %>
-    <li class="breakup-container story-item dark-magenta-background " data-id="<%= story.id %>">
+    <li class="breakup-container story-item background-light-teal" data-id="<%= story.id %>">
       <%= link_to story, :class=>'specific-story' do %>
-        <div class="breakup-pullquote">
+        <div class="breakup-pullquote play">
           <div class="breakup-pullquote-author">
-            <%= story.name %>
+            <span>
+              <%= story.name %>
+            </span>
           </div>
           <div class="breakup-pullquote-tags">
           </div>

@@ -2,11 +2,14 @@
     <div class="column large-12 medium-8">
       <h2>Tell Me 'Bout It</h2>
       <p>Explore this gallery of user submitted stories about their breakups</p>
+
+
       <div class="panel dark-magenta-background">
-        <label for="">Search for:</label>
-        <input type="text">
-        <label for="">Sort by:</label>
-        <select name="" id=""></select>
+        <%= form_tag(stories_path, :method => "get", id: "search-form") do %>
+          <label for="">Search name:</label>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+          <%= submit_tag "Search", :name => nil, :class => 'button large large-12' %>
+        <% end %>
       </div>
     </div>
     <div class="column large-12 medium-4">
