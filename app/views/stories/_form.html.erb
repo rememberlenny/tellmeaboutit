@@ -1,26 +1,30 @@
-<%= simple_form_for(@story) do |f| %>
-  <%= f.error_notification %>
+<div class="row">
 
-    <%= f.input :name %>
-    <%= f.input :age %>
-    <%= f.input :location %>
-    <%= f.input :contact %>
-    <label for="">What is your gender?</label>
-    <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+  <%= simple_form_for(@story) do |f| %>
+    <%= f.error_notification %>
 
-    <h1>Tell us more about the breakup</h1>
-    <div class="row">
-      <div class="large-6 columns">
-        <span class="breakup-question">What was your role in the breakup?</span>
-        <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
+      <%= f.input :name %>
+      <%= f.input :age %>
+      <%= f.input :location %>
+      <%= f.input :contact %>
+      <label for="">What is your gender?</label>
+      <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+
+      <h1>Tell us more about the breakup</h1>
+      <div class="row">
+        <div class="large-6 columns">
+          <span class="breakup-question">What was your role in the breakup?</span>
+          <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
+        </div>
+
+
+
+      <span class="breakup-question">Want to tell us anything else? Use the text box below:</span></br>
+      <%= f.input :notes %>
+
+      <div class="form-actions">
+        <%= f.button :submit, :class => 'button success large-12' %>
       </div>
+  <% end %>
 
-
-
-    <span class="breakup-question">Want to tell us anything else? Use the text box below:</span></br>
-    <%= f.input :notes %>
-
-    <div class="form-actions">
-      <%= f.button :submit, :class => 'button success large-12' %>
-    </div>
-<% end %>
+</div>
