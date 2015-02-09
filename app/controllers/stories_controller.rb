@@ -28,6 +28,7 @@ class StoriesController < ApplicationController
   end
 
   def show
+    @stories = Story.all.where(was_checked: true)
     respond_with(@story)
   end
 

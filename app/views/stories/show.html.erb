@@ -3,31 +3,35 @@
   <%= render 'stories/sidebar' %>
 </div>
 <div class="large-9 column medium-12">
-  <div class="row panel background-light-magenta">
-    <div class="row">
-      <div class="column">
-        <% if @story.previous %>
-          <%= link_to "Previous Story", @story.previous, :class => 'button small secondary left' %>
-        <% end %>
-        <% if @story.next %>
-          <%= link_to "Next  Story", @story.next, :class => 'button small secondary right' %>
+  <div class="row ">
+    <div class="large-8 medium-10 panel background-light-magenta">
+      <div class="row">
+        <div class="column">
+          <% if @story.previous %>
+            <%= link_to "Previous Story", @story.previous, :class => 'button small secondary left' %>
+          <% end %>
+          <% if @story.next %>
+            <%= link_to "Next  Story", @story.next, :class => 'button small secondary right' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="story-<%= @story.id %> column">
+        <% @recordings.each do |recording| %>
+          <div class="row person">
+            <h2><%= @story.name %></h2>
+            <h3><%= @story.age %>,
+            <%= @story.location %>,
+            <%= @story.person %></h3>
+          </div>
+          <div class="row recording-<%= recording.id %>">
+            <audio src="<%= recording.url %>" controls>
+            </audio>
+          </div>
         <% end %>
       </div>
+      <%= link_to 'Back', stories_path, :class => 'button small secondary' %>
     </div>
-    <div class="story-<%= @story.id %> column">
-      <% @recordings.each do |recording| %>
-        <div class="row person">
-          <h2><%= @story.name %></h2>
-          <h3><%= @story.age %>,
-          <%= @story.location %>,
-          <%= @story.person %></h3>
-        </div>
-        <div class="row recording-<%= recording.id %>">
-          <audio src="<%= recording.url %>" controls>
-          </audio>
-        </div>
-      <% end %>
-    </div>
-    <%= link_to 'Back', stories_path, :class => 'button small secondary' %>
   </div>
 </div>
+
+<%= render 'stories/featured' %>
