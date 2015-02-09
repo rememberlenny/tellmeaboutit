@@ -21,6 +21,10 @@
           <span class="breakup-question">What was your role in the breakup?</span>
           <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
         </div>
+        <div class="large-6 columns">
+          <span class="breakup-question">What kind of breakup story is this? (ie. sad, angry, funny, etc.)</span>
+          <%= f.input :type %>
+        </div>
 
 
 
