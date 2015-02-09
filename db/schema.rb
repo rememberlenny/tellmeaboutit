@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209225415) do
+ActiveRecord::Schema.define(version: 20150209225924) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "uid"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150209225415) do
     t.text     "notes"
     t.string   "pullquote"
     t.string   "breakup_type"
+    t.string   "type"
   end
 
   create_table "taggings", force: :cascade do |t|
