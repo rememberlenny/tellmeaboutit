@@ -27,10 +27,28 @@ h1 {
   text-align: center;
   margin: 1em 0; }
 
+h2{
+  font-size: 1.4em;
+}
+
+h3.yellow-text, .panel>:first-child {
+font-family: 'Muli', helvetica, sans-serif;
+font-size: 1em;
+line-height: 1.4em;
+margin-top: 0;
+}
+
 p {
   line-height: 1.5em;
   text-align: justify;
-  font-weight: 100; }
+  font-weight: 100;
+  font-family: 'Muli', Helvetica, arial, sans-serif;
+  line-height: 1.5em;
+
+}
+
+
+
 
 .light-yellow {
   color: #e4cc6d; }
