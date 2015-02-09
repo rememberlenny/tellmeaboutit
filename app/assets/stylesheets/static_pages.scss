@@ -90,6 +90,7 @@ button.success, .button.success{
 	border: none;
 	color: white;
 	font-family: 'Muli', Helvetica, arial, sans-serif;
+	margin: -2px;
 }
 
 .panel > :first-child{
@@ -102,5 +103,26 @@ h2{
 	font-size: 1.6em;
 
 }
+
+.titlecard{
+	text-align: center;
+	margin: 15% auto 60px auto;
+	@media screen and (max-width: 768px) {
+		margin: 20px auto 20px auto;
+    }
+	p{
+		text-align: center;
+	}
+	.large-6.large-centered img{
+	text-align:center;
+	width:15%;
+	}
+	.large-6.large-centered{
+		position:relative;
+		margin:0 auto;
+	}
+
+}
+
 
 
