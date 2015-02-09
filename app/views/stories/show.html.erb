@@ -3,10 +3,10 @@
   <%= render 'stories/sidebar' %>
 </div>
 <div class="large-9 column medium-12">
-  <div class="row ">
+  <div class="">
     <div class="large-8 medium-10 panel background-light-magenta">
       <div class="row">
-        <div class="column">
+        <div class="">
           <% if @story.previous %>
             <%= link_to "Previous Story", @story.previous, :class => 'button small secondary left' %>
           <% end %>
@@ -15,7 +15,7 @@
           <% end %>
         </div>
       </div>
-      <div class="story-<%= @story.id %> column">
+      <div class="story-<%= @story.id %> ">
         <% @recordings.each do |recording| %>
           <div class="row person">
             <h2><%= @story.name %></h2>
@@ -29,7 +29,9 @@
           </div>
         <% end %>
       </div>
-      <%= link_to 'Back', stories_path, :class => 'button small secondary' %>
+      <div class="row">
+        <%= link_to 'Back', stories_path, :class => 'button small secondary' %>
+      </div>
     </div>
   </div>
 </div>
