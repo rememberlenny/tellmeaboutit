@@ -20,10 +20,13 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = Story.all.where(was_checked: true)
-    # @stories = Story.all.where(was_checked: true)
-    respond_with(@stories)
-
+    if params[:search]
+      @stories = Story.search(params[:search]).where(was_checked: true).order("created_at DESC")
+    else
+      @stories = Story.all.where(was_checked: true)
+      # @stories = Story.all.where(was_checked: true)
+      respond_with(@stories)
+    end
 
   end
 

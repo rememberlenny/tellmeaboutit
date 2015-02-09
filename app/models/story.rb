@@ -9,4 +9,8 @@ class Story < ActiveRecord::Base
   def next
     Story.where(["id > ?", id]).where(was_checked: true).first
   end
+
+  def self.search(query)
+    where("name like ?", "%#{query}%")
+  end
 end
