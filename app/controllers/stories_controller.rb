@@ -31,8 +31,12 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @stories = Story.all.where(was_checked: true)
-    respond_with(@story)
+    if @story.was_checked == false
+      redirect_to thankyou_path
+    else
+      @stories = Story.all.where(was_checked: true)
+      respond_with(@story)
+    end
   end
 
   def new
