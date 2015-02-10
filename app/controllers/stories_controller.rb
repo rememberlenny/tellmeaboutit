@@ -68,7 +68,7 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      accessible = [ :name, :gender, :contact, :breakup_role, :notes, :person, :age, :location, :was_checked, :selected_recording_id, :type ] # extend with your own params
+      accessible = [ :name, :gender, :contact, :breakup_role, :notes, :person, :age, :location, :was_checked, :selected_recording_id] # extend with your own params
       params.require(:story).permit(accessible)
     end
 end
