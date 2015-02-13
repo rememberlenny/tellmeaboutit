@@ -4,11 +4,23 @@
       <div class="row sticky">
         <h1>Submit Your Story</h1>
       </div>
-      <p>Welcome to Tell Me 'Bout It, an app that collects stories of breakups so we can all feel better about own worst breakups.</p>
-      <p>Have you been broken up with in the worst, weirdest or simply amusing possible way? Did you break up with someone in a way you thought was pretty bad or maybe even pretty amazing? Have you done some really crazy stuff while trying to get over a breakup? Tell us about it! You can call in your story, record it and share it with others on this site.</p>
-      <p>Here's how you do it:</p>
-      <%= render 'stories/steps' %>
-      <%= render 'form' %>
+      <div class="personal-code">
+        <ul class="large-block-grid-3 medium-block-grid-3">
+          <li>
+            <%= image_tag 'phonecall.png' %>
+            <h5 class="text-center">1. Call-in your story</h5>
+          </li>
+          <li>
+            <%= image_tag 'phonesms.png' %>
+            <h5 class="text-center">2. SMS your details</h5>
+          </li>
+          <li>
+            <%= image_tag 'phonelist.png' %>
+            <h5 class="text-center">3. View online</h5>
+          </li>
+        </ul>
+        <%= render 'stories/steps' %>
+      </div>
     </div>
   </div>
 </div>
