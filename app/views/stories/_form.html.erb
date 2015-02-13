@@ -14,25 +14,20 @@
       <label for="">What is your gender?</label>
       <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
 
-
+      <div class="row"></div>
       <h1>Tell us more about the breakup</h1>
-      <div class="row">
-        <div class="large-6 columns">
+      <div class="">
           <span class="breakup-question">What was your role in the breakup?</span>
           <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
+      </div>
+      <div class="row"></div>
+      <div class="">
+        <span class="breakup-question">Want to tell us anything else? Use the text box below:</span></br>
+        <%= f.input :notes %>
+
+        <div class="form-actions">
+          <%= f.button :submit, :class => 'button success large-12' %>
         </div>
-        <div class="large-6 columns">
-          <span class="breakup-question">What kind of breakup story is this? (ie. sad, angry, funny, etc.)</span>
-          <%= f.input :type %>
-        </div>
-
-
-
-      <span class="breakup-question">Want to tell us anything else? Use the text box below:</span></br>
-      <%= f.input :notes %>
-
-      <div class="form-actions">
-        <%= f.button :submit, :class => 'button success large-12' %>
       </div>
   <% end %>
 

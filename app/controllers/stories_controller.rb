@@ -31,8 +31,12 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @stories = Story.all.where(was_checked: true)
-    respond_with(@story)
+    if @story.was_checked == false
+      redirect_to thankyou_path
+    else
+      @stories = Story.all.where(was_checked: true)
+      respond_with(@story)
+    end
   end
 
   def new
@@ -42,9 +46,7 @@ class StoriesController < ApplicationController
   end
 
   def edit
-    if user_signed_in?
-      redirect_to root_url
-    end
+
   end
 
   def create
@@ -70,7 +72,7 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      accessible = [ :name, :gender, :contact, :breakup_role, :notes, :person, :age, :location, :was_checked, :selected_recording_id, :tag_list => [], :type ] # extend with your own params
+      accessible = [ :name, :gender, :contact, :breakup_role, :notes, :person, :age, :location, :was_checked, :selected_recording_id] # extend with your own params
       params.require(:story).permit(accessible)
     end
 end
