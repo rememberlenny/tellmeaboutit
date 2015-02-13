@@ -20,21 +20,11 @@ ActiveRecord::Schema.define(version: 20150209225924) do
     t.integer  "twilio_call_id"
   end
 
-  create_table "breakup_types", force: :cascade do |t|
-    t.boolean  "sad"
-    t.boolean  "obnoxious"
-    t.boolean  "funny"
-    t.boolean  "weird"
-    t.string   "other"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "recordings", force: :cascade do |t|
     t.string   "url"
     t.string   "length"
     t.string   "transcript"
-    t.integer  "twilio_id"
+    t.string   "twilio_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "story_id"
@@ -50,14 +40,13 @@ ActiveRecord::Schema.define(version: 20150209225924) do
     t.integer  "age"
     t.string   "location"
     t.boolean  "was_checked",           default: false
-    t.integer  "account_id"
+    t.string   "account_id"
     t.integer  "selected_recording_id"
     t.string   "gender"
     t.string   "contact"
     t.string   "breakup_role"
     t.text     "notes"
     t.string   "pullquote"
-    t.string   "breakup_type"
     t.string   "type"
   end
 
