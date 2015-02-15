@@ -142,7 +142,6 @@ class TwilioResponsesController < ApplicationController
   end
 
   def rerecord
-    response = "<Play>" + audio_rerecord + "</Play>"
     response << content_for_record
     return response
   end
@@ -186,23 +185,19 @@ class TwilioResponsesController < ApplicationController
   end
 
   def audio_welcome
-    return ''
+    return 'http://lamivo.com/quantifiedbreakup/tellmeboutit/welcome.mp3'
   end
 
   def audio_start_record
-    return ''
+    return 'http://lamivo.com/quantifiedbreakup/tellmeboutit/begin-speaking.mp3 '
   end
 
   def audio_thank
-    return ''
+    return 'http://lamivo.com/quantifiedbreakup/tellmeboutit/goodbye-hangup.mp3'
   end
 
   def audio_options
-    return ''
-  end
-
-  def audio_rerecord
-    return ''
+    return 'http://lamivo.com/quantifiedbreakup/tellmeboutit/if-youre-happy.mp3'
   end
 
   def base_url
