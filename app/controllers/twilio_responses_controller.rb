@@ -1,4 +1,18 @@
 class TwilioResponsesController < ApplicationController
+
+  # Relevant audio files
+
+  # Order of actions
+  # 1. Call and return prompt
+  audio_welcome = ''
+  audio_start_record = ''
+  # 2. Record and Accept key to end
+  # 3. Accept key to rerecord/listen/proceed
+  audio_options = ''
+  audio_rerecord = ''
+  # 4. Play prompt
+  audio_thank = ''
+
   def base_url
     return ENV['TMAI_URL']
   end
@@ -42,7 +56,7 @@ class TwilioResponsesController < ApplicationController
 
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/1-welcome.wav</Play>";
+    response << "<Play>" + audio_welcome + "</Play>";
     response << gather_id_prompt
     response << "</Response>";
 
@@ -116,13 +130,13 @@ class TwilioResponsesController < ApplicationController
 
   def provide_options
     response = "<Gather method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
-    response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-options.wav</Play>"
+    response << "<Play>" + audio_options + "</Play>"
     response << "</Gather>"
     return response
   end
 
   def proceed_forward
-    response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/8-beep.wav</Play>"
+    response = "<Play>" + audio_thank + "</Play>"
     return response
   end
 
@@ -137,7 +151,7 @@ class TwilioResponsesController < ApplicationController
   end
 
   def rerecord
-    response = "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/4-record-again.wav</Play>"
+    response = "<Play>" + audio_rerecord + "</Play>"
     response << content_for_record
     return response
   end
@@ -169,7 +183,7 @@ class TwilioResponsesController < ApplicationController
       a.save
       Story.create(account_id: a.id)
       puts 'id was matched: ' + id.to_s
-      response << "<Play>https://s3-us-west-1.amazonaws.com/tellmeabout/6-begin-speaking.wav</Play>"
+      response << "<Play>" + audio_start_record + "</Play>"
       response << content_for_record
     else
       puts 'id did not match'
