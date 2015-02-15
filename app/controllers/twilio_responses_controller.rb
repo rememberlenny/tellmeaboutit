@@ -4,18 +4,9 @@ class TwilioResponsesController < ApplicationController
 
   # Order of actions
   # 1. Call and return prompt
-  audio_welcome = ''
-  audio_start_record = ''
   # 2. Record and Accept key to end
   # 3. Accept key to rerecord/listen/proceed
-  audio_options = ''
-  audio_rerecord = ''
   # 4. Play prompt
-  audio_thank = ''
-
-  def base_url
-    return ENV['TMAI_URL']
-  end
 
   def save
     recording = params[:RecordingUrl]
@@ -193,4 +184,29 @@ class TwilioResponsesController < ApplicationController
     response << "</Response>";
     return response
   end
+
+  def audio_welcome
+    return ''
+  end
+
+  def audio_start_record
+    return ''
+  end
+
+  def audio_thank
+    return ''
+  end
+
+  def audio_options
+    return ''
+  end
+
+  def audio_rerecord
+    return ''
+  end
+
+  def base_url
+    return ENV['TMAI_URL']
+  end
+
 end
