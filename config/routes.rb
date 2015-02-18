@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :recordings
   resources :stories
 
-  get 'say_intro' =>        'twilio_responses#say_intro'
   get 'get' =>              'static_pages#home'
   get 'admin' =>            'admin#dash'
   get 'admin/all' =>        'admin#index'
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   get 'about' =>            'static_pages#about'
   get 'submit' =>           'stories#new'
   get 'thankyou' =>         'static_pages#thank_you'
+  get 'say_intro' =>        'twilio_responses#say_intro'
   match 'get_id',          to: 'twilio_responses#get_id',          :via => [:post, :get]
   match 'handle_response', to: 'twilio_responses#save',            :via => [:post, :get]
   match 'check_recording', to: 'twilio_responses#check_recording', :via => [:post, :get]
