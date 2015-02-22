@@ -1,0 +1,22 @@
+<% if signed_in? %>
+  <%= simple_form_for(@story) do |f| %>
+    <%= render 'partials/error_messages', object: f.object %>
+    <%= f.input :name %>
+    <label for="">What was the other person's gender?</label>
+    <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+
+    <%= f.input :age %>
+    <%= f.input :location %>
+    <div class="">
+        <span class="breakup-question">What was your role in the breakup?</span>
+        <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
+    </div>
+    <div class="field">
+      <%= f.text_area :breakup_type, placeholder: "What was their name?" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :pullquote, placeholder: "What was their name?" %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

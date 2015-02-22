@@ -1,0 +1,31 @@
+<div class="topnav fr text-right">
+  <ul class="menu inline-list">
+    <% if signed_in? %>
+      <li class="no-span login">
+        <%= link_to edit_user_registration_path, :class=>'no-right-pad' do %>
+          <span>Profile</span>
+        <% end %>
+      </li>
+      <li class="no-span login">
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+          <span>Logout</span>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="no-span login">
+        <%= link_to new_user_session_path, :class=>'no-right-pad' do %>
+          <span>Sign In</span>
+        <% end %>
+      </li>
+      <li class="no-span login no-right-pad">
+        <%= link_to new_user_registration_path, :class=>'no-right-pad' do %>
+          <span>Sign Up</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<!-- End topnav -->
+
+
+

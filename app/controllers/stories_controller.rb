@@ -15,6 +15,9 @@ class StoriesController < ApplicationController
   private
 
     def story_params
-      params.require(:story).permit(:content)
+      params.require(:story).permit(
+        :name, :gender, :age, :location,
+        :selected_recording_id, :breakup_role,
+        :pullquote, :breakup_type, :user_id)
     end
 end
