@@ -3,12 +3,11 @@ class CreateRecordings < ActiveRecord::Migration
     create_table :recordings do |t|
       t.references :story, index: true
       t.string :url
-      t.string :length
-      t.text :transcript
-      t.string :sid
+      t.string :source
 
       t.timestamps null: false
     end
     add_foreign_key :recordings, :stories
+    add_index :recordings, [:story_id, :created_at]
   end
 end
