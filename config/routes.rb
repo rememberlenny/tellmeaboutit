@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'static_pages#home'
+  get 'story/new' => 'stories#new'
+  get 'dash' => 'stories#dashboard'
   resources :stories, only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

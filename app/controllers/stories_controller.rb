@@ -1,4 +1,17 @@
 class StoriesController < ApplicationController
+
+  def dashboard
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      @stories = current_user.stories
+    end
+  end
+
+  def new
+    @story = current_user.stories.build
+  end
+
   def create
     @story = current_user.stories.build(story_params)
     if @story.save
