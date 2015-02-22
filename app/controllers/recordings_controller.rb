@@ -19,6 +19,8 @@ class RecordingsController < ApplicationController
   end
 
   def show
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.find(params[:id])
   end
 
   private
