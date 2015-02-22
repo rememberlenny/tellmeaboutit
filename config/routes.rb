@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :recordings
-  resources :stories
+  devise_for :users do
+    resources :stories do
+    end
+  end
+
+  resources :stories do
+    resources :twilio_call
+  end
+
+  resources :twilio_call do
+    resources :recordings
+  end
+
 
   get 'get' =>              'static_pages#home'
   get 'admin' =>            'admin#dash'
@@ -17,6 +27,5 @@ Rails.application.routes.draw do
   match 'check_recording', to: 'twilio_responses#check_recording', :via => [:post, :get]
   match 'check_response',  to: 'twilio_responses#check_response',  :via => [:post, :get]
   match 'after_recording', to: 'twilio_responses#after_recording', :via => [:post, :get]
-
   root 'static_pages#home'
 end
