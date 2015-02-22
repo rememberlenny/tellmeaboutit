@@ -1,0 +1,8 @@
+<% if signed_in? %>
+  <%= simple_form_for [@story, @recording] do |f| %>
+    <%= render 'partials/error_messages', object: f.object %>
+    <%= f.input :url %>
+    <%= f.input :source %>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

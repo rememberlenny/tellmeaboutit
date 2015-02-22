@@ -8,6 +8,11 @@ class StoriesController < ApplicationController
     end
   end
 
+  def show
+    @story = current_user.stories.find(params[:id])
+    @recordings = @story.recordings
+  end
+
   def new
     @story = current_user.stories.build
   end

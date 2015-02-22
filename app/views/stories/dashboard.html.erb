@@ -1,7 +1,10 @@
 <% if @stories.any? %>
   <% @stories.each do |story| %>
-    <%= story.id %>
+    <%= link_to story do %>
+      <%= story.id %>
+    <% end %>
   <% end %>
 <% end %>
 
+<hr>
 <%= link_to 'Add Story', story_new_path %>

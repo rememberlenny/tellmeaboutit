@@ -1,0 +1,12 @@
+<h1>Show Story</h1>
+
+<%= @story.id %>
+<%= @story.name %>
+
+<% if !@recordings.nil? %>
+  <% @recordings.each do |recording| %>
+    <%= recording.id %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Add Recording', new_story_recording_path(@story) %>
