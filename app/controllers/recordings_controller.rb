@@ -1,4 +1,6 @@
 class RecordingsController < ApplicationController
+  before_action :require_login
+
   def new
     @story = current_user.stories.find(params[:story_id])
     @recording = @story.recordings.build
@@ -24,6 +26,14 @@ class RecordingsController < ApplicationController
   end
 
   private
+
+    def require_login
+      unless signed_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to new_user_session_path # halts request cycle
+      end
+    end
+
     def recording_params
       params.require(:recording).permit(:source, :url)
     end
