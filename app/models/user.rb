@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:phone]
   has_many :stories, dependent: :destroy
+
+  def email_required?
+    return false
+  end
 end
