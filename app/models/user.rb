@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :authentication_keys => [:phone]
+         :authentication_keys => [:phone_number]
   has_many :stories, dependent: :destroy
 
   scope :unverified_phones,  -> { where(phone_verified: false) }
