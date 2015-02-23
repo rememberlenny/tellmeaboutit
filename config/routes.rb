@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :stories do
     resources :recordings, only: [:new, :create, :destroy, :show]
   end
+  post "phone_verifications/verify_from_message" => "phone_verifications#verify_from_message"
   get 'dash' => 'stories#dashboard'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
