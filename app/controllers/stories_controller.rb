@@ -2,10 +2,10 @@ class StoriesController < ApplicationController
   before_action :require_login, :require_verification
 
   def dashboard
-    if current_user.nil?
-      redirect_to new_user_session_path
-    else
+    if signed_in?
       @stories = current_user.stories
+    else
+      redirect_to new_user_session_path
     end
   end
 
