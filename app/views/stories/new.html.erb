@@ -1,22 +1,27 @@
-<% if signed_in? %>
-  <%= simple_form_for(@story) do |f| %>
-    <%= render 'partials/error_messages', object: f.object %>
-    <%= f.input :name %>
-    <label for="">What was the other person's gender?</label>
-    <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+<h1>Tell us bout it</h1>
+<%
+def question_label label
+ return 'What was the other person\'s ' + label + '?'
+end
+%>
+<%= simple_form_for(@story) do |f| %>
+  <%= render 'partials/error_messages', object: f.object %>
+  <%= f.input :name, :label => question_label('name') %>
+  <label for=""><%= question_label('gender') %></label>
+  <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
 
-    <%= f.input :age %>
-    <%= f.input :location %>
-    <div class="">
-        <span class="breakup-question">What was your role in the breakup?</span>
-        <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
-    </div>
-    <div class="field">
-      <%= f.text_area :breakup_type, placeholder: "What was their name?" %>
-    </div>
-    <div class="field">
-      <%= f.text_area :pullquote, placeholder: "What was their name?" %>
-    </div>
-    <%= f.submit "Post", class: "btn btn-primary" %>
-  <% end %>
+  <%= f.input :age, :label => 'How old was the other person?' %>
+  <%= f.input :location, :label => 'Where did this happen?' %>
+  <div class="">
+      <label class="breakup-question">What was your role in the breakup?</label>
+      <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
+  </div>
+  <div class="field">
+    <label for="">What kind of breakup was it?</label>
+    <%= f.collection_radio_buttons :breakup_type, [['normal', 'Normal'] ,['messy', 'Messy'],['sad', 'Sad'],['funny', 'Funny'],['other', 'Other']], :first, :last %>
+  </div>
+  <div class="field">
+    <%= f.text_area :pullquote, placeholder: "What was their name?" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
