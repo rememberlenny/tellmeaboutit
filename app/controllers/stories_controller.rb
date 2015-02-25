@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, :require_verification
 
   def dashboard
     if current_user.nil?
@@ -32,6 +32,13 @@ class StoriesController < ApplicationController
   end
 
   private
+
+    def require_verification
+      unless current_user.phone_verified?
+        flash[:error] = "Your account must be verified to access this section"
+        redirect_to verify_path # halts request cycle
+      end
+    end
 
     def require_login
       unless signed_in?

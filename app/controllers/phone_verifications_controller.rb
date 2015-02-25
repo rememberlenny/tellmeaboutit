@@ -8,6 +8,15 @@ class PhoneVerificationsController < ApplicationController
     render nothing: true
   end
 
+  def resend_verification
+    Rails.logger.info Time.now + ": resend_verification triggered"
+    PhoneVerificationService.send_sms
+  end
+
+  def verify
+
+  end
+
   private
 
   def get_user_for_phone_verification

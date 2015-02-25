@@ -1,0 +1,7 @@
+<% if signed_in? %>
+  <% if !current_user.phone_verified %>
+    <div class="panel">
+      You are currently unverified. <%= link_to 'Click to reverify', verify_path %>.
+    </div>
+  <% end %>
+<% end %>

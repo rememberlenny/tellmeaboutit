@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'static_pages#home'
+
   resources :stories, only: [:new, :show, :create, :destroy]
   resources :stories do
     resources :recordings, only: [:new, :create, :destroy, :show]
   end
   post "phone_verifications/verify_from_message" => "phone_verifications#verify_from_message"
-  get 'dash' => 'stories#dashboard'
+  get 'dash'                  => 'stories#dashboard'
+  get 'verify'                => 'phone_verifications#verify'
+  post 'resend_verification'  => 'phone_verifications#resend_verification'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
