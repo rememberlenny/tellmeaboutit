@@ -28,8 +28,8 @@ class PhoneVerificationService
 
   def twilio_client
     # Pass your twilio account sid and auth token
-    @twilio ||= Twilio::REST::Client.new(ENV['tma_twilio_account_sid'],
-                                         ENV['tma_twilio_auth_token'])
+    @twilio ||= Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_TOKEN'],
+                                         ENV['TWILIO_ACCOUNT_SID'])
   end
 
   def send_sms
