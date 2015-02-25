@@ -20,8 +20,6 @@ end
     <label for="">What kind of breakup was it?</label>
     <%= f.collection_radio_buttons :breakup_type, [['normal', 'Normal'] ,['messy', 'Messy'],['sad', 'Sad'],['funny', 'Funny'],['other', 'Other']], :first, :last %>
   </div>
-  <div class="field">
-    <%= f.text_area :pullquote, placeholder: "What was their name?" %>
-  </div>
+
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
