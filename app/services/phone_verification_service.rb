@@ -13,7 +13,7 @@ class PhoneVerificationService
 
   def from
     # Add your twilio phone number (programmable phone number)
-    Settings.twilio_number_for_app
+    ENV['tma_twilio_number_for_app']
   end
 
   def to
@@ -28,8 +28,8 @@ class PhoneVerificationService
 
   def twilio_client
     # Pass your twilio account sid and auth token
-    @twilio ||= Twilio::REST::Client.new(Settings.twilio_account_sid,
-                                         Settings.twilio_auth_token)
+    @twilio ||= Twilio::REST::Client.new(ENV['tma_twilio_account_sid'],
+                                         ENV['tma_twilio_auth_token'])
   end
 
   def send_sms
