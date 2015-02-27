@@ -1,7 +1,14 @@
 <h1>Show Story</h1>
 
+<% story = @story %>
 
-<h2><%= @story.name %> - <%= @story.id %></h2>
+<h2><%= link_to story.name, story %></h2>
+<h3><%= story.location %></h3>
+<p>
+  <%= story.age %>, <%= story.gender %>
+</p>
+Role: <%= story.breakup_role %><br>
+Type: <%= story.breakup_type %>
 
 <% if !@recordings.nil? %>
   <ul>
