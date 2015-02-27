@@ -14,7 +14,13 @@ class PhoneVerificationsController < ApplicationController
   end
 
   def verify
-
+    if current_user == nil
+      redirect_to root_path
+    else
+      if current_user.phone_verified
+        redirect_to root_path
+      end
+    end
   end
 
   private
