@@ -1,5 +1,17 @@
 <% if @stories.any? %>
-  <% @stories.each do |story| %>
-    <%= story.id %>
-  <% end %>
+  <ul class="large-block-grid-5 medium-block-grid-2 small-block-grid-1">
+    <% @stories.each do |story| %>
+      <li class="story-<%= story.id %>">
+        <div class="panel">
+          <h2><%= story.name %></h2>
+          <h3><%= story.location %></h3>
+          <p>
+            <%= story.age %>, <%= story.gender %>
+          </p>
+          Role: <%= story.breakup_role %><br>
+          Type: <%= story.breakup_type %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
