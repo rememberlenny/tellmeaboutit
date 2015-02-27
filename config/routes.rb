@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :stories, only: [:new, :show, :create, :destroy] do
     resources :recordings, only: [:new, :create, :destroy, :show]
   end
-  post "phone_verifications/verify_from_message" => "phone_verifications#verify_from_message"
+  post 'phone_verifications/verify_from_message' => 'phone_verifications#verify_from_message'
   get 'dash'                  => 'stories#dashboard'
   get 'verify'                => 'phone_verifications#verify'
   post 'resend_verification'  => 'phone_verifications#resend_verification'

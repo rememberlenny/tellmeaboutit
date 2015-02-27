@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def generate_phone_verification_code
     begin
-      verification_code = SecureRandom.hex(3)
+      verification_code = Random.rand(100000...999999)
     end while self.class.exists?(phone_verification_code: verification_code)
 
     verification_code
