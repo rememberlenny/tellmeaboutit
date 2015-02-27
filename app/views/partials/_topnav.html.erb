@@ -11,6 +11,13 @@
           <span>Logout</span>
         <% end %>
       </li>
+      <% if current_user.stories.any? %>
+      <li>
+        <%= link_to dash_path do %>
+        <span>My Stories</span>
+        <% end %>
+      </li>
+      <% end %>
     <% else %>
       <li class="no-span login">
         <%= link_to new_user_session_path, :class=>'no-right-pad' do %>
