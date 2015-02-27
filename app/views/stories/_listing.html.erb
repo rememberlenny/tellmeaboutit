@@ -3,7 +3,7 @@
     <% @stories.each do |story| %>
       <li class="story-<%= story.id %>">
         <div class="panel">
-          <h2><%= story.name %></h2>
+          <h2><%= link_to story.name, story %></h2>
           <h3><%= story.location %></h3>
           <p>
             <%= story.age %>, <%= story.gender %>
