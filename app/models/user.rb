@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   after_save :send_sms_for_phone_verification, if: :phone_verification_needed?
 
   def mark_phone_as_verified!
-    update!(phone_verified: true, phone_verification_code: nil)
+    update!(phone_verified: true, phone_verification_code: false)
   end
 
   def email_required?
