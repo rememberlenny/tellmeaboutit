@@ -18,6 +18,10 @@ class StoriesController < ApplicationController
     @story = current_user.stories.build
   end
 
+  def edit
+    @story = Story.find(params[:id])
+  end
+
   def create
     @story = current_user.stories.build(story_params)
     if @story.save

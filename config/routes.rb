@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'static_pages#home'
 
-  resources :stories, only: [:new, :show, :create, :destroy] do
+  resources :stories do
     resources :recordings, only: [:new, :create, :destroy, :show]
   end
   post 'phone_verifications/verify_from_message' => 'phone_verifications#verify_from_message'
