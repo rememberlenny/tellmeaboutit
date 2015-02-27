@@ -2,7 +2,4 @@
   <% @stories.each do |story| %>
     <%= story.id %>
   <% end %>
-<% else %>
-  <h2>Want to submit your own story?</h2>
-  <%= link_to 'Submit ', new_story_path %>
 <% end %>
