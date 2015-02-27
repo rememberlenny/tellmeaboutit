@@ -1,5 +1,8 @@
 class StoriesController < ApplicationController
   before_action :require_login, :require_verification
+  before_action :set_story, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
 
   def dashboard
     if signed_in?
@@ -9,17 +12,23 @@ class StoriesController < ApplicationController
     end
   end
 
+  def index
+    @stories = current_user.stories.all
+    respond_with(@stories)
+  end
+
   def show
     @story = current_user.stories.find(params[:id])
     @recordings = @story.recordings
+    respond_with(@story)
   end
 
   def new
     @story = current_user.stories.build
+    respond_with(@story)
   end
 
   def edit
-    @story = Story.find(params[:id])
   end
 
   def create
@@ -32,10 +41,21 @@ class StoriesController < ApplicationController
     end
   end
 
+  def update
+    @story.update(story_params)
+    respond_with(@story)
+  end
+
   def destroy
+    @story.destroy
+    respond_with(@story)
   end
 
   private
+    def set_story
+
+      @story = Story.find(params[:id])
+    end
 
     def require_verification
       unless current_user.phone_verified?
