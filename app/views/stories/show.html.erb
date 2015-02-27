@@ -2,7 +2,7 @@
 
 <% story = @story %>
 
-<h2><%= link_to story.name, story %></h2>
+<h2><%= story.name %></h2>
 <h3><%= story.location %></h3>
 <p>
   <%= story.age %>, <%= story.gender %>
@@ -23,4 +23,4 @@ Type: <%= story.breakup_type %>
 
 <hr>
 
-<%= link_to 'Back', dash_path %> | <%= link_to 'Add Recording', new_story_recording_path(@story) %>
+<%= link_to 'Back', :back %> | <%= link_to 'Add Recording', new_story_recording_path(@story) %>
