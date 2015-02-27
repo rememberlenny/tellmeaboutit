@@ -8,6 +8,10 @@
 
   <%= f.input :age, :label => 'How old was the other person?' %>
   <%= f.input :location, :label => 'Where did this happen?' %>
+  <div>
+  <%= f.input :start_dating, :label => 'When did it start?' %>
+  <%= f.input :end_dating, :label => 'When did it end?' %>
+  </div>
   <div class="">
       <label class="breakup-question">What was your role in the breakup?</label>
       <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
