@@ -13,8 +13,7 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = current_user.stories.all
-    respond_with(@stories)
+    redirect_to dash_path
   end
 
   def show

@@ -3,13 +3,13 @@
     <% @stories.each do |story| %>
       <li class="story-<%= story.id %>">
         <div class="panel">
-          <h2><%= link_to story.name, story %></h2>
-          <h3><%= story.location %></h3>
+          <% if story.name %><h2><%= link_to story.name, story %></h2><% end %>
+          <% if story.location %><h3><%= story.location %></h3><%end%>
           <p>
-            <%= story.age %>, <%= story.gender %>
+            <% if story.age %><%= story.age %>, <% end %><% if story.gender %><%= story.gender %><% end %>
           </p>
-          Role: <%= story.breakup_role %><br>
-          Type: <%= story.breakup_type %>
+          <% if story.breakup_role %> Role: <%= story.breakup_role %><br> <% end %>
+          <% if story.breakup_type %> Type: <%= story.breakup_type %> <% end %>
         </div>
       </li>
     <% end %>
