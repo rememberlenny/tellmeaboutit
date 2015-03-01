@@ -1,0 +1,17 @@
+<playlist xmlns="http://xspf.org/ns/0/" version="1.0">
+  <title>Recording <%= @recording.id %> - <%= @recording.source %></title>
+  <info><%= Story.find(@recording.story_id) %></info>
+  <trackList>
+    <track>
+      <location>
+        <%= recording.url %>
+      </location>
+      <annotation>
+        Recording <%= @recording.id %> - <%= @recording.source %>
+      </annotation>
+      <info>
+        <%= Story.find(@recording.story_id) %>
+      </info>
+    </track>
+  </trackList>
+</playlist>
