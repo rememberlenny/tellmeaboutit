@@ -10,13 +10,17 @@
 
 <% if !@recordings.nil? %>
   <ul>
-    <% @recordings.each do |recording| %>
-      <li>
-        <%= link_to story_recording_path(@story, recording) do %>
-        Recording <%= recording.id %>
+      <% @recordings.each do |recording| %>
+        <% if @recordings.count > 1 %>
+          <li>
+            <%= link_to story_recording_path(@story, recording) do %>
+            Recording <%= recording.id %>
+            <% end %>
+          </li>
+        <% else %>
+          <iframe src="http://www.wnyc.org/widgets/ondemand_player/#file=<%= recording.url %>" frameborder="0"></iframe>
         <% end %>
-      </li>
-    <% end %>
+      <% end %>
   </ul>
 <% end %>
 
