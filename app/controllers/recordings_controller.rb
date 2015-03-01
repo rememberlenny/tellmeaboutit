@@ -1,6 +1,8 @@
 class RecordingsController < ApplicationController
   before_action :require_login
 
+  # respond_to :html, :xml
+
   def new
     @story = current_user.stories.find(params[:story_id])
     @recording = @story.recordings.build
@@ -21,7 +23,7 @@ class RecordingsController < ApplicationController
   end
 
   def show
-    @story = current_user.stories.find(params[:story_id])
+    @story = Story.find(params[:story_id])
     @recording = @story.recordings.find(params[:id])
   end
 
