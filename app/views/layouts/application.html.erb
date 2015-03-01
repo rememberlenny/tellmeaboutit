@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "TMB" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -17,8 +17,16 @@
 
     <%= render 'users/verification' %>
 
-    <div class="row">
-      <%= yield %>
+    <div class="row bg-color">
+      <div class="column">
+        <%= yield %>
+      </div>
+      <div class="column bg-footer">
+        <ul class="inline-list">
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'Contact', contact_path %></li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

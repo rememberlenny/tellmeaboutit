@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'static_pages#home'
+  get 'about' => 'static_pages#home'
+  get 'contact' => 'static_pages#home'
 
   resources :stories do
     resources :recordings, only: [:new, :create, :destroy, :show]

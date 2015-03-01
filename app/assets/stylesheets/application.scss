@@ -12,8 +12,32 @@
  *
  *= require_tree .
  *= require_self
- //= require foundation_and_overrides
-
- *= require foundation
  *= require foundation_and_overrides
+ *= require foundation
  */
+
+.bg-footer{
+  background: darken(#f6e6e6, 60%);
+  a{
+    color: darken(white, 10%);
+  }
+  ul{
+    margin: 0px;
+  }
+  text-align: center;
+}
+
+body{
+  background: #f6e6e6;
+}
+
+.top-bar{
+  margin-top: .5em;
+  background: #99fbe1;
+}
+
+.bg-color{
+  background: lighten(#f5edce, 6%);
+}
+
+
