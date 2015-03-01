@@ -31,9 +31,17 @@ body{
   background: #f6e6e6;
 }
 
-.top-bar{
+body a:hover, body a:focus{
+  color: white;
+  opacity: .8;
+}
+
+nav.top-bar{
   margin-top: .5em;
-  background: #99fbe1;
+  background: rgb(125, 45, 45);
+  .top-bar-section li:not(.has-form) a:not(.button){
+    background: rgb(125, 45, 45);
+  }
 }
 
 .bg-color{
