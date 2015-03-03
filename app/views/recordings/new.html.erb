@@ -3,13 +3,26 @@
   <div class="column large-4 medium-6">
     <p>Adding a recording to your story makes it easy to share and remember.</p>
     <p>Either call in your story or add your own recording.</p>
+    <div class="row">
+      <div class="column">
+        <%= link_to 'Save', '#', :class => 'save-proxy button success tiny' %>
+        <%= link_to 'Back without saving', :back, :class => 'button secondary tiny' %>
+      </div>
+    </div>
   </div>
   <div class="column large-8 medium-6">
     <%= simple_form_for [@story, @recording] do |f| %>
       <%= render 'partials/error_messages', object: f.object %>
       <%= f.input :url, :label => 'Audio file URL. (ie. http://domain.com/file.mp3)' %>
       <%= f.input :source, :label => 'Name of the source. (ie. Twilio, SoundCloud)' %>
-      <%= f.submit "Add", class: "button success large-12" %>
+      <%= f.submit "Add", class: "button success large-12 save-button" %>
     <% end %>
   </div>
 </div>
+
+<script>
+  $('.save-proxy').on('click', function(e){
+    e.preventDefault();
+    $('.save-button').click();
+  });
+</script>
