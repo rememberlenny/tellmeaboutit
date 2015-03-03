@@ -1,3 +1,4 @@
+<h1>Recordings for <%= link_to @story.name, @story %></h1>
 <% @recordings.each do |recording| %>
-<%= recording %>
+<%= link_to recording.source, [@story, recording] %>
 <% end %>
