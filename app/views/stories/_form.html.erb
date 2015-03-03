@@ -33,5 +33,12 @@
     <%= f.collection_radio_buttons :breakup_type, [['normal', 'Normal'] ,['messy', 'Messy'],['sad', 'Sad'],['funny', 'Funny'],['other', 'Other']], :first, :last %>
   </div>
 
-  <%= f.submit "Save", class: "button primary" %>
+  <%= f.submit "Save", class: "button success save-button large-12" %>
 <% end %>
+
+<script>
+  $('.save-proxy').on('click', function(e){
+    e.preventDefault();
+    $('.save-button').click();
+  });
+</script>
