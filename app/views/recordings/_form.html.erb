@@ -1,0 +1,6 @@
+<%= simple_form_for [@story, @recording] do |f| %>
+  <%= render 'partials/error_messages', object: f.object %>
+  <%= f.input :url, :label => 'Audio file URL. (ie. http://domain.com/file.mp3)' %>
+  <%= f.input :source, :label => 'Name of the source. (ie. Twilio, SoundCloud)' %>
+  <%= f.submit "Add", class: "button success large-12 save-button" %>
+<% end %>

@@ -9,6 +9,11 @@ class RecordingsController < ApplicationController
     @recording = @story.recordings.build
   end
 
+  def edit
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.find(params[:id])
+  end
+
   def create
     @story = current_user.stories.find(params[:story_id])
     @recording = @story.recordings.build(recording_params)
