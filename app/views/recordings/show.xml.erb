@@ -9,9 +9,7 @@
       <annotation>
         Recording <%= @recording.id %> - <%= @recording.source %>
       </annotation>
-      <info>
-        <%= Story.find(@recording.story_id) %>
-      </info>
+      <info><%= story_url(Story.find(@recording.story)) %></info>
     </track>
   </trackList>
 </playlist>
