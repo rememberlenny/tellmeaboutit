@@ -47,7 +47,10 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
-    respond_with(@story)
+    respond_to do |format|
+      format.html { redirect_to dash_path }
+      format.json { head :no_content }
+    end
   end
 
   private

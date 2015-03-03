@@ -21,6 +21,13 @@ class RecordingsController < ApplicationController
   end
 
   def destroy
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.find(params[:id])
+    @recording.destroy
+    respond_to do |format|
+      format.html { redirect_to @story }
+      format.json { head :no_content }
+    end
   end
 
   def show

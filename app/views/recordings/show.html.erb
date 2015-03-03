@@ -2,7 +2,7 @@
 <div class="row">
   <div class="large-4 medium-6 column">
     <%= link_to 'Edit', edit_story_recording_path(@story, @recording), :class => 'button' %>
-    <%= link_to 'Delete', story_recording_path(@story, @recording), :method => :delete, :class => "delete", :confirm => "Are you sure ?" %>
+    <%= link_to 'Delete', story_recording_path(@story, @recording), :method => "delete", :class => "delete", :confirm => "Are you sure ?" %>
     <%= link_to 'Back', story_path(@story) %>
   </div>
   <div class="large-8 medium-6 column">
