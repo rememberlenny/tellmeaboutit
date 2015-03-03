@@ -1,4 +1,9 @@
 <h1>Recordings for <%= link_to @story.name, @story %></h1>
 <% @recordings.each do |recording| %>
-<%= link_to recording.source, [@story, recording] %>
+<div class="row">
+  <div class="column">
+    <h4><%= link_to recording.source, [@story, recording] %></h4>
+    <time>Created <%= recording.created_at %></time>
+  </div>
+</div>
 <% end %>
