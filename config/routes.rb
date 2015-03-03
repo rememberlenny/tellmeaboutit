@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#home'
 
   resources :stories do
-    resources :recordings, only: [:new, :create, :destroy, :show]
+    resources :recordings
   end
   post  'phone_verifications/verify_from_message' => 'phone_verifications#verify_from_message'
   get   'dash'                  => 'stories#dashboard'

@@ -27,6 +27,11 @@ class RecordingsController < ApplicationController
     @recording = @story.recordings.find(params[:id])
   end
 
+  def index
+    @story = Story.find(params[:story_id])
+    @recordings = @story.recordings
+  end
+
   private
 
     def require_login
