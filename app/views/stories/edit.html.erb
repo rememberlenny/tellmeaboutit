@@ -1,3 +1,31 @@
-<%= render 'form' %>
+<h1>Tell us bout it</h1>
+<div class="row">
+  <div class="large-4 medium-4 column">
+    <div class="panel" id="existing">
+      <h3>Last saved</h3>
+      <p>Updated at <%= @story.created_at %></p>
+      <div>
+        Name: <%= @story.name %><br>
+        Gender: <%= @story.gender %><br>
+        Age: <%= @story.age %><br>
+        Location: <%= @story.location %><br>
+        Start: <%= @story.start_dating.to_s %><br>
+        End: <%= @story.end_dating.to_s %><br>
+        Role: <%= @story.breakup_role %><br>
+        Type: <%= @story.breakup_type %><br>
+      </div>
+      <p></p>
+      <%= link_to 'Back', :back, :class => 'button secondary small' %>
+    </div>
+  </div>
+  <div class="large-8 medium-8 column">
+    <%= render 'form' %>
+  </div>
+</div>
 
-<%= link_to 'Back', :back %>
+
+<script>
+  $('#existing').scrollToFixed();
+</script>
+
+
