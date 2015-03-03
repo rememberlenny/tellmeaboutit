@@ -16,6 +16,13 @@
  *= require foundation
  */
 
+iframe.recording {
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .bg-footer{
   margin-top: 30px;
   background: rgb(51, 51, 51);

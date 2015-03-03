@@ -10,31 +10,28 @@
     <% if story.breakup_role %> Role: <%= story.breakup_role %><br> <% end %>
     <% if story.breakup_type %> Type: <%= story.breakup_type %> <% end %>
 
-    <style>
-      iframe {
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-
     <%= link_to 'Edit Story', edit_story_path(story), :class=>'button large-12 medium-12' %>
   </div>
   <div class="large-6 medium-2 column">
     <h3>Recordings</h3>
     <% if !@recordings.nil? %>
       <ul>
+      <% i = 0 %>
         <% @recordings.each do |recording| %>
           <% if @recordings.count > 1 %>
             <li>
+            <% if i == 0 %>
+              <%= render_player(story.id, recording.id) %>
+            <% else %>
               <%= link_to story_recording_path(@story, recording) do %>
               Recording <%= recording.id %>
               <% end %>
+            <% end %>
             </li>
           <% else %>
-            <iframe src="http://www.wnyc.org/widgets/ondemand_player/deathsexmoney/#file=http://58c06a9f.ngrok.com/stories/7/recordings/1.xml" frameborder="0"></iframe>
+            <%= render_player(story.id, recording.id) %>
           <% end %>
+          <% i = i + 1 %>
         <% end %>
       </ul>
     <% end %>
