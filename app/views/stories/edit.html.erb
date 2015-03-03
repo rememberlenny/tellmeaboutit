@@ -15,7 +15,12 @@
         Type: <%= @story.breakup_type %><br>
       </div>
       <p></p>
-      <%= link_to 'Back', :back, :class => 'button secondary small' %>
+      <div class="row">
+        <div class="column">
+          <%= link_to 'Save', '#', :class => 'save-proxy button success tiny' %>
+          <%= link_to 'Back without saving', :back, :class => 'button secondary tiny' %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="large-8 medium-8 column">
