@@ -1,9 +1,8 @@
 <% story = @story %>
 
-<% if story.name %><h2><%= story.name %></h2><% end %>
 <div class="row">
   <div class="large-6 medium-2 column">
-    <h3>Details</h3>
+    <% if story.name %><h3><%= story.name %></h3><% end %>
     <% if story.location %><%= story.location %><%end%>
     <p>
       <% if story.age %><%= story.age %>, <% end %><% if story.gender %><%= story.gender %><% end %>
