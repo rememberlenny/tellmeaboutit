@@ -1,40 +1,50 @@
 <% story = @story %>
 
 <% if story.name %><h2><%= story.name %></h2><% end %>
-<% if story.location %><h3><%= story.location %></h3><%end%>
-<p>
-  <% if story.age %><%= story.age %>, <% end %><% if story.gender %><%= story.gender %><% end %>
-</p>
-<% if story.breakup_role %> Role: <%= story.breakup_role %><br> <% end %>
-<% if story.breakup_type %> Type: <%= story.breakup_type %> <% end %>
+<div class="row">
+  <div class="large-6 medium-2 column">
+    <h3>Details</h3>
+    <% if story.location %><%= story.location %><%end%>
+    <p>
+      <% if story.age %><%= story.age %>, <% end %><% if story.gender %><%= story.gender %><% end %>
+    </p>
+    <% if story.breakup_role %> Role: <%= story.breakup_role %><br> <% end %>
+    <% if story.breakup_type %> Type: <%= story.breakup_type %> <% end %>
 
-<% if !@recordings.nil? %>
-  <ul>
-    <% @recordings.each do |recording| %>
-      <% if @recordings.count > 1 %>
-        <li>
-          <%= link_to story_recording_path(@story, recording) do %>
-          Recording <%= recording.id %>
+    <% if !@recordings.nil? %>
+      <ul>
+        <% @recordings.each do |recording| %>
+          <% if @recordings.count > 1 %>
+            <li>
+              <%= link_to story_recording_path(@story, recording) do %>
+              Recording <%= recording.id %>
+              <% end %>
+            </li>
+          <% else %>
+            <iframe src="http://www.wnyc.org/widgets/ondemand_player/deathsexmoney/#file=http://58c06a9f.ngrok.com/stories/7/recordings/1.xml" frameborder="0"></iframe>
           <% end %>
-        </li>
-      <% else %>
-        <iframe src="http://www.wnyc.org/widgets/ondemand_player/deathsexmoney/#file=http://58c06a9f.ngrok.com/stories/7/recordings/1.xml" frameborder="0"></iframe>
-      <% end %>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<style>
-  iframe {
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>
+    <style>
+      iframe {
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </div>
+  <div class="large-6 medium-2 column">
+  <h3>Recordings</h3>
+    <%= link_to 'Add Recording', new_story_recording_path(@story), :class => 'success button large large-12 medium-12' %>
+  </div>
+</div>
 
-<%= link_to 'Edit Story', edit_story_path(story) %>
+
+<%= link_to 'Edit Story', edit_story_path(story), :class=>'button' %>
 
 <hr>
 
-<%= link_to 'Back', :back %> | <%= link_to 'Add Recording', new_story_recording_path(@story) %>
+<%= link_to 'Back', :back, :class=>'button secondary' %>
