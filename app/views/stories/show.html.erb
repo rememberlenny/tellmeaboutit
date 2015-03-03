@@ -37,7 +37,7 @@
     <% end %>
     <% if !@recordings.nil? %>
       <%= link_to 'Add Recording', new_story_recording_path(@story), :class => 'success button large large-6 medium-6 column' %>
-      <%= link_to 'Edit Recordings', new_story_recording_path(@story), :class => 'secondary button large large-6 medium-6 column' %>
+      <%= link_to 'Edit Recordings', story_recordings_path(@story), :class => 'secondary button large large-6 medium-6 column' %>
     <% else %>
       <%= link_to 'Add Recording', new_story_recording_path(@story), :class => 'success button large large-12 medium-12' %>
     <% end %>
