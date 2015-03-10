@@ -10,7 +10,6 @@ class VoiceexchangeController < ApplicationController
     say_intro
   end
 
-
   # Relevant audio files
 
   # Order of actions
@@ -47,7 +46,8 @@ class VoiceexchangeController < ApplicationController
 
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    response << provide_options
+    # response << provide_options # Provides play back options
+    response = "<Play>" + audio_thank + "</Play>" # Go straight to end
     response << "</Response>";
     render text: response
   end
