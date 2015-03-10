@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  get 'textexchange/welcome'
+
+  get 'textexchange/follow_up_questions'
+
   devise_for :users
   root to: 'static_pages#home'
   get 'about' => 'static_pages#home'
   get 'contact' => 'static_pages#home'
+
+  get 'sms/connection' => 'textexchange#text_delegate'
 
   resources :stories do
     resources :recordings
