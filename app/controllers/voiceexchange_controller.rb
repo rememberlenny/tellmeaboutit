@@ -51,7 +51,6 @@ class VoiceexchangeController < ApplicationController
     render text: response
   end
 
-
   def content_for_record
     response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"" + base_url + "voice/after_recording\"/>";
     return response
@@ -61,7 +60,6 @@ class VoiceexchangeController < ApplicationController
     response << content_for_record
     return response
   end
-
 
   def check_recording
     sid = params[:CallSid]
@@ -83,8 +81,6 @@ class VoiceexchangeController < ApplicationController
     render text: response
   end
 
-
-
   def check_response
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
@@ -92,15 +88,6 @@ class VoiceexchangeController < ApplicationController
     response << "</Response>";
     render text: response
   end
-
-  def get_id
-    puts 'Ran get_id'
-    id = params[:Digits]
-    puts 'id entered: ' + id.to_s
-    response = query_for_id id
-    render text: response
-  end
-
 
   def provide_options
     response = "<Gather method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
