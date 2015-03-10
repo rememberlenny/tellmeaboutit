@@ -44,8 +44,7 @@ class VoiceexchangeController < ApplicationController
     s.recordings.build(url: params['RecordingUrl'], source: 'Call in - #{params['RecordingDuration'].to_s}')
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    # response << provide_options # Provides play back options
-    response = "<Play>" + audio_thank + "</Play>" # Go straight to end
+    response << "<Play>" + audio_thank + "</Play>" # Go straight to end
     response << "</Response>";
     render text: response
   end
