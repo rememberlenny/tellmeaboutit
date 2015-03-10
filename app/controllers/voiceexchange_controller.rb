@@ -38,11 +38,10 @@ class VoiceexchangeController < ApplicationController
     f = params[:From]
     from = f.sub '+1', ''
     u = User.where(phone_number: from)
-    u = u[0]
+    u = u.first
     s = u.stories.build()
-    url = params['RecordingUrl']
     length = params['RecordingDuration']
-    s.recordings.build(url: url, source: 'Call in')
+    s.recordings.build(url: params['RecordingUrl'], source: 'Call in - #{params['RecordingDuration'].to_s}')
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     # response << provide_options # Provides play back options
