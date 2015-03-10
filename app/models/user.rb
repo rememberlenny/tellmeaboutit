@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
          :authentication_keys => [:phone_number]
   has_many :stories, dependent: :destroy
 
-  scope :unverified_phones,  -> { where(phone_verified: false) }
-  before_save :set_phone_attributes, if: :phone_verification_needed?
-  after_save :send_sms_for_phone_verification, if: :phone_verification_needed?
+  # scope :unverified_phones,  -> { where(phone_verified: false) }
+  # before_save :set_phone_attributes, if: :phone_verification_needed?
+  # after_save :send_sms_for_phone_verification, if: :phone_verification_needed?
 
   def mark_phone_as_verified!
     update!(phone_verified: true, phone_verification_code: false)

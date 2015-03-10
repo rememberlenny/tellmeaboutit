@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#home'
 
   post 'sms/connection' => 'textexchange#text_delegate'
+  get  'voice/connection' => 'voiceexchange#voice_delegate'
+  get  'voice/after_recording' => 'voiceexchange#after_recording'
 
   resources :stories do
     resources :recordings

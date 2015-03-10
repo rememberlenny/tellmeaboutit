@@ -18,7 +18,7 @@ class PhoneVerificationService
 
   def to
     # +1 is a country code for USA
-    "+1#{user.phone_number}"
+    "#{user.phone_number}"
   end
 
   def body

@@ -27,7 +27,7 @@ class PhoneVerificationsController < ApplicationController
 
   def get_user_for_phone_verification
     phone_verification_code = params['Body'].try(:strip)
-    phone_number            = params['From'].gsub('+1', '')
+    phone_number            = params['From'].gsub('', '')
 
     condition = { phone_verification_code: phone_verification_code,
                   phone_number: phone_number }
