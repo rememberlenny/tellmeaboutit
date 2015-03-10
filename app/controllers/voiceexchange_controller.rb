@@ -42,8 +42,7 @@ class VoiceexchangeController < ApplicationController
     s = u.stories.build()
     url = params['RecordingUrl']
     length = params['RecordingDuration']
-    s.recordings.build(url: url, source: 'twilio')
-
+    s.recordings.build(url: url, source: 'Call in')
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     # response << provide_options # Provides play back options
