@@ -39,6 +39,7 @@ class VoiceexchangeController < ApplicationController
     f = params[:From]
     from = f.sub '+1', ''
     u = User.where(phone_number: from)
+    u = u[0]
     s = u.stories.build()
     url = params['RecordingUrl']
     length = params['RecordingDuration']
@@ -110,6 +111,7 @@ class VoiceexchangeController < ApplicationController
   end
 
   def proceed_forward
+    TextexchangeController.follow_up_response
     response = "<Play>" + audio_thank + "</Play>"
     return response
   end
