@@ -41,7 +41,11 @@ class VoiceexchangeController < ApplicationController
     u = u.first
     s = u.stories.build()
     length = params['RecordingDuration']
-    s.recordings.build(url: params['RecordingUrl'], source: 'Call in - #{params['RecordingDuration'].to_s}')
+    s.recordings.build(
+      url: params['RecordingUrl'],
+      source: 'Call in - #{params['RecordingDuration'].to_s}'
+    )
+    send_message(params[:From], after_recording_text_message)
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>" + audio_thank + "</Play>" # Go straight to end
@@ -95,7 +99,6 @@ class VoiceexchangeController < ApplicationController
   end
 
   def proceed_forward
-    TextexchangeController.follow_up_response
     response = "<Play>" + audio_thank + "</Play>"
     return response
   end
@@ -108,6 +111,10 @@ class VoiceexchangeController < ApplicationController
     recording = recordings.last.url + '.mp3'
     response = "<Play>" + recording + "</Play>"
     return response
+  end
+
+  def after_recording_text_message
+    return 'Thank you for submitting your story. Please reply to the following questions to add details. [info|edit|stop]'
   end
 
   def audio_welcome

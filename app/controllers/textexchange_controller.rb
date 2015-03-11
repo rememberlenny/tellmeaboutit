@@ -7,8 +7,8 @@ class TextexchangeController < ApplicationController
     'THIS IS A FOLLOW UP. SEND ME PROMPTS!'
   end
 
+
   def text_delegate
-    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_ACCOUNT_TOKEN']
     from = params[:From]
     from = from.sub! '+1', ''
     puts from
@@ -19,28 +19,20 @@ class TextexchangeController < ApplicationController
         if user.stories.count == 0
 
         elsif user.stories.count > 0
-          follow_up_questions client
+          follow_up_questions
         end
       else
-        welcome client
+        welcome
       end
     end
   end
 
-  def welcome client
+  def welcome
     User.new(phone_number: params[:From])
-    client.messages.create(
-      from: '+13479831841',
-      to: params[:From],
-      body: welcome_response
-    )
+    send_message(params[:From], welcome_response)
   end
 
-  def follow_up_questions client
-    client.messages.create(
-      from: '+13479831841',
-      to: params[:From],
-      body: follow_up_response
-    )
+  def follow_up_questions
+    send_message(params[:From], follow_up_response)
   end
 end
