@@ -39,13 +39,17 @@ class VoiceexchangeController < ApplicationController
     from = f.sub '+1', ''
     u = User.where(phone_number: from)
     u = u.first
-    s = u.stories.build()
-    length = params['RecordingDuration']
-    s.recordings.build(
+    s = u.stories.new(name: 'Unknown')
+    s.save
+    r = s.recordings.new(
       url: params['RecordingUrl'],
       source: 'Call in - #{params['RecordingDuration'].to_s}'
     )
-    send_message(params[:From], after_recording_text_message)
+    r.save
+    uid = u.id
+    sid = s.id
+    rid = r.id
+    begin_followup_texts(uid, sid, rid)
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>" + audio_thank + "</Play>" # Go straight to end

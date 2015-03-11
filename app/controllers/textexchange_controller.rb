@@ -7,7 +7,6 @@ class TextexchangeController < ApplicationController
     'THIS IS A FOLLOW UP. SEND ME PROMPTS!'
   end
 
-
   def text_delegate
     from = params[:From]
     from = from.sub! '+1', ''
