@@ -9,7 +9,7 @@ class Story < ActiveRecord::Base
     u = User.find(uid)
     option = find_question_to_ask sid
 
-    send_message(u.phone_number,
+    send_message(u.phone_number, option.question)
   end
 
   def find_question_to_ask
@@ -17,7 +17,7 @@ class Story < ActiveRecord::Base
 
     options = question_options
     options.each do |option|
-      if story[option] != nil
+      if story[option.field] != nil
         return option
       end
     end
