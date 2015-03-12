@@ -10,20 +10,31 @@ class TextexchangeController < ApplicationController
   def text_delegate
     from = params[:From]
     from = from.sub! '+1', ''
+    us = User.find(where: params[:From])
+    u = us.first
+    s = u.stories.last
+    r = s.recordings.last
+    uid = u.id
+    sid = s.id
+    rid = r.id
     puts from
+
     if from
       u = User.where( phone_number: from )
+
       if u.count > 0
         user = u.first
         if user.stories.count == 0
-
+          welcome
         elsif user.stories.count > 0
-          follow_up_questions
+          self.begin_followup_texts(uid, sid, rid)
         end
+
       else
         welcome
       end
     end
+
   end
 
   def welcome
