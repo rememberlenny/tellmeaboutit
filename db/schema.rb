@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227212343) do
+ActiveRecord::Schema.define(version: 20150312231546) do
 
   create_table "recordings", force: :cascade do |t|
     t.integer  "story_id"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20150227212343) do
 
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
   add_index "stories", ["user_id"], name: "index_stories_on_user_id"
+
+  create_table "textthreads", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.string   "state"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "last_question"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "phone_number",            default: "",    null: false

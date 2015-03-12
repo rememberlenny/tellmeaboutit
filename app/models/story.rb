@@ -12,7 +12,7 @@ class Story < ActiveRecord::Base
     send_message(u.phone_number, option.question)
   end
 
-  def find_question_to_ask
+  def self.find_question_to_ask
     story = Story.find(sid)
 
     options = question_options

@@ -24,17 +24,22 @@ class TextexchangeController < ApplicationController
 
       if u.count > 0
         user = u.first
-        if user.stories.count == 0
-          welcome
-        elsif user.stories.count > 0
+        threads = Textthread.where(user_id: user.id)
+        threads = threads[0]
+        if threads.count == 0 || threads.last.state != 'Current'
+          start_new_thread(uid, sid)
+        else
           self.begin_followup_texts(uid, sid, rid)
         end
-
       else
         welcome
       end
     end
+  end
 
+  def start_new_thread user_id, story_id
+    story_state = Story.find()
+    thread = Textthread.new(user_id: user_id, story_id: story_id, state: 'Current')
   end
 
   def welcome
