@@ -37,15 +37,18 @@ class VoiceexchangeController < ApplicationController
   def after_recording
     f = params[:From]
     from = f.sub '+1', ''
+
     u = User.where(phone_number: from)
     u = u.first
     s = u.stories.new(name: 'Unknown')
     s.save
+
     r = s.recordings.new(
       url: params['RecordingUrl'],
       source: 'Call in - #{params['RecordingDuration'].to_s}'
     )
     r.save
+
     uid = u.id
     sid = s.id
     rid = r.id
@@ -57,6 +60,7 @@ class VoiceexchangeController < ApplicationController
     response << "<Response>";
     response << "<Play>" + audio_thank + "</Play>" # Go straight to end
     response << "</Response>";
+
     render text: response
   end
 

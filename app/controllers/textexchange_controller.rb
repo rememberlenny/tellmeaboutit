@@ -7,17 +7,38 @@ class TextexchangeController < ApplicationController
     'THIS IS A FOLLOW UP. SEND ME PROMPTS!'
   end
 
+  def identify_next_message
+  end
+
   def text_delegate
+    # Identify the thread
     from = params[:From]
     from = from.sub! '+1', ''
+
+
+    # Find user role and depth of interaction
     us = User.find(where: params[:From])
     u = us.first
-    s = u.stories.last
-    r = s.recordings.last
-    uid = u.id
-    sid = s.id
-    rid = r.id
-    puts from
+    if !u.nil? # Check for user
+      uid = u.id
+      s = u.stories.last
+      if !s.nil? # Check for story
+        sid = s.id
+        r = s.recordings.last
+        if !r.nil? # Check for recording
+          rid = r.id
+        end
+      end
+    end
+
+    # Check for existing thread
+    threads = Textthread.where(story_id: sid)
+    if threads.count > 0 # Thread exists
+      thread = threads.last
+      identify_next_message(thread)
+    else # Create
+      create_thread_without_call(uid)
+    end
 
     if from
       u = User.where( phone_number: from )
