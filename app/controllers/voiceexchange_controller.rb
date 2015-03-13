@@ -49,7 +49,10 @@ class VoiceexchangeController < ApplicationController
     uid = u.id
     sid = s.id
     rid = r.id
+
     Story.begin_followup_texts(uid, sid, rid)
+    Textthread.start_new_thread(uid, sid, 'Recording complete', nil)
+
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
     response << "<Play>" + audio_thank + "</Play>" # Go straight to end

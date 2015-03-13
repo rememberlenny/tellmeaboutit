@@ -29,9 +29,14 @@ class TextexchangeController < ApplicationController
         if threads.count == 0 || threads.last.state != 'Current'
           # First time. Find out content
           option = Story.find_question_to_ask
-          thread = start_new_thread(uid, sid, option.field)
           send_message(u.phone_number, option.question)
         elsif welcome threads.count != 0 && threads.last.state == 'Current' #response response
+          # Response
+          # 1. Respond to result
+          response_body = params[:Body]
+          option = Story.find_question_to_ask
+          threads.last_question
+          user[]
           self.begin_followup_texts(uid, sid, rid)
         elsif
 
@@ -40,12 +45,6 @@ class TextexchangeController < ApplicationController
         welcome
       end
     end
-  end
-
-  def start_new_thread user_id, story_id, question
-    story_state = Story.find()
-    thread = Textthread.new(user_id: user_id, story_id: story_id, state: 'Current', last_question: question)
-    return thread
   end
 
   def welcome
