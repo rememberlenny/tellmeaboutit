@@ -13,8 +13,6 @@ class TextexchangeController < ApplicationController
   def text_delegate
     # Identify the thread
     from = params[:From]
-    from = from.sub! '+1', ''
-
 
     # Find user role and depth of interaction
     us = User.find(where: params[:From])
@@ -56,11 +54,9 @@ class TextexchangeController < ApplicationController
           # 1. Respond to result
           response_body = params[:Body]
           option = Story.find_question_to_ask
-          threads.last_question
-          user[]
-          self.begin_followup_texts(uid, sid, rid)
-        elsif
-
+          # threads.last_question
+          # user[]
+          # self.begin_followup_texts(uid, sid, rid)
         end
       else
         welcome
