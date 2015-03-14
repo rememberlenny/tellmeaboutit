@@ -1,8 +1,7 @@
 class TextexchangeController < ApplicationController
   def text_delegate
     from = params[:From]
-    user = User.find_user_from_phone from
-    uid  = user.id
+    uid = User.find_user_from_phone from
     check_conversation_state uid
   end
 
@@ -43,11 +42,11 @@ class TextexchangeController < ApplicationController
     thread  = Textthread.find(thread_id)
     user_id = thread.user_id
     user    = User.find(user_id)
-    user.stories.new(origin: 'sms_thread')
+    story   = user.stories.new(origin: 'sms_thread')
+    story.save
   end
 
   def welcome
-    User.new(phone_number: params[:From])
     send_message(params[:From], welcome_response)
   end
 

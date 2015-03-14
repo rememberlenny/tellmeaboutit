@@ -12,8 +12,13 @@ class User < ActiveRecord::Base
 
   def self.find_user_from_phone from
     users = User.where(phone: from)
-    user = users.first
-    return user
+    if users.count > 0
+      user = users.first
+    else
+      user = User.new(phone_number: params[:From])
+      user.save
+    end
+    return user.id
   end
 
   def mark_phone_as_verified!
