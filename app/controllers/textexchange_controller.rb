@@ -1,67 +1,49 @@
 class TextexchangeController < ApplicationController
-  def welcome_response
-    'THIS IS A WELCOME. CALL ME TO RECORD!'
-  end
-
-  def follow_up_response
-    'THIS IS A FOLLOW UP. SEND ME PROMPTS!'
-  end
-
-  def identify_next_message
-  end
-
   def text_delegate
-    # Identify the thread
     from = params[:From]
+    user = User.find_user_from_phone from
+    uid  = user.id
+    check_conversation_state uid
+  end
 
-    # Find user role and depth of interaction
-    us = User.find(where: params[:From])
-    u = us.first
-    if !u.nil? # Check for user
-      uid = u.id
-      s = u.stories.last
-      if !s.nil? # Check for story
-        sid = s.id
-        r = s.recordings.last
-        if !r.nil? # Check for recording
-          rid = r.id
-        end
-      end
-    end
-
+  def check_conversation_state uid
     # Check for existing thread
-    threads = Textthread.where(story_id: sid)
-    if threads.count > 0 # Thread exists
+    threads = Textthread.where(user_id: uid)
+    if threads.count > 0
       thread = threads.last
-      identify_next_message(thread)
-    else # Create
-      create_thread_without_call(uid)
+      thread_id = thread.id
+    else
+      thread_id = create_thread(uid)
     end
+    identify_next_message(thread_id)
+  end
 
-    if from
-      u = User.where( phone_number: from )
+  def create_thread uid
+    thread = Textthread.new(user_id: uid)
+    thread.save
+    return thread.id
+  end
 
-      if u.count > 0
-        user = u.first
-        threads = Textthread.where(user_id: user.id)
-        threads = threads[0]
-        if threads.count == 0 || threads.last.state != 'Current'
-          # First time. Find out content
-          option = Story.find_question_to_ask
-          send_message(u.phone_number, option.question)
-        elsif welcome threads.count != 0 && threads.last.state == 'Current' #response response
-          # Response
-          # 1. Respond to result
-          response_body = params[:Body]
-          option = Story.find_question_to_ask
-          # threads.last_question
-          # user[]
-          # self.begin_followup_texts(uid, sid, rid)
-        end
-      else
-        welcome
-      end
+  def identify_next_message thread_id
+    thread = Textthread.find(thread_id)
+
+    # first message
+    if thread.story_id == nil
+      create_story_with_thread thread_id
+    # next message
+    elsif
+
+    # no more messages
+    else
+
     end
+  end
+
+  def create_story_with_thread thread_id
+    thread  = Textthread.find(thread_id)
+    user_id = thread.user_id
+    user    = User.find(user_id)
+    user.stories.new(origin: 'sms_thread')
   end
 
   def welcome

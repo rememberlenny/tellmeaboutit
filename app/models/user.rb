@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
   # before_save :set_phone_attributes, if: :phone_verification_needed?
   # after_save :send_sms_for_phone_verification, if: :phone_verification_needed?
 
+  def self.find_user_from_phone from
+    users = User.where(phone: from)
+    user = users.first
+    return user
+  end
+
   def mark_phone_as_verified!
     update!(phone_verified: true, phone_verification_code: false)
   end
