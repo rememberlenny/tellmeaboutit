@@ -1,10 +1,12 @@
 class TextexchangeController < ApplicationController
+  # Receives all the sms and finds the user/creates
   def text_delegate
     from = params[:From]
     uid = User.find_user_from_phone from
     check_conversation_state uid
   end
 
+  # Gets the textthread associated to the user/creates
   def check_conversation_state uid
     # Check for existing thread
     threads = Textthread.where(user_id: uid)
@@ -17,12 +19,14 @@ class TextexchangeController < ApplicationController
     identify_next_message(thread_id)
   end
 
+  # If no thread exists, create one associated to user
   def create_thread uid
     thread = Textthread.new(user_id: uid)
     thread.save
     return thread.id
   end
 
+  # Find the message the user needs from thread
   def identify_next_message thread_id
     thread = Textthread.find(thread_id)
 
@@ -44,9 +48,13 @@ class TextexchangeController < ApplicationController
     user    = User.find(user_id)
     story   = user.stories.new(origin: 'sms_thread')
     story.save
+    send_welcome_sms thread_id
   end
 
-  def welcome
+  def send_welcome_sms thread_is
+    thread  = Textthread.find(thread_id)
+    thread.state = 'Sent welcome'
+    thread.save
     send_message(params[:From], welcome_response)
   end
 
