@@ -35,13 +35,11 @@ class TextexchangeController < ApplicationController
 
   def get_sms_action thread_id
     thread = Textthread.find(thread_id)
-
     if thread.story_id == nil
       action = create_story_with_thread thread_id
     else
       action = find_next_message_on_thread thread_id
     end
-
     return action
   end
 
