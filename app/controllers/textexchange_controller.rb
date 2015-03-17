@@ -51,15 +51,20 @@ class TextexchangeController < ApplicationController
     return user.phone_number
   end
 
+  def get_user_with_thread thread_id
+    thread  = Textthread.find(thread_id)
+    user_id = thread.user_id
+    user    = User.find(user_id)
+    return user
+  end
+
   def send_action_sms action, thread_id
     phone = get_phone_with_thread(thread_id)
     send_message(phone, action)
   end
 
   def create_story_with_thread thread_id
-    thread  = Textthread.find(thread_id)
-    user_id = thread.user_id
-    user    = User.find(user_id)
+    user = get_user_with_thread(thread_id)
     story   = user.stories.new(origin: 'sms_thread')
     story.save
     options = Textthread.thread_state
