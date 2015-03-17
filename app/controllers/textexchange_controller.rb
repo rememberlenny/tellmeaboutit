@@ -28,6 +28,12 @@ class TextexchangeController < ApplicationController
 
   # Find the message the user needs from thread
   def identify_next_message thread_id
+    action = get_sms_action thread_id
+    change_thread_state( action[:state], thread_id )
+    send_action_sms( action[:message], thread_id )
+  end
+
+  def get_sms_action thread_id
     thread = Textthread.find(thread_id)
 
     if thread.story_id == nil
@@ -36,8 +42,7 @@ class TextexchangeController < ApplicationController
       action = find_next_message_on_thread thread_id
     end
 
-    change_thread_state( action[:state], thread_id )
-    send_action_sms( action[:message], thread_id )
+    return action
   end
 
   def send_action_sms action, thread_id
