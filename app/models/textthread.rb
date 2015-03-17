@@ -32,15 +32,15 @@ class Textthread < ActiveRecord::Base
       },
       :follow_up    => {
         :state    => 'sent_follow_up',
-        :message  => 'Thank you for sharing your story!'
+        :message  => 'Please answer the following questions by replying your answer. To stop, __do this__'
       },
       :more_info    => {
         :state    => 'sent_more_info',
         :message  => 'To edit or review your submission, please go to http://tellmebout.it/#{uid}'
       },
       :thank        => {
-        :state    => '',
-        :message  => '
+        :state    => 'sent_thanks',
+        :message  => 'Thank you for sharing your story!'
       },
     }
     return state
