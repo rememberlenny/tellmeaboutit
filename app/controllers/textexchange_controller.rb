@@ -30,16 +30,21 @@ class TextexchangeController < ApplicationController
   def identify_next_message thread_id
     thread = Textthread.find(thread_id)
 
-    # first message
     if thread.story_id == nil
-      create_story_with_thread thread_id
-    # next message
-    elsif
-
-    # no more messages
+      action = create_story_with_thread thread_id
     else
-
+      action = find_next_message_on_thread thread_id
     end
+
+    change_thread_state( action[:state], thread_id )
+    send_action_sms( action[:message], thread_id )
+  end
+
+  def send_action_sms action, thread_id
+    thread  = Textthread.find(thread_id)
+    user    = User.find(thread.user_id)
+
+    send_message(user.phone_number, action)
   end
 
   def create_story_with_thread thread_id
@@ -48,14 +53,26 @@ class TextexchangeController < ApplicationController
     user    = User.find(user_id)
     story   = user.stories.new(origin: 'sms_thread')
     story.save
-    send_welcome_sms thread_id
+    options = Textthread.thread_state
+    return options[:welcome]
   end
 
-  def send_welcome_sms thread_is
+  def find_next_message_on_thread thread_id
     thread  = Textthread.find(thread_id)
-    thread.state = 'Sent welcome'
+    # User the thread state to find out what is next
+    action = check_thread_state_action thread.state
+  end
+
+  def check_thread_state_action state
+    options = Textthread.thread_state
+    return options[:state]
+  end
+
+  def change_thread_state new_state thread_id
+    thread  = Textthread.find(thread_id)
+    thread.state = new_state
+    thread.exchange_count = thread.exchange_count + 1
     thread.save
-    send_message(params[:From], welcome_response)
   end
 
   def follow_up_questions

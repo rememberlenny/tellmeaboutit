@@ -18,4 +18,30 @@ class Textthread < ActiveRecord::Base
     puts 'Story not found'
   end
 
+  def self.thread_state
+    state = {
+      :welcome      => {
+        :state    => '',
+        :message  => ''
+      },
+      :ask_to_call  => {
+        :state    => '',
+        :message  => ''
+      },
+      :follow_up    => {
+        :state    => '',
+        :message  => ''
+      },
+      :more_info    => {
+        :state    => '',
+        :message  => ''
+      },
+      :thank        => {
+        :state    => '',
+        :message  => '
+      },
+    }
+    return state
+  end
+
 end
