@@ -19,22 +19,24 @@ class Textthread < ActiveRecord::Base
   end
 
   def self.thread_state
+    number_to_call = twilio_number
+    uid = 'NEED_ID'
     state = {
       :welcome      => {
-        :state    => '',
-        :message  => ''
+        :state    => 'sent_welcome',
+        :message  => 'Welcome to Tell Me \'Bout it, a service to share your breakup stories.'
       },
       :ask_to_call  => {
-        :state    => '',
-        :message  => ''
+        :state    => 'sent_request_to_call',
+        :message  => 'To get started, call #{number_to_call} and share your own story'
       },
       :follow_up    => {
-        :state    => '',
-        :message  => ''
+        :state    => 'sent_follow_up',
+        :message  => 'Thank you for sharing your story!'
       },
       :more_info    => {
-        :state    => '',
-        :message  => ''
+        :state    => 'sent_more_info',
+        :message  => 'To edit or review your submission, please go to http://tellmebout.it/#{uid}'
       },
       :thank        => {
         :state    => '',

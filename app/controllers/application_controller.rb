@@ -8,11 +8,15 @@ class ApplicationController < ActionController::Base
     @twilio ||= Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_ACCOUNT_TOKEN'])
   end
 
+  def twilio_number
+    return '+13479831841'
+  end
+
   def send_message(target, message)
-    from = '+13479831841'
+    from = twilio_number
     client = twilio_client
     client.messages.create(
-      from: '+13479831841',
+      from: twilio_number,
       to: target,
       body: message
     )
