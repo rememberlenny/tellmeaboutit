@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314131620) do
+ActiveRecord::Schema.define(version: 20150314132334) do
 
   create_table "recordings", force: :cascade do |t|
     t.integer  "story_id"
@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(version: 20150314131620) do
     t.integer  "user_id"
     t.integer  "story_id"
     t.string   "state"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "last_question"
+    t.integer  "exchange_count"
   end
 
   create_table "users", force: :cascade do |t|
