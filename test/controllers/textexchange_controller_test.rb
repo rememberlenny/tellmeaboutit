@@ -7,7 +7,7 @@ class TextexchangeControllerTest < ActionController::TestCase
   end
 
   test 'check textexchange#text_delegate' do
-    # get :text_delegate
+    get :text_delegate
     assert_response :success
   end
 

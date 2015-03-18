@@ -2,7 +2,7 @@ class TextexchangeController < ApplicationController
   # Receives all the sms and finds the user/creates
   def text_delegate
     from = params[:From]
-    uid = User.find_user_from_phone from
+    uid = TextexchangeHelper.find_user_from_phone from
     check_conversation_state uid
   end
 
