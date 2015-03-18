@@ -80,7 +80,7 @@ class TextexchangeController < ApplicationController
     return options[:state]
   end
 
-  def change_thread_state new_state thread_id
+  def change_thread_state new_state, thread_id
     thread  = Textthread.find(thread_id)
     thread.state = new_state
     thread.exchange_count = thread.exchange_count + 1
