@@ -1,13 +1,18 @@
 class TextexchangeController < ApplicationController
   # Receives all the sms and finds the user/creates
   def text_delegate
+    puts 'Ran text_delegate'
     from = params[:From]
+    puts 'Got ' + from
     uid = TextexchangeHelper.find_user_from_phone from
-    check_conversation_state uid
+    puts 'UID is ' + uid.to_s + '.'
+    check_conversation_state(uid)
   end
 
   # Gets the textthread associated to the user/creates
   def check_conversation_state uid
+    puts 'Ran check_conversation_state uid'
+    puts 'Ran check_conversation_state uid: ' + uid.to_s
     # Check for existing thread
     threads = Textthread.where(user_id: uid)
     if threads.count > 0
@@ -21,6 +26,7 @@ class TextexchangeController < ApplicationController
 
   # If no thread exists, create one associated to user
   def create_thread uid
+    puts 'Ran create_thread uid'
     thread = Textthread.new(user_id: uid)
     thread.save
     return thread.id
@@ -28,12 +34,14 @@ class TextexchangeController < ApplicationController
 
   # Find the message the user needs from thread
   def identify_next_message thread_id
+    puts 'Ran identify_next_message thread_id'
     action = get_sms_action thread_id
     change_thread_state( action[:state], thread_id )
     send_action_sms( action[:message], thread_id )
   end
 
   def get_sms_action thread_id
+    puts 'Ran get_sms_action thread_id'
     thread = Textthread.find(thread_id)
     if thread.story_id == nil
       action = create_story_with_thread thread_id
@@ -44,24 +52,30 @@ class TextexchangeController < ApplicationController
   end
 
   def get_phone_with_thread thread_id
+    puts 'Ran get_phone_with_thread thread_id'
     thread  = Textthread.find(thread_id)
     user    = User.find(thread.user_id)
     return user.phone_number
   end
 
   def get_user_with_thread thread_id
+    puts 'Ran get_user_with_thread thread_id'
     thread  = Textthread.find(thread_id)
+    puts 'get_user_with_thread found thread_id: ' + thread_id.to_s
     user_id = thread.user_id
+    puts 'get_user_with_thread found user_id: ' + user_id.to_s
     user    = User.find(user_id)
     return user
   end
 
   def send_action_sms action, thread_id
+    puts 'Ran send_action_sms action, thread_id'
     phone = get_phone_with_thread(thread_id)
     send_message(phone, action)
   end
 
   def create_story_with_thread thread_id
+    puts 'Ran create_story_with_thread thread_id'
     user = get_user_with_thread(thread_id)
     story   = user.stories.new(origin: 'sms_thread')
     story.save
@@ -70,21 +84,23 @@ class TextexchangeController < ApplicationController
   end
 
   def find_next_message_on_thread thread_id
+    puts 'Ran find_next_message_on_thread thread_id'
     thread  = Textthread.find(thread_id)
     # User the thread state to find out what is next
     action = check_thread_state_action thread.state
   end
 
   def check_thread_state_action state
+    puts 'Ran check_thread_state_action state'
     options = Textthread.thread_state
     return options[:state]
   end
 
   def change_thread_state new_state, thread_id
+    puts 'Ran change_thread_state new_state, thread_id'
     thread  = Textthread.find(thread_id)
     thread.state = new_state
     thread.exchange_count = thread.exchange_count + 1
     thread.save
   end
-
 end
