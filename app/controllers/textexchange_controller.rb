@@ -87,7 +87,4 @@ class TextexchangeController < ApplicationController
     thread.save
   end
 
-  def follow_up_questions
-    send_message(params[:From], follow_up_response)
-  end
 end

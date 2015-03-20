@@ -43,9 +43,11 @@ class VoiceexchangeController < ApplicationController
     s = u.stories.new(name: 'Unknown')
     s.save
 
+    duration = params['RecordingDuration'].to_s
+
     r = s.recordings.new(
       url: params['RecordingUrl'],
-      source: 'Call in - #{params['RecordingDuration'].to_s}'
+      source: 'Call in - #{duration}'
     )
     r.save
 
