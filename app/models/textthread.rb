@@ -18,6 +18,13 @@ class Textthread < ActiveRecord::Base
     puts 'Story not found'
   end
 
+  def self.find_next_message_on_thread thread_id
+    puts 'Ran find_next_message_on_thread thread_id'
+    thread  = Textthread.find(thread_id)
+    # User the thread state to find out what is next
+    action = check_thread_state_action thread.state
+  end
+
   def self.get_thread_by_user_id user_id
     threads = Textthread.where(user_id: user_id)
     thread = threads.last

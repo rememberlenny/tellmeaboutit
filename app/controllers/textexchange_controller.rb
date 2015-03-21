@@ -46,7 +46,7 @@ class TextexchangeController < ApplicationController
     if thread.story_id == nil
       action = Story.create_story_with_thread thread_id
     else
-      action = find_next_message_on_thread thread_id
+      action = Textthread.find_next_message_on_thread thread_id
     end
     return action
   end
@@ -72,13 +72,6 @@ class TextexchangeController < ApplicationController
     puts 'Ran send_action_sms action, thread_id'
     phone = get_phone_with_thread(thread_id)
     send_message(phone, action)
-  end
-
-  def find_next_message_on_thread thread_id
-    puts 'Ran find_next_message_on_thread thread_id'
-    thread  = Textthread.find(thread_id)
-    # User the thread state to find out what is next
-    action = check_thread_state_action thread.state
   end
 
   def check_thread_state_action state
