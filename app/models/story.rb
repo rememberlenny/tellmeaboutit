@@ -26,7 +26,7 @@ class Story < ActiveRecord::Base
 
     options = question_options
     options.each do |option|
-      if story[option.field] != nil
+      if story[option.field] == nil
         return option
       end
     end
