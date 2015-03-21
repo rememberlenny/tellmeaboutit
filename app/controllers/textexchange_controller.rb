@@ -7,6 +7,7 @@ class TextexchangeController < ApplicationController
     uid = TextexchangeHelper.find_user_from_phone from
     puts 'UID is ' + uid.to_s + '.'
     check_conversation_state(uid)
+    render text: ''
   end
 
   # Gets the textthread associated to the user/creates
@@ -36,15 +37,14 @@ class TextexchangeController < ApplicationController
   def identify_next_message thread_id
     puts 'Ran identify_next_message thread_id'
     action = get_sms_action thread_id
-    change_thread_state( action[:state], thread_id )
-    send_action_sms( action[:message], thread_id )
+    change_thread_state( action, thread_id )
   end
 
   def get_sms_action thread_id
     puts 'Ran get_sms_action thread_id'
     thread = Textthread.find(thread_id)
     if thread.story_id == nil
-      action = create_story_with_thread thread_id
+      action = Story.create_story_with_thread thread_id
     else
       action = find_next_message_on_thread thread_id
     end
@@ -74,15 +74,6 @@ class TextexchangeController < ApplicationController
     send_message(phone, action)
   end
 
-  def create_story_with_thread thread_id
-    puts 'Ran create_story_with_thread thread_id'
-    user = get_user_with_thread(thread_id)
-    story   = user.stories.new(origin: 'sms_thread')
-    story.save
-    options = Textthread.thread_state
-    return options[:welcome]
-  end
-
   def find_next_message_on_thread thread_id
     puts 'Ran find_next_message_on_thread thread_id'
     thread  = Textthread.find(thread_id)
@@ -96,11 +87,26 @@ class TextexchangeController < ApplicationController
     return options[:state]
   end
 
-  def change_thread_state new_state, thread_id
+  def change_thread_state action, thread_id
     puts 'Ran change_thread_state new_state, thread_id'
+
+    state_object = Textthread.thread_state
     thread  = Textthread.find(thread_id)
-    thread.state = new_state
-    thread.exchange_count = thread.exchange_count + 1
+    if thread.state == 'sent_welcome' && thread.exchange_count == 1
+      action = state_object[:reply_before_recording]
+    elsif thread.state == 'sent_before_recording_message' && thread.exchange_count == 1
+      action = state_object[:reply_before_recording_again]
+    else
+      if thread.exchange_count == nil
+        thread.exchange_count = 1
+      else
+        thread.exchange_count = thread.exchange_count + 1
+      end
+    end
+    puts 'thread.exchange_count is: ' + thread.exchange_count.to_s
+    thread.state = action[:state]
     thread.save
+
+    send_action_sms( action[:message], thread_id )
   end
 end

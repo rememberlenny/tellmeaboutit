@@ -2,12 +2,28 @@ class VoiceexchangeController < ApplicationController
   def voice_delegate
     client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_ACCOUNT_TOKEN']
     from = params[:From]
-    from = from.sub! '+1', ''
-    start_recording
+    check_voice_state from
   end
 
-  def start_recording
+  def check_voice_state from
+    thread_state = check_state_from_phone from
+    if thread_state == 'follow_up' || thread_state == 'sent_more_info' || thread_state == 'sent_thanks'
+      ask_to_start_a_new_thread
+    else
+      start_a_new_thread from
+    end
+  end
+
+  def start_a_new_thread from
+    uid = User.find_user_from_phone from
     say_intro
+  end
+
+  def check_state_from_phone from
+    uid = User.find_user_from_phone from
+    thread_id Textthread.get_thread_by_user_id uid
+    thread = Textthread.find(thread_id)
+    return thread.state
   end
 
   # Relevant audio files

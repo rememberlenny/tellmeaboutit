@@ -18,17 +18,27 @@ class Textthread < ActiveRecord::Base
     puts 'Story not found'
   end
 
+  def self.get_thread_by_user_id user_id
+    threads = Textthread.where(user_id: user_id)
+    thread = threads.last
+    return thread.id
+  end
+
   def self.thread_state
-    number_to_call = twilio_number
+    number_to_call = '(347) 983-1841'
     uid = 'NEED_ID'
     state = {
-      :welcome      => {
+      :welcome => {
         :state    => 'sent_welcome',
-        :message  => 'Welcome to Tell Me \'Bout it, a service to share your breakup stories.'
+        :message  => 'Welcome to Tell Me \'Bout it, a service to share your breakup stories. To get started, call ' + number_to_call.to_s + ' and share your own story.'
       },
-      :ask_to_call  => {
-        :state    => 'sent_request_to_call',
-        :message  => 'To get started, call #{number_to_call} and share your own story'
+      :reply_before_recording => {
+        :state    => 'sent_before_recording_message',
+        :message  => 'Try calling in, then we\'ll give you more options'
+      },
+      :reply_before_recording_again => {
+        :state    => 'sent_before_recording_message_again',
+        :message  => 'Seriously. Stop sending texts and just call. ' + number_to_call.to_s + '.'
       },
       :follow_up    => {
         :state    => 'sent_follow_up',

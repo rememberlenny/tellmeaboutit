@@ -12,6 +12,15 @@ class Story < ActiveRecord::Base
     send_message(u.phone_number, option.question)
   end
 
+  def self.create_story_with_thread thread_id
+    puts 'Ran create_story_with_thread thread_id'
+    user = get_user_with_thread(thread_id)
+    story   = user.stories.new(origin: 'sms_thread')
+    story.save
+    options = Textthread.thread_state
+    return options[:welcome]
+  end
+
   def self.find_question_to_ask
     story = Story.find(sid)
 
