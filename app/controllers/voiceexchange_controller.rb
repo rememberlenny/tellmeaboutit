@@ -66,7 +66,7 @@ class VoiceexchangeController < ApplicationController
   def after_recording
     puts 'Doing after_recording'
     from = params[:From]
-    duration = params['RecordingDuration'].to_s
+    duration = params['RecordingDuration']
     recording_url = params['RecordingUrl']
 
     manage_after_recording_actions(from, duration, recording_url)
@@ -87,7 +87,7 @@ class VoiceexchangeController < ApplicationController
 
     r = s.recordings.new(
       url: recording_url,
-      source: 'Call in - ' + duration
+      source: 'Call in - ' + duration.to_s
     )
     r.save
 
