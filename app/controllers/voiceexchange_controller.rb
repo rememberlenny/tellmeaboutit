@@ -94,62 +94,6 @@ class VoiceexchangeController < ApplicationController
     render text: response
   end
 
-
-  def rerecord
-    response << content_for_record
-    return response
-  end
-
-  def check_recording
-    sid = params[:CallSid]
-    d = params[:Digits]
-
-    puts "We got this " + d
-
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    response << "<Response>"
-    if d == "#"
-      response << proceed_forward
-    elsif d == "1"
-      response << listen_back(sid)
-      response << provide_options
-    elsif d == "*"
-      response << rerecord
-    end
-    response << "</Response>"
-    render text: response
-  end
-
-  def check_response
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    response << "<Response>";
-    response << provide_options
-    response << "</Response>";
-    render text: response
-  end
-
-  def provide_options
-    response = "<Gather method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
-    response << "<Play>" + audio_options + "</Play>"
-    response << "</Gather>"
-    return response
-  end
-
-  def proceed_forward
-    response = "<Play>" + audio_thank + "</Play>"
-    return response
-  end
-
-  def listen_back sid
-    call_array = TwilioCall.where(sid: sid)
-    call = call_array.first
-    call_id = call.id
-    recordings = Recording.where(twilio_id: call_id)
-    recording = recordings.last.url + '.mp3'
-    response = "<Play>" + recording + "</Play>"
-    return response
-  end
-
   def after_recording_text_message
     return 'Thank you for submitting your story. Please reply to the following questions to add details. [info|edit|stop]'
   end
@@ -169,5 +113,60 @@ class VoiceexchangeController < ApplicationController
   def audio_options
     return 'http://lamivo.com/quantifiedbreakup/tellmeboutit/if-youre-happy.mp3'
   end
+
+  # def rerecord
+  #   response << content_for_record
+  #   return response
+  # end
+
+  # def check_recording
+  #   sid = params[:CallSid]
+  #   d = params[:Digits]
+
+  #   puts "We got this " + d
+
+  #   response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+  #   response << "<Response>"
+  #   if d == "#"
+  #     response << proceed_forward
+  #   elsif d == "1"
+  #     response << listen_back(sid)
+  #     response << provide_options
+  #   elsif d == "*"
+  #     response << rerecord
+  #   end
+  #   response << "</Response>"
+  #   render text: response
+  # end
+
+  # def check_response
+  #   response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+  #   response << "<Response>";
+  #   response << provide_options
+  #   response << "</Response>";
+  #   render text: response
+  # end
+
+  # def provide_options
+  #   response = "<Gather method=\"GET\" action=\"" + base_url + "/check_recording\" numDigits=\"1\">"
+  #   response << "<Play>" + audio_options + "</Play>"
+  #   response << "</Gather>"
+  #   return response
+  # end
+
+  # def proceed_forward
+  #   response = "<Play>" + audio_thank + "</Play>"
+  #   return response
+  # end
+
+  # def listen_back sid
+  #   call_array = TwilioCall.where(sid: sid)
+  #   call = call_array.first
+  #   call_id = call.id
+  #   recordings = Recording.where(twilio_id: call_id)
+  #   recording = recordings.last.url + '.mp3'
+  #   response = "<Play>" + recording + "</Play>"
+  #   return response
+  # end
 
 end
