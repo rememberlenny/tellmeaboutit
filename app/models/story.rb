@@ -9,13 +9,14 @@ class Story < ActiveRecord::Base
     u = User.find(uid)
     option = find_question_to_ask sid
 
-    send_message(u.phone_number, option[:question])
+    # send_message(u.phone_number, option[:question])
+    send_message(u.phone_number, 'this is the message')
   end
 
   def self.create_story_with_thread thread_id
     puts 'Ran create_story_with_thread thread_id'
     user = get_user_with_thread(thread_id)
-    story   = user.stories.new(origin: 'sms_thread')
+    story = user.stories.new(origin: 'sms_thread')
     story.save
     options = Textthread.thread_state
     return options[:welcome]
@@ -24,9 +25,9 @@ class Story < ActiveRecord::Base
   def self.find_question_to_ask sid
     story = Story.find(sid)
 
-    #
+    # >
     # >> This needs work
-    #
+    # >
     options = question_options
     options.each do |option|
       if story[option.field] == nil
