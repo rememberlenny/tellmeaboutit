@@ -71,7 +71,7 @@ class TextexchangeController < ApplicationController
   def send_action_sms action, thread_id
     puts 'Ran send_action_sms action, thread_id'
     phone = get_phone_with_thread(thread_id)
-    send_message(phone, action)
+    Textthread.send_message(phone, action)
   end
 
   def check_thread_state_action state
