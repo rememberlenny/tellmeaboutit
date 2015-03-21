@@ -16,12 +16,13 @@ class VoiceexchangeController < ApplicationController
 
   def start_a_new_thread from
     uid = User.find_user_from_phone from
+    puts 'Managing a call from ' + uid.to_s
     say_intro
   end
 
   def check_state_from_phone from
     uid = User.find_user_from_phone from
-    thread_id Textthread.get_thread_by_user_id uid
+    thread_id = Textthread.get_thread_by_user_id uid
     thread = Textthread.find(thread_id)
     return thread.state
   end

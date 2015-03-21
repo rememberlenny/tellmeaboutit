@@ -11,11 +11,11 @@ class User < ActiveRecord::Base
   # after_save :send_sms_for_phone_verification, if: :phone_verification_needed?
 
   def self.find_user_from_phone from
-    users = User.where(phone: from)
+    users = User.where(phone_number: from)
     if users.count > 0
       user = users.first
     else
-      user = User.new(phone_number: params[:From])
+      user = User.new(phone_number: from)
       user.save
     end
     return user.id
