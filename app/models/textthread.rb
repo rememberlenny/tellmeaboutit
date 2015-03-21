@@ -22,9 +22,17 @@ class Textthread < ActiveRecord::Base
     number_to_call = '(347) 983-1841'
     uid = 'NEED_ID'
     state = {
-      :welcome      => {
+      :welcome => {
         :state    => 'sent_welcome',
         :message  => 'Welcome to Tell Me \'Bout it, a service to share your breakup stories. To get started, call ' + number_to_call.to_s + ' and share your own story.'
+      },
+      :reply_before_recording => {
+        :state    => 'sent_before_recording_message',
+        :message  => 'Try calling in, then we\'ll give you more options'
+      },
+      :reply_before_recording_again => {
+        :state    => 'sent_before_recording_message_again',
+        :message  => 'Seriously. Stop sending texts and just call.  ' + number_to_call.to_s + '.'
       },
       :follow_up    => {
         :state    => 'sent_follow_up',

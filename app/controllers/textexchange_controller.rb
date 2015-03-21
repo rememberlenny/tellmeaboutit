@@ -99,14 +99,21 @@ class TextexchangeController < ApplicationController
   def change_thread_state action, thread_id
     puts 'Ran change_thread_state new_state, thread_id'
 
+    state_object = Textthread.thread_state
     thread  = Textthread.find(thread_id)
-    thread.state = action[:state]
-    if thread.exchange_count == nil
-      thread.exchange_count = 0
+    if thread.state == 'sent_welcome' && thread.exchange_count == 1
+      action = state_object[:reply_before_recording]
+    elsif thread.state == 'sent_before_recording_message' && thread.exchange_count == 1
+      action = state_object[:reply_before_recording_again]
     else
-      thread.exchange_count = thread.exchange_count + 1
+      if thread.exchange_count == nil
+        thread.exchange_count = 1
+      else
+        thread.exchange_count = thread.exchange_count + 1
+      end
     end
     puts 'thread.exchange_count is: ' + thread.exchange_count.to_s
+    thread.state = action[:state]
     thread.save
 
     send_action_sms( action[:message], thread_id )
