@@ -44,7 +44,7 @@ class TextexchangeController < ApplicationController
     puts 'Ran get_sms_action thread_id'
     thread = Textthread.find(thread_id)
     if thread.story_id == nil
-      action = create_story_with_thread thread_id
+      action = Story.create_story_with_thread thread_id
     else
       action = find_next_message_on_thread thread_id
     end
@@ -72,15 +72,6 @@ class TextexchangeController < ApplicationController
     puts 'Ran send_action_sms action, thread_id'
     phone = get_phone_with_thread(thread_id)
     send_message(phone, action)
-  end
-
-  def create_story_with_thread thread_id
-    puts 'Ran create_story_with_thread thread_id'
-    user = get_user_with_thread(thread_id)
-    story   = user.stories.new(origin: 'sms_thread')
-    story.save
-    options = Textthread.thread_state
-    return options[:welcome]
   end
 
   def find_next_message_on_thread thread_id

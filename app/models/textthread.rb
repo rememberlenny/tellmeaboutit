@@ -18,6 +18,12 @@ class Textthread < ActiveRecord::Base
     puts 'Story not found'
   end
 
+  def self.get_thread_by_user_id user_id
+    threads = Textthread.where(user_id: user_id)
+    thread = threads.last
+    return thread.id
+  end
+
   def self.thread_state
     number_to_call = '(347) 983-1841'
     uid = 'NEED_ID'
@@ -32,7 +38,7 @@ class Textthread < ActiveRecord::Base
       },
       :reply_before_recording_again => {
         :state    => 'sent_before_recording_message_again',
-        :message  => 'Seriously. Stop sending texts and just call.  ' + number_to_call.to_s + '.'
+        :message  => 'Seriously. Stop sending texts and just call. ' + number_to_call.to_s + '.'
       },
       :follow_up    => {
         :state    => 'sent_follow_up',
