@@ -7,6 +7,7 @@ class TextexchangeController < ApplicationController
     uid = TextexchangeHelper.find_user_from_phone from
     puts 'UID is ' + uid.to_s + '.'
     check_conversation_state(uid)
+    render text: ''
   end
 
   # Gets the textthread associated to the user/creates
@@ -100,6 +101,11 @@ class TextexchangeController < ApplicationController
     puts 'Ran change_thread_state new_state, thread_id'
     thread  = Textthread.find(thread_id)
     thread.state = new_state
+    if thread.exchange_count == nil
+      thread.exchange_count = 1
+      thread.save
+    end
+    puts 'thread.exchange_count is: ' + thread.exchange_count.to_s
     thread.exchange_count = thread.exchange_count + 1
     thread.save
   end

@@ -19,7 +19,7 @@ class Textthread < ActiveRecord::Base
   end
 
   def self.thread_state
-    number_to_call = twilio_number
+    number_to_call = '(347) 983-1841'
     uid = 'NEED_ID'
     state = {
       :welcome      => {
