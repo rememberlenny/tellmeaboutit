@@ -21,7 +21,7 @@ class Story < ActiveRecord::Base
     return options[:welcome]
   end
 
-  def self.find_question_to_ask
+  def self.find_question_to_ask sid
     story = Story.find(sid)
 
     options = question_options

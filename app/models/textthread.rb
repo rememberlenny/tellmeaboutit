@@ -27,7 +27,14 @@ class Textthread < ActiveRecord::Base
 
   def self.get_thread_by_user_id user_id
     threads = Textthread.where(user_id: user_id)
-    thread = threads.last
+    if threads.count > 0
+      thread = threads.last
+    else
+      user = User.find(user_id)
+      story = user.stories.new(origin: 'from_call')
+      thread = Textthread.new(user_id: user_id, story_id: story.id)
+      thread.save
+    end
     return thread.id
   end
 

@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   post 'sms/connection' => 'textexchange#text_delegate'
 
-  get  'voice/connection' => 'voiceexchange#voice_delegate'
-  get  'voice/after_recording' => 'voiceexchange#after_recording'
+  get  'voice/connection'       => 'voiceexchange#voice_delegate'
+  get  'voice/after_recording'  => 'voiceexchange#after_recording'
 
   resources :stories do
     resources :recordings

@@ -1,4 +1,8 @@
 class VoiceexchangeController < ApplicationController
+  def base_url
+    return 'https://7d26d70.ngrok.com/'
+  end
+
   def voice_delegate
     client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_ACCOUNT_TOKEN']
     from = params[:From]
@@ -39,36 +43,41 @@ class VoiceexchangeController < ApplicationController
   # - Need recording
   # - Need story
   def say_intro
+    puts 'Doing say_intro'
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    response << "<Play>" + audio_welcome + "</Play>";
-    response << "<Play>" + audio_start_record + "</Play>"
+    # response << "<Play>" + audio_welcome + "</Play>";
+    # response << "<Play>" + audio_start_record + "</Play>"
     response << content_for_record
     response << "</Response>";
     render text: response
+  end
+
+  def content_for_record
+    puts 'Running content_for_record'
+    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"" + base_url + "voice/after_recording\"/>";
+    return response
   end
 
   # Get the recording and create Story + Recording
   # - Grab CallSid from TwilioCall
   # - Create an Story
   def after_recording
-    f = params[:From]
-    from = f.sub '+1', ''
-
-    u = User.where(phone_number: from)
-    u = u.first
+    puts 'Doing after_recording'
+    from = params[:From]
+    duration = params['RecordingDuration'].to_s
+    recording_url = params['RecordingUrl']
+    uid = User.find_user_from_phone from
+    u = User.find(uid)
     s = u.stories.new(name: 'Unknown')
     s.save
 
-    duration = params['RecordingDuration'].to_s
-
     r = s.recordings.new(
-      url: params['RecordingUrl'],
-      source: 'Call in - #{duration}'
+      url: recording_url,
+      source: 'Call in - ' + duration
     )
     r.save
 
-    uid = u.id
     sid = s.id
     rid = r.id
 
@@ -83,10 +92,6 @@ class VoiceexchangeController < ApplicationController
     render text: response
   end
 
-  def content_for_record
-    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"" + base_url + "voice/after_recording\"/>";
-    return response
-  end
 
   def rerecord
     response << content_for_record
@@ -163,7 +168,4 @@ class VoiceexchangeController < ApplicationController
     return 'http://lamivo.com/quantifiedbreakup/tellmeboutit/if-youre-happy.mp3'
   end
 
-  def base_url
-    return 'http://5a9b7d9f.ngrok.com/'
-  end
 end

@@ -14,9 +14,11 @@ class User < ActiveRecord::Base
     users = User.where(phone_number: from)
     if users.count > 0
       user = users.first
+      puts 'users.count > 0 Grab the user: ' + user.id.to_s
     else
-      user = User.new(phone_number: from)
+      user = User.new(phone_number: from, password: '123123123')
       user.save
+      puts 'else Grab the user: ' + user.id.to_s
     end
     return user.id
   end
