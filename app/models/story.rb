@@ -24,13 +24,15 @@ class Story < ActiveRecord::Base
   def self.find_question_to_ask sid
     story = Story.find(sid)
 
-    return { field: "name", question: "What is your ?"}
-    # options = question_options
-    # options.each do |option|
-    #   if story[option.field] == nil
-    #     return option
-    #   end
-    # end
+    #
+    # >> This needs work
+    #
+    options = question_options
+    options.each do |option|
+      if story[option.field] == nil
+        return option
+      end
+    end
   end
 
   def question_options
