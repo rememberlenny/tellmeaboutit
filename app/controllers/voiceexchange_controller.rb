@@ -1,7 +1,7 @@
 class VoiceexchangeController < ApplicationController
   def base_url
-    # return 'https://7d26d70.ngrok.com/'
-    return 'http://tellmebout.it/'
+    return 'https://7d26d70.ngrok.com/'
+    # return 'http://tellmebout.it/'
   end
 
   def voice_delegate
@@ -82,6 +82,7 @@ class VoiceexchangeController < ApplicationController
     sid = s.id
     rid = r.id
 
+    puts 'Story.begin_followup_texts'
     Story.begin_followup_texts(uid, sid, rid)
     Textthread.start_new_thread(uid, sid, 'Recording complete', nil)
 

@@ -9,7 +9,7 @@ class Story < ActiveRecord::Base
     u = User.find(uid)
     option = find_question_to_ask sid
 
-    send_message(u.phone_number, option.question)
+    send_message(u.phone_number, option[:question])
   end
 
   def self.create_story_with_thread thread_id
@@ -24,12 +24,13 @@ class Story < ActiveRecord::Base
   def self.find_question_to_ask sid
     story = Story.find(sid)
 
-    options = question_options
-    options.each do |option|
-      if story[option.field] == nil
-        return option
-      end
-    end
+    return { field: "name", question: "What is your ?"}
+    # options = question_options
+    # options.each do |option|
+    #   if story[option.field] == nil
+    #     return option
+    #   end
+    # end
   end
 
   def question_options
