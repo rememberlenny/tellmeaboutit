@@ -2,14 +2,20 @@ require 'rails_helper'
 
 RSpec.describe TextexchangeController, type: :controller do
 
-  # describe 'find_user_from_phone helper with nil' do
-  #   user = TextexchangeHelper.find_user_from_phone nil
-  #   if user == nil
-  #     assert_response :success
-  #   else
-  #     assert_response :failure
-  #   end
-  # end
+  describe "TextexchangeHelper.find_user_from_phone helper" do
+    it "should not return nil for 19493228496" do
+      uid = TextexchangeHelper.find_user_from_phone '19493228496'
+      expect(uid).to equal(2)
+    end
+  end
+
+
+  describe "Text Delegate" do
+    it "should not return nil for 19493228496" do
+      uid = TextexchangeHelper.find_user_from_phone '19493228496'
+      expect(uid).to equal(2)
+    end
+  end
 
   # describe 'find_user_from_phone helper with user' do
   #   User.delete_all

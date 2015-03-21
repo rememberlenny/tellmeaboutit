@@ -1,5 +1,5 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe "static_pages/about.html.erb", :type => :view do
-  :success
-end
+# RSpec.describe "static_pages/about.html.erb", :type => :view do
+#   :success
+# end
