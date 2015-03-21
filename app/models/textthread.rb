@@ -24,11 +24,7 @@ class Textthread < ActiveRecord::Base
     state = {
       :welcome      => {
         :state    => 'sent_welcome',
-        :message  => 'Welcome to Tell Me \'Bout it, a service to share your breakup stories.'
-      },
-      :ask_to_call  => {
-        :state    => 'sent_request_to_call',
-        :message  => 'To get started, call #{number_to_call} and share your own story'
+        :message  => 'Welcome to Tell Me \'Bout it, a service to share your breakup stories. To get started, call ' + number_to_call.to_s + ' and share your own story.'
       },
       :follow_up    => {
         :state    => 'sent_follow_up',

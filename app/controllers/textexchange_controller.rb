@@ -37,8 +37,7 @@ class TextexchangeController < ApplicationController
   def identify_next_message thread_id
     puts 'Ran identify_next_message thread_id'
     action = get_sms_action thread_id
-    change_thread_state( action[:state], thread_id )
-    send_action_sms( action[:message], thread_id )
+    change_thread_state( action, thread_id )
   end
 
   def get_sms_action thread_id
@@ -97,16 +96,19 @@ class TextexchangeController < ApplicationController
     return options[:state]
   end
 
-  def change_thread_state new_state, thread_id
+  def change_thread_state action, thread_id
     puts 'Ran change_thread_state new_state, thread_id'
+
     thread  = Textthread.find(thread_id)
-    thread.state = new_state
+    thread.state = action[:state]
     if thread.exchange_count == nil
-      thread.exchange_count = 1
-      thread.save
+      thread.exchange_count = 0
+    else
+      thread.exchange_count = thread.exchange_count + 1
     end
     puts 'thread.exchange_count is: ' + thread.exchange_count.to_s
-    thread.exchange_count = thread.exchange_count + 1
     thread.save
+
+    send_action_sms( action[:message], thread_id )
   end
 end
