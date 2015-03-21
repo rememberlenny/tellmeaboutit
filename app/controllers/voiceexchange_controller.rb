@@ -68,6 +68,18 @@ class VoiceexchangeController < ApplicationController
     from = params[:From]
     duration = params['RecordingDuration'].to_s
     recording_url = params['RecordingUrl']
+
+    manage_after_recording_actions(from, duration, recording_url)
+
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response << "<Response>";
+    response << "<Play>" + audio_thank + "</Play>" # Go straight to end
+    response << "</Response>";
+
+    render text: response
+  end
+
+  def manage_after_recording_actions(from, duration, recording_url)
     uid = User.find_user_from_phone from
     u = User.find(uid)
     s = u.stories.new(name: 'Unknown')
@@ -79,19 +91,9 @@ class VoiceexchangeController < ApplicationController
     )
     r.save
 
-    sid = s.id
-    rid = r.id
-
     puts 'Story.begin_followup_texts'
-    Story.begin_followup_texts(uid, sid, rid)
-    Textthread.start_new_thread(uid, sid, 'Recording complete', nil)
-
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    response << "<Response>";
-    response << "<Play>" + audio_thank + "</Play>" # Go straight to end
-    response << "</Response>";
-
-    render text: response
+    Story.begin_followup_texts(uid, s.id, r.id)
+    Textthread.start_new_thread(uid, s.id, 'Recording complete', nil)
   end
 
   def after_recording_text_message
