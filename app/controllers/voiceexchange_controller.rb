@@ -12,11 +12,21 @@ class VoiceexchangeController < ApplicationController
 
   def check_voice_state from
     thread_state = check_state_from_phone from
-    if thread_state == 'follow_up' || thread_state == 'sent_more_info' || thread_state == 'sent_thanks'
+    if thread_state == 'recorded_audio'
+      ask_to_decide_via_text
+    elsif thread_state == 'follow_up' || thread_state == 'sent_more_info' || thread_state == 'sent_thanks'
       ask_to_start_a_new_thread
     else
       start_a_new_thread from
     end
+  end
+
+  def ask_to_decide_via_text
+    puts 'Doing ask_to_decide_via_text'
+    response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    response << "<Say>Please reply to our text message before recording again.</Say>";
+    response << "</Response>";
+    render text: response
   end
 
   def start_a_new_thread from

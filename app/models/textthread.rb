@@ -72,19 +72,7 @@ class Textthread < ActiveRecord::Base
       :reply_before_recording_again => {
         :state    => 'sent_before_recording_message_again',
         :message  => 'Seriously. Stop sending texts and just call. ' + number_to_call.to_s + '.'
-      },
-      :follow_up    => {
-        :state    => 'sent_follow_up',
-        :message  => 'Please answer the following questions by replying your answer. To stop, __do this__'
-      },
-      :more_info    => {
-        :state    => 'sent_more_info',
-        :message  => 'To edit or review your submission, please go to http://tellmebout.it/#{uid}'
-      },
-      :thank        => {
-        :state    => 'sent_thanks',
-        :message  => 'Thank you for sharing your story!'
-      },
+      }
     }
     return state
   end

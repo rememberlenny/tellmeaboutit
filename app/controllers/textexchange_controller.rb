@@ -16,12 +16,14 @@ class TextexchangeController < ApplicationController
     puts 'Ran check_conversation_state uid: ' + uid.to_s
     # Check for existing thread
     threads = Textthread.where(user_id: uid)
+
     if threads.count > 0
       thread = threads.last
       thread_id = thread.id
     else
       thread_id = create_thread(uid)
     end
+
     identify_next_message(thread_id)
   end
 
@@ -36,6 +38,7 @@ class TextexchangeController < ApplicationController
   # Find the message the user needs from thread
   def identify_next_message thread_id
     puts 'Ran identify_next_message thread_id'
+
     action = get_sms_action thread_id
     change_thread_state( action, thread_id )
   end
