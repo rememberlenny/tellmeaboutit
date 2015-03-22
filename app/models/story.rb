@@ -7,8 +7,14 @@ class Story < ActiveRecord::Base
 
   def self.begin_followup_texts(uid, sid, rid)
     u = User.find(uid)
+    tt = Textthread.where(user_id: u.id, story_id: s.id)
+    t = tt.first
+
+    t.state = 'recorded_audio' # State for detecting response
+
     option = Story.find_question_to_ask sid
     recording_url = 'http://lkb.cc/'
+
     response_thank = 'Thank you for submitting your recording. You can now view it here: ' + recording_url
     response_followup = 'We would like to ask you for details about your story. Reply YES to continue.'
     Textthread.send_message(u.phone_number, response_thank)
