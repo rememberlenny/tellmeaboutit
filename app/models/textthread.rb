@@ -1,20 +1,20 @@
 class Textthread < ActiveRecord::Base
   # State: 'current', 'complete'
 
-  def twilio_client
+  def self.twilio_client
     # Pass your twilio account sid and auth token
     @twilio ||= Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_ACCOUNT_TOKEN'])
   end
 
-  def twilio_number
+  def self.twilio_number
     return '+13479831841'
   end
 
   def self.send_message(target, message)
-    from = twilio_number
-    client = twilio_client
+    from = Textthread.twilio_number
+    client = Textthread.twilio_client
     client.messages.create(
-      from: twilio_number,
+      from: from,
       to: target,
       body: message
     )
