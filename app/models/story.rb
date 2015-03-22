@@ -15,8 +15,8 @@ class Story < ActiveRecord::Base
     option = Story.find_question_to_ask sid
     recording_url = 'http://lkb.cc/'
 
-    response_thank = 'Thank you for submitting your recording. You can now view it here: ' + recording_url
-    response_followup = 'We would like to ask you for details about your story. Reply YES to continue.'
+    response_thank = Textthread.thread_state(recording_url)
+    response_followup = Textthread.thread_state
     Textthread.send_message(u.phone_number, response_thank)
     Textthread.send_message(u.phone_number, response_followup)
   end
