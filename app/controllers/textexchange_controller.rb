@@ -61,16 +61,6 @@ class TextexchangeController < ApplicationController
     return user.phone_number
   end
 
-  def get_user_with_thread thread_id
-    puts 'Ran get_user_with_thread thread_id'
-    thread  = Textthread.find(thread_id)
-    puts 'get_user_with_thread found thread_id: ' + thread_id.to_s
-    user_id = thread.user_id
-    puts 'get_user_with_thread found user_id: ' + user_id.to_s
-    user    = User.find(user_id)
-    return user
-  end
-
   def send_action_sms action, thread_id
     puts 'Ran send_action_sms action, thread_id'
     phone = get_phone_with_thread(thread_id)

@@ -57,7 +57,7 @@ class Textthread < ActiveRecord::Base
     return thread.id
   end
 
-  def self.thread_state(var1 = nil)
+  def self.thread_state(var1 = '')
     number_to_call = '(347) 983-1841'
     state = {
       :welcome => {
@@ -74,7 +74,7 @@ class Textthread < ActiveRecord::Base
       },
       :response_thank => {
         :state    => 'sent_response_thank',
-        :message  => 'Thank you for submitting your recording. You can now view it here: ' + var1 + '.'
+        :message  => 'Thank you for submitting your recording. You can now view it here: ' + var1.to_s + '.'
       },
       :response_followup => {
         :state    => 'sent_response_followup',

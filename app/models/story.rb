@@ -6,24 +6,33 @@ class Story < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
 
   def self.begin_followup_texts(uid, sid, rid)
-    u = User.find(uid)
-    tt = Textthread.where(user_id: u.id, story_id: s.id)
-    t = tt.first
-
+    tt = Textthread.where(user_id: uid)
+    t = tt.last
+    puts 'Got begin_followup_texts tt.count: ' + tt.count.to_s
     t.state = 'recorded_audio' # State for detecting response
 
-    option = Story.find_question_to_ask sid
-    recording_url = 'http://lkb.cc/'
+    Story.send_sms_thank(uid)
+    Story.send_sms_followup(uid)
+  end
 
-    response_thank = Textthread.thread_state(recording_url)
-    response_followup = Textthread.thread_state
+  def self.send_sms_thank (uid)
+    u = User.find(uid)
+    recording_url = 'http://lkb.cc/'
+    response = Textthread.thread_state(recording_url)
+    response_thank = response[:response_thank][:message]
     Textthread.send_message(u.phone_number, response_thank)
+  end
+
+  def self.send_sms_followup (uid)
+    u = User.find(uid)
+    response = Textthread.thread_state
+    response_followup = response[:response_followup][:message]
     Textthread.send_message(u.phone_number, response_followup)
   end
 
   def self.create_story_with_thread thread_id
     puts 'Ran create_story_with_thread thread_id'
-    user = get_user_with_thread(thread_id)
+    user = User.get_user_with_thread(thread_id)
     story = user.stories.new(origin: 'sms_thread')
     story.save
     options = Textthread.thread_state

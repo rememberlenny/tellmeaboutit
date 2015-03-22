@@ -92,8 +92,10 @@ class VoiceexchangeController < ApplicationController
   def manage_after_recording_actions(from, duration, recording_url)
     uid = User.find_user_from_phone from
     u = User.find(uid)
+    puts 'Found user: ' + uid.to_s
     s = u.stories.new(name: 'Unknown')
     s.save
+    puts 'Created story: ' + s.id.to_s
 
     r = s.recordings.new(
       url: recording_url,
