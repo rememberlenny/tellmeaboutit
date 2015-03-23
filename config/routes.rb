@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'monitor/dashboard'
+
   get 'textexchange/welcome'
 
   get 'textexchange/follow_up_questions'

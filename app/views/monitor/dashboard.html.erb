@@ -1,0 +1,55 @@
+<h1>Dashboard</h1>
+
+<div class="row">
+  <div class="large-6 column">
+    <div class="row">
+      <div class="large-12 column">
+        <h2>Current</h2>
+          <% @recent.each do |recent| %>
+            <div class="" style="margin-bottom: 30px;">
+              <b><%= User.find(recent.user_id).phone_number %></b><br>
+              <% if recent.state %>
+                State: <%= recent.state %><br>
+              <% end %>
+              <small><%= recent.created_at %></small>
+            </div>
+          <% end %>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div class="large-6 column">
+    <div class="row">
+      <h2>Overall</h2>
+      <div class="large-6 column">
+        <div class="row">
+          <h3>User</h3>
+          <h3><%= @user_count %></h3>
+          <hr>
+        </div>
+      </div>
+      <div class="large-6 column">
+        <div class="row">
+          <h3>Text</h3>
+          <h3><%= @text_count %></h3>
+          <hr>
+        </div>
+      </div>
+      <div class="large-6 column">
+        <div class="row">
+          <h3>Recording</h3>
+          <h3><%= @recording_count %></h3>
+          <hr>
+        </div>
+      </div>
+      <div class="large-6 column">
+        <div class="row">
+          <h3>Voice</h3>
+          <h3><%= @voice_count %></h3>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

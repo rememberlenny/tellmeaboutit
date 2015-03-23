@@ -27,6 +27,10 @@ class Textthread < ActiveRecord::Base
 
       if threads.count == 0
         puts 'New story created'
+        puts 'user_id:    ' + user_id.to_s
+        puts 'story_id:   ' + story_id.to_s
+        puts 'state:      ' + state.to_s
+        puts 'question:   ' + question.to_s
         thread = Textthread.new( user_id: user_id, story_id: story_id, state: state, last_question: question )
       else
         thread = threads.last

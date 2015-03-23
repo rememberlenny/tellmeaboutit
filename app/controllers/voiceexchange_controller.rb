@@ -1,6 +1,6 @@
 class VoiceexchangeController < ApplicationController
   def base_url
-    return 'https://7d26d70.ngrok.com/'
+    return 'http://5a9b7d9f.ngrok.com/'
     # return 'http://tellmebout.it/'
   end
 
@@ -90,6 +90,7 @@ class VoiceexchangeController < ApplicationController
   end
 
   def manage_after_recording_actions(from, duration, recording_url)
+    puts 'Running manage_after_recording_actions'
     uid = User.find_user_from_phone from
     u = User.find(uid)
     puts 'Found user: ' + uid.to_s
@@ -102,10 +103,10 @@ class VoiceexchangeController < ApplicationController
       source: 'Call in - ' + duration.to_s
     )
     r.save
-
+    puts 'Create new thread'
+    Textthread.start_new_thread(uid, s.id, 'Recording complete', nil)
     puts 'Story.begin_followup_texts'
     Story.begin_followup_texts(uid, s.id, r.id)
-    Textthread.start_new_thread(uid, s.id, 'Recording complete', nil)
   end
 
   def after_recording_text_message

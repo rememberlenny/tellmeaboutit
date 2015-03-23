@@ -44,8 +44,10 @@ class TextexchangeController < ApplicationController
   end
 
   def get_sms_action thread_id
-    puts 'Ran get_sms_action thread_id'
+    puts 'Ran get_sms_action thread_id: ' + thread_id.to_s
     thread = Textthread.find(thread_id)
+    puts '--'
+    puts 'thread story_id = ' + thread.story_id.to_s
     if thread.story_id == nil
       action = Story.create_story_with_thread thread_id
     else
