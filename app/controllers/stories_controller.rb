@@ -61,8 +61,8 @@ class StoriesController < ApplicationController
 
     def require_verification
       unless current_user.phone_verified?
-        flash[:error] = "Your account must be verified to access this section"
-        redirect_to verify_path # halts request cycle
+        # flash[:error] = "Your account must be verified to access this section"
+        # redirect_to verify_path # halts request cycle
       end
     end
 
