@@ -1,7 +1,7 @@
 class VoiceexchangeController < ApplicationController
   def base_url
-    return 'http://5a9b7d9f.ngrok.com/'
-    # return 'http://tellmebout.it/'
+    # return 'http://5a9b7d9f.ngrok.com/'
+    return 'http://tellmebout.it/'
   end
 
   def voice_delegate
