@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
     if signed_in?
       redirect_to dash_path
     end
+    @audio = Recording.all
   end
 
   def about

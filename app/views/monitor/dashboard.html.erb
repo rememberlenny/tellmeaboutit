@@ -7,11 +7,13 @@
         <h2>Current</h2>
           <% @recent.each do |recent| %>
             <div class="" style="margin-bottom: 30px;">
-              <b><%= User.find(recent.user_id).phone_number %></b><br>
-              <% if recent.state %>
-                State: <%= recent.state %><br>
+              <%= link_to recent do %>
+                <b><%= User.find(recent.user_id).phone_number %></b><br>
+                <% if recent.state %>
+                  State: <%= recent.state %><br>
+                <% end %>
+                <small><%= recent.created_at %></small>
               <% end %>
-              <small><%= recent.created_at %></small>
             </div>
           <% end %>
         <hr>
