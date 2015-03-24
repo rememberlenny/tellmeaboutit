@@ -1,7 +1,7 @@
 class VoiceexchangeController < ApplicationController
   def base_url
     # return 'http://5a9b7d9f.ngrok.com/'
-    return 'http://tellmebout.it/'
+    return 'http://www.tellmebout.it/'
   end
 
   def voice_delegate
@@ -57,8 +57,8 @@ class VoiceexchangeController < ApplicationController
     puts 'Doing say_intro'
     response =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    # response << "<Play>" + audio_welcome + "</Play>";
-    # response << "<Play>" + audio_start_record + "</Play>"
+    response << "<Play>" + audio_welcome + "</Play>";
+    response << "<Play>" + audio_start_record + "</Play>"
     response << content_for_record
     response << "</Response>";
     render text: response
