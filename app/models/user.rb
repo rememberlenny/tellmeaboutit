@@ -29,15 +29,15 @@ class User < ActiveRecord::Base
     else
       password = verification_code = Random.rand(100000...999999)
       user = User.new(phone_number: from, password: password)
-      User.send_welcome_text(from, password)
       user.save
+      User.send_welcome_text(from, password)
       puts 'else Grab the user: ' + user.id.to_s
     end
     return user.id
   end
 
   def self.send_welcome_text(from, password)
-    message = 'Welcome to Tell Me Bout It. To login, go to http://tellmebout.it/login Your user name is: ' + from + ' Your password is: ' + password + ''
+    message = 'Welcome to Tell Me Bout It. Login at http://tellmebout.it/login User: ' + from + ' Password: ' + password + ''
     Textthread.send_message(from, message)
   end
 
