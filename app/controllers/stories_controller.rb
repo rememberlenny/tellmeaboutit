@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = current_user.stories.find(params[:id])
+    @story = Story.find(params[:id])
     @recordings = @story.recordings
     respond_with(@story)
   end
