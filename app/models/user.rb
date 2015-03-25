@@ -27,11 +27,18 @@ class User < ActiveRecord::Base
       user = users.first
       puts 'users.count > 0 Grab the user: ' + user.id.to_s
     else
-      user = User.new(phone_number: from, password: '123123123')
+      password = verification_code = Random.rand(100000...999999)
+      user = User.new(phone_number: from, password: password)
+      User.send_welcome_text(from, password)
       user.save
       puts 'else Grab the user: ' + user.id.to_s
     end
     return user.id
+  end
+
+  def self.send_welcome_text(from, password)
+    message = 'Welcome to Tell Me Bout It. To login, go to http://tellmebout.it/login Your user name is: ' + from + ' Your password is: ' + password + ''
+    Textthread.send_message(from, message)
   end
 
   def mark_phone_as_verified!
