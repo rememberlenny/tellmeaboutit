@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :require_login, :require_verification
+  before_action :require_login, only: [:edit, :update, :destroy]
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = current_user.stories.find(params[:id])
+    @story = Story.find(params[:id])
     @recordings = @story.recordings
     respond_with(@story)
   end
@@ -61,8 +61,8 @@ class StoriesController < ApplicationController
 
     def require_verification
       unless current_user.phone_verified?
-        flash[:error] = "Your account must be verified to access this section"
-        redirect_to verify_path # halts request cycle
+        # flash[:error] = "Your account must be verified to access this section"
+        # redirect_to verify_path # halts request cycle
       end
     end
 

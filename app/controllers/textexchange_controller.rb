@@ -16,12 +16,14 @@ class TextexchangeController < ApplicationController
     puts 'Ran check_conversation_state uid: ' + uid.to_s
     # Check for existing thread
     threads = Textthread.where(user_id: uid)
+
     if threads.count > 0
       thread = threads.last
       thread_id = thread.id
     else
       thread_id = create_thread(uid)
     end
+
     identify_next_message(thread_id)
   end
 
@@ -36,17 +38,20 @@ class TextexchangeController < ApplicationController
   # Find the message the user needs from thread
   def identify_next_message thread_id
     puts 'Ran identify_next_message thread_id'
+
     action = get_sms_action thread_id
     change_thread_state( action, thread_id )
   end
 
   def get_sms_action thread_id
-    puts 'Ran get_sms_action thread_id'
+    puts 'Ran get_sms_action thread_id: ' + thread_id.to_s
     thread = Textthread.find(thread_id)
+    puts '--'
+    puts 'thread story_id = ' + thread.story_id.to_s
     if thread.story_id == nil
       action = Story.create_story_with_thread thread_id
     else
-      action = find_next_message_on_thread thread_id
+      action = Textthread.find_next_message_on_thread thread_id
     end
     return action
   end
@@ -58,27 +63,10 @@ class TextexchangeController < ApplicationController
     return user.phone_number
   end
 
-  def get_user_with_thread thread_id
-    puts 'Ran get_user_with_thread thread_id'
-    thread  = Textthread.find(thread_id)
-    puts 'get_user_with_thread found thread_id: ' + thread_id.to_s
-    user_id = thread.user_id
-    puts 'get_user_with_thread found user_id: ' + user_id.to_s
-    user    = User.find(user_id)
-    return user
-  end
-
   def send_action_sms action, thread_id
     puts 'Ran send_action_sms action, thread_id'
     phone = get_phone_with_thread(thread_id)
-    send_message(phone, action)
-  end
-
-  def find_next_message_on_thread thread_id
-    puts 'Ran find_next_message_on_thread thread_id'
-    thread  = Textthread.find(thread_id)
-    # User the thread state to find out what is next
-    action = check_thread_state_action thread.state
+    Textthread.send_message(phone, action)
   end
 
   def check_thread_state_action state

@@ -10,13 +10,26 @@ class User < ActiveRecord::Base
   # before_save :set_phone_attributes, if: :phone_verification_needed?
   # after_save :send_sms_for_phone_verification, if: :phone_verification_needed?
 
+
+  def self.get_user_with_thread thread_id
+    puts 'Ran get_user_with_thread thread_id'
+    thread  = Textthread.find(thread_id)
+    puts 'get_user_with_thread found thread_id: ' + thread_id.to_s
+    user_id = thread.user_id
+    puts 'get_user_with_thread found user_id: ' + user_id.to_s
+    user    = User.find(user_id)
+    return user
+  end
+
   def self.find_user_from_phone from
-    users = User.where(phone: from)
+    users = User.where(phone_number: from)
     if users.count > 0
       user = users.first
+      puts 'users.count > 0 Grab the user: ' + user.id.to_s
     else
-      user = User.new(phone_number: params[:From])
+      user = User.new(phone_number: from, password: '123123123')
       user.save
+      puts 'else Grab the user: ' + user.id.to_s
     end
     return user.id
   end

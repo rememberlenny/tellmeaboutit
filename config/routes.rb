@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'textthread/show'
+
+  get 'monitor/dashboard'
+
   get 'textexchange/welcome'
 
   get 'textexchange/follow_up_questions'
@@ -10,8 +14,10 @@ Rails.application.routes.draw do
 
   post 'sms/connection' => 'textexchange#text_delegate'
 
-  get  'voice/connection' => 'voiceexchange#voice_delegate'
-  get  'voice/after_recording' => 'voiceexchange#after_recording'
+  get  'voice/connection'       => 'voiceexchange#voice_delegate'
+  get  'voice/after_recording'  => 'voiceexchange#after_recording'
+
+  resources :textthread
 
   resources :stories do
     resources :recordings
