@@ -45,8 +45,8 @@ body a:hover, body a:focus{
 }
 
 nav.top-bar{
-  margin-top: .5em;
-  background: rgb(125, 45, 45);
+  // margin-top: .5em;
+  // background: rgb(125, 45, 45);
   .top-bar-section li:not(.has-form) a:not(.button){
     background: rgb(125, 45, 45);
   }
@@ -54,7 +54,7 @@ nav.top-bar{
 
 .bg-color{
   padding-top: 15px;
-  background: lighten(#f5edce, 6%);
+  background: lighten(#ffffff, 6%);
 }
 
 
