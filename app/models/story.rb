@@ -11,11 +11,12 @@ class Story < ActiveRecord::Base
     puts 'Got begin_followup_texts tt.count: ' + tt.count.to_s
     t.state = 'recorded_audio' # State for detecting response
 
-    Story.send_sms_thank(sid)
+    Story.send_sms_thank(sid, uid)
     Story.send_sms_followup(uid)
   end
 
-  def self.send_sms_thank (sid)
+  def self.send_sms_thank (sid, uid)
+    u = User.find(uid)
     recording_url = 'http://www.tellmebout.it/stories/' + sid.to_s
     response = Textthread.thread_state(recording_url)
     response_thank = response[:response_thank][:message]
