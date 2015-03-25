@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def self.send_welcome_text(from, password)
-    message = 'Welcome to Tell Me Bout It. Login at http://tellmebout.it/login U: ' + from + ' PW: ' + password + ''
+    message = 'Welcome to Tell Me Bout It. Login at http://tellmebout.it/login U: ' + from.to_s + ' PW: ' + password.to_s + ''
     Textthread.send_message(from, message)
   end
 
