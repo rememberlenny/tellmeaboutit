@@ -10,6 +10,9 @@
     <% if story.breakup_role %> Role: <%= story.breakup_role %><br> <% end %>
     <% if story.breakup_type %> Type: <%= story.breakup_type %> <% end %>
     <% if current_user.id == story.user_id %>
+    <%  current_user = { id: nil } %>
+    <% end %>
+    <% if current_user.id == story.user_id %>
       <%= link_to 'Edit Story', edit_story_path(story), :class=>'button large-12 medium-12' %>
     <% end %>
   </div>
