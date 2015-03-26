@@ -2,111 +2,111 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-a.button {
-  font-family: 'Muli', Helvetica, arial, sans-serif;
-  background-color: #dbbc3d;
+// a.button {
+//   font-family: 'Muli', Helvetica, arial, sans-serif;
+//   background-color: #dbbc3d;
   
-}
+// }
 
-a.button.large.large-12{
-	font-size: 0.9em;
-  padding: 16px; 
+// a.button.large.large-12{
+// 	font-size: 0.9em;
+//   padding: 16px; 
 
-}
-a:hover.button  {
-font-family: 'Muli', Helvetica, arial, sans-serif;
-  background-color: #9d800a; }
+// }
+// a:hover.button  {
+// font-family: 'Muli', Helvetica, arial, sans-serif;
+//   background-color: #9d800a; }
 
-.specific-story{
-	div.breakup-pullquote-author{
-		padding: 6em 0em;
-	}
-}
+// .specific-story{
+// 	div.breakup-pullquote-author{
+// 		padding: 6em 0em;
+// 	}
+// }
 
-li.breakup-container.story-item.dark-magenta-background {
-border: 2px solid #dbbc3d;
-}
+// li.breakup-container.story-item.dark-magenta-background {
+// border: 2px solid #dbbc3d;
+// }
 
-body {
-  font-family: 'Muli', Helvetica, arial, sans-serif;
-  margin: 0px;
-  color: #FFFFFF;
-  font-size: 13pt;
-  font-weight: 100;
-  text-align: left;
-  background-color: #01b988; }
+// body {
+//   font-family: 'Muli', Helvetica, arial, sans-serif;
+//   margin: 0px;
+//   color: #FFFFFF;
+//   font-size: 13pt;
+//   font-weight: 100;
+//   text-align: left;
+//   background-color: #01b988; }
 
-a {
-  color: #dbbc3d;
-  text-decoration: none; }
+// a {
+//   color: #dbbc3d;
+//   text-decoration: none; }
 
-header {
-  position: relative; }
+// header {
+//   position: relative; }
 
-audio {
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.9); }
+// audio {
+//   width: 100%;
+//   background-color: rgba(0, 0, 0, 0.9); }
 
-h1, h2, h3, h4{
-  font-family: 'Ovo', garamond, serif;
-  color: #e4cc6d; }
+// h1, h2, h3, h4{
+//   font-family: 'Ovo', garamond, serif;
+//   color: #e4cc6d; }
 
-h5{
-	font-family: 'Muli', garamond, serif;
-}
+// h5{
+// 	font-family: 'Muli', garamond, serif;
+// }
 
-h1 {
-  font-size: 1.7em;
-  text-align: center;
-  margin: 1em 0; }
+// h1 {
+//   font-size: 1.7em;
+//   text-align: center;
+//   margin: 1em 0; }
 
-p {
-	font-family: 'Muli', Helvetica, arial, sans-serif;
-  line-height: 1.5em;
-  text-align: justify;
-  font-weight: 100; 
-  font-size: 0.9em;
-}
-
-
-.indicates-required {
-	// font-style: italic;
-	font-size: 0.8em;
-	color: #fff;
-}
+// p {
+// 	font-family: 'Muli', Helvetica, arial, sans-serif;
+//   line-height: 1.5em;
+//   text-align: justify;
+//   font-weight: 100; 
+//   font-size: 0.9em;
+// }
 
 
-label {
-	font-family: 'Muli', Helvetica, arial, sans-serif;
-	font-size: 1rem;
-	color: #fff;
-	cursor: pointer;
-	display: block;
-	font-weight: normal;
-	line-height: 1.5;
-	margin-bottom: 0;
-	padding: 0px;
+// .indicates-required {
+// 	// font-style: italic;
+// 	font-size: 0.8em;
+// 	color: #fff;
+// }
 
-}
 
-button.success, .button.success{
-	background-color: #dbbc3d;
-	border: none;
-	color: white;
-	font-family: 'Muli', Helvetica, arial, sans-serif;
-	margin: -2px;
-}
+// label {
+// 	font-family: 'Muli', Helvetica, arial, sans-serif;
+// 	font-size: 1rem;
+// 	color: #fff;
+// 	cursor: pointer;
+// 	display: block;
+// 	font-weight: normal;
+// 	line-height: 1.5;
+// 	margin-bottom: 0;
+// 	padding: 0px;
 
-.panel > :first-child{
-	font-family: 'Muli', Helvetica, sans-serif;
-	font-size: 1em;
-	line-height: 1.2em;
-}
+// }
 
-h2{
-	font-size: 1.6em;
+// button.success, .button.success{
+// 	background-color: #dbbc3d;
+// 	border: none;
+// 	color: white;
+// 	font-family: 'Muli', Helvetica, arial, sans-serif;
+// 	margin: -2px;
+// }
 
-}
+// .panel > :first-child{
+// 	font-family: 'Muli', Helvetica, sans-serif;
+// 	font-size: 1em;
+// 	line-height: 1.2em;
+// }
+
+// h2{
+// 	font-size: 1.6em;
+
+// }
 
 .titlecard{
 	text-align: center;
@@ -137,5 +137,15 @@ h3 u{
 p.text-left.dark-magenta {
 	color: #3d183c;
 	line-height: 1.7em;
+}
+
+
+.button.success{
+  padding: 10px 19px;
+  font-size: 17px;
+  line-height: 1.471;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #1abc9c;
 }
 
