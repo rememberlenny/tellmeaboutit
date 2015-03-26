@@ -7,7 +7,20 @@
   <audio preload></audio>
   <ul class="large-block-grid-4 medium-block-grid-3">
     <% @audio.each do |audio| %>
-      <li><a href="#" data-src="<%= audio.url %>"><%= audio.source %> </a></li>
+      <li class="breakup-container story-item background-light-teal" data-id="<%= story.id %>">
+        <%= link_to story, :class=>'specific-story', :data => { :src => audio.url } do %>
+          <div class="breakup-pullquote play">
+            <div class="breakup-pullquote-author">
+              <span>
+                <%= story.name %>
+              </span>
+            </div>
+            <div class="breakup-pullquote-tags">
+            </div>
+          </div>
+        <% end %>
+      </li>
+      <li><a href="#" ><%= audio.source %> </a></li>
     <% end %>
   </ul>
 </div>
