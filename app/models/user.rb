@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
       user = users.first
       puts 'users.count > 0 Grab the user: ' + user.id.to_s
     else
-      password = verification_code = Random.rand(100000...999999)
+      password = verification_code = Random.rand(100000000...999999999)
       user = User.new(phone_number: from, password: password)
       user.save
       User.send_welcome_text(from, password)
