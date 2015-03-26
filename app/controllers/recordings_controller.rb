@@ -1,5 +1,5 @@
 class RecordingsController < ApplicationController
-  before_action :require_login
+
   skip_before_filter :show
 
   # respond_to :html, :xml
