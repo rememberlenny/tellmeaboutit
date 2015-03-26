@@ -1,0 +1,305 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+h3.black-color{
+  color: black;
+}
+
+p.text-left{
+  text-align: left !important;
+}
+
+input[type="submit"].button{
+  color: rgb(255, 255, 255);
+  font-size: 0.9em;
+padding: 16px;
+  &:hover{
+    background: rgb(157, 128, 10);
+  }
+}
+
+.sticky *{
+  background: #01b988;
+  border-bottom: darken(#01b988, 10%) 5px solid;
+}
+
+h3.yellow-text{
+  color: #e4cc6d;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
+.story-item:hover{
+  background: #b84ab4;
+}
+
+.background-light-teal{
+  background: #cbfdf0;
+}
+
+.white{
+  color: white;
+}
+
+body a:visited{
+  color: white;
+}
+
+a.vertical-button{
+  margin-bottom: 0em;
+}
+
+body {
+  font-family: 'Muli', Helvetica, arial, sans-serif;
+  margin: 0px;
+  color: #FFFFFF;
+  font-size: 13pt;
+  font-weight: 100;
+  text-align: left;
+  background-color: #01b988; }
+
+a {
+  color: #dbbc3d;
+  text-decoration: none; }
+
+header {
+  position: relative; }
+
+audio {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9); }
+
+h1, h2 {
+  font-family: 'Ovo', garamond, serif;
+  color: #e4cc6d; }
+
+h1 {
+  font-size: 1.7em;
+  text-align: center;
+  margin: 0 0 .5em 0;
+  padding: .5em 0;}
+
+p {
+  line-height: 1.5em;
+  text-align: justify;
+  font-weight: 100; }
+
+.light-yellow {
+  color: #e4cc6d; }
+
+.yellow {
+  color: #dbbc3d; }
+
+.dark-yellow {
+  color: #9d800a; }
+
+.light-magenta {
+  color: #f9a1f6; }
+
+.magenta {
+  color: #832981; }
+
+.dark-magenta {
+  color: #3d183c; }
+
+.light-teal {
+  color: #99fbe1; }
+
+.teal {
+  color: #01b988; }
+
+.dark-teal {
+  color: #003d2d; }
+
+.light-blue {
+  color: #cbf4ff; }
+
+.blue {
+  color: #00ceff; }
+
+.dark-blue {
+  color: #009abe; }
+
+.light-yellow-background {
+  background-color: #e4cc6d; }
+
+.yellow-background {
+  background-color: #dbbc3d; }
+
+.dark-yellow-background {
+  background-color: #9d800a; }
+
+.light-magenta-background {
+  background-color: #f9a1f6; }
+
+.magenta-background {
+  background-color: #832981; }
+
+.dark-magenta-background {
+  background-color: #3d183c; }
+
+.light-teal-background {
+  background-color: #99fbe1; }
+
+.teal-background {
+  background-color: #01b988; }
+
+.dark-teal-background {
+  background-color: #003d2d; }
+
+.light-blue-background {
+  background-color: #cbf4ff; }
+
+.blue-background {
+  background-color: #00ceff; }
+
+.dark-blue-background {
+  background-color: #009abe; }
+
+.wrapper {
+  width: 600px;
+  margin: 0 auto 50px auto; }
+  @media all and (min-width: 600) {
+    .wrapper {
+      width: 95%; } }
+
+.top-bar {
+  background-color: #3d183c; }
+
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  background: #dbbc3d; }
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #3d183c; }
+
+.top-bar-section li.active:not(.has-form) a:not(.button):hover, .top-bar-section li:not(.has-form) a:not(.button):hover {
+  background: #832981; }
+
+.breakup-pullquote.play{
+  background: url('<%= asset_path('play.png') %>');
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.row {
+  clear: both;
+  width: 100%; }
+
+.breakup-pullquote {
+  span{
+    background: rgba(228, 204, 109, 0.9);
+    padding: .4em .8em;
+    font-size: 1.3em;
+    color: white;
+  }
+  position: relative;
+  margin: 0 auto;
+  width: 70%;
+  color: #ffffff;
+  top: 20%; }
+  @media screen and (max-width: 768px) {
+    .breakup-pullquote {
+      width: 95%; } }
+  .breakup-pullquote .breakup-pullquote-text {
+    font-family: 'Muli', Helvetica, arial, sans-serif;
+    font-weight: 100;
+    font-size: 1em;
+    text-align: center;
+    line-height: 1.6em;
+    margin: 0 3em; }
+    @media screen and (max-width: 768px) {
+      .breakup-pullquote .breakup-pullquote-text {
+        margin: 0 auto;
+        width: 90%; } }
+  .breakup-pullquote .breakup-pullquote-text:before {
+    content: "\“";
+    font-family: garamond, serif;
+    font-size: 4em;
+    position: absolute;
+    line-height: 0.8em;
+    left: 0;
+    color: rgba(0, 0, 0, 0.25); }
+    @media screen and (max-width: 768px) {
+      .breakup-pullquote .breakup-pullquote-text:before {
+        font-size: 3em; } }
+  .breakup-pullquote .breakup-pullquote-text:after {
+    content: "\”";
+    font-family: garamond, serif;
+    font-size: 4em;
+    position: absolute;
+    line-height: 0.8em;
+    right: 0;
+    color: rgba(0, 0, 0, 0.25); }
+    @media screen and (max-width: 768px) {
+      .breakup-pullquote .breakup-pullquote-text:after {
+        font-size: 3em; } }
+  .breakup-pullquote .breakup-pullquote-author {
+    font-family: 'Ovo', garamond, serif;
+    font-weight: 100;
+    font-size: 1.2em;
+    /* font-style: italic; */
+    text-align: center;
+    padding: 2em 0;
+    color: #e4cc6d; }
+  .breakup-pullquote .breakup-pullquote-tags {
+    font-family: 'Muli', Helvetica, arial, sans-serif;
+    font-weight: 100;
+    font-size: 0.8em;
+    font-style: italic;
+    text-align: center;
+    color: #cccccc; }
+
+.orbit-container .orbit-next > span {
+  border-left-color: #FFFFFF; }
+
+form {
+  font-size: 0.8em;
+  line-height: 1.2em; }
+
+input[type="submit"] {
+  text-align: center;
+  background-color: #e4cc6d;
+  font-family: #FFFFFF;
+  font-size: 1.4em;
+  border: 2px solid #dbbc3d;
+  color: #9d800a;
+  padding: 15px 38px;
+  cursor: pointer; }
+
+.personal-code {
+  text-align: center;
+  background-color: #99fbe1;
+  padding: 20px 10px;
+  margin: 1em 0; }
+  .personal-code p {
+    text-align: center;
+    color: #003d2d;
+    line-height: 2em;
+    font-size: 1em;
+    margin-bottom: 0; }
+
+span.breakup-question {
+  font-size: 1.3em;
+  line-height: 1.6em; }
