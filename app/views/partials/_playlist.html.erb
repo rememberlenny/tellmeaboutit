@@ -6,14 +6,6 @@
   <h1>Breakup stories</h1>
   <audio preload></audio>
   <ul class="large-block-grid-4 medium-block-grid-3">
-    <% audio_source = 'blah'; audio_url = 'http://google.com';  %>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
-    <li><a href="#" data-src="<%= audio_url %>"><%= audio_source %> </a></li>
     <% @audio.each do |audio| %>
       <li><a href="#" data-src="<%= audio.url %>"><%= audio.source %> </a></li>
     <% end %>
