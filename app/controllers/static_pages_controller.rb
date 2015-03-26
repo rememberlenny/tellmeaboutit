@@ -6,6 +6,10 @@ class StaticPagesController < ApplicationController
     @audio = Recording.all
   end
 
+  def splash
+
+  end
+
   def about
   end
 

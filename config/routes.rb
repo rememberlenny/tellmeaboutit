@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get 'textexchange/follow_up_questions'
 
   devise_for :users
-  root to: 'static_pages#home'
-  get 'about' => 'static_pages#home'
+  root to: 'static_pages#splash'
+  get 'listen' => 'static_pages#home'
+  get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#home'
 
   post 'sms/connection' => 'textexchange#text_delegate'
