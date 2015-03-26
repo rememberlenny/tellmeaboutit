@@ -5,10 +5,10 @@
 
   <h1>Breakup stories</h1>
   <audio preload></audio>
-  <ul class="large-block-grid-4">
+  <ol>
     <% @audio.each do |audio| %>
       <li><a href="#" data-src="<%= audio.url %>"><%= audio.source %> </a></li>
     <% end %>
-  </ul>
+  </ol>
 </div>
 
