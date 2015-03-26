@@ -1,18 +1,18 @@
 
 <%= render 'player/javascript' %>
 
-<div id="wrapper">
+<div id="">
 
   <h1>Breakup stories</h1>
   <audio preload></audio>
   <ul class="large-block-grid-4 medium-block-grid-3">
     <% @audio.each do |audio| %>
-      <li class="breakup-container story-item background-light-teal" data-id="<%= story.id %>">
-        <%= link_to story, :class=>'specific-story', :data => { :src => audio.url } do %>
+      <li class="breakup-container story-item background-light-teal" data-id="<%= audio.id %>">
+        <%= link_to '#', :class=>'specific-story', :data => { :src => audio.url } do %>
           <div class="breakup-pullquote play">
             <div class="breakup-pullquote-author">
               <span>
-                <%= story.name %>
+                <%= audio.source %>
               </span>
             </div>
             <div class="breakup-pullquote-tags">
@@ -20,7 +20,6 @@
           </div>
         <% end %>
       </li>
-      <li><a href="#" ><%= audio.source %> </a></li>
     <% end %>
   </ul>
 </div>
