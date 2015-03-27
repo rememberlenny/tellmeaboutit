@@ -11,12 +11,14 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-  <% if signed_in? %>
+        <% if signed_in? %>
+        <li class="divider"></liX>
         <li class="no-span login">
-          <%= link_to dash_path, :class=>'no-right-pad' do %>
+          <%= link_to dash_path, :class=>'no-right-pad button radius' do %>
             <span>Profile</span>
           <% end %>
         </li>
+        <li class="divider"></li>
         <li class="no-span login">
           <%= link_to destroy_user_session_path, :method => :delete do %>
             <span>Logout</span>
@@ -28,18 +30,22 @@
           <span>My Stories</span>
           <% end %>
         </li>
+        <li class="divider"></liX>
         <% end %>
       <% else %>
+        <li class="divider"></li>
         <li class="no-span login">
-          <%= link_to new_user_session_path, :class=>'no-right-pad' do %>
+          <%= link_to new_user_session_path, :class=>'no-right-pad button radius' do %>
             <span>Sign In</span>
           <% end %>
         </li>
+        <li class="divider"></li>
         <li class="no-span login no-right-pad">
-          <%= link_to new_user_registration_path, :class=>'no-right-pad' do %>
+          <%= link_to new_user_registration_path, :class=>'no-right-pad button radius' do %>
             <span>Sign Up</span>
           <% end %>
         </li>
+        <li class="divider"></li>
       <% end %>
       </ul>
 
