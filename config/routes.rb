@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'static_pages#splash'
-  get 'submit' => 'static_pages#about'
+  get 'submit' => 'static_pages#submit'
   get 'listen' => 'static_pages#home'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#home'
