@@ -155,7 +155,7 @@ $success-color: #1abc9c;
 // $info-color: #a0d3e8;
 
 // We use these to control various global styles
-$body-bg: rgb(246, 230, 230);
+$body-bg: #FFFFFF;
 // $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -1399,7 +1399,7 @@ $button-med: rem-calc(16);
 $topbar-bg: $oil;
 
 // Height and margin
-$topbar-height: rem-calc(13);
+$topbar-height: 2em;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
