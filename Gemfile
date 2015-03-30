@@ -12,6 +12,7 @@ gem 'simple_form'
 gem 'twilio-ruby'
 gem 'chronic'
 gem 'ransack'
+gem 'mixpanel-ruby'
 
 # Frontend
 gem 'acts-as-taggable-on', '~> 3.4'
