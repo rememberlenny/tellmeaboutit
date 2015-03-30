@@ -1,9 +1,10 @@
-
 <%= render 'player/javascript' %>
 
 <div id="">
-  <audio preload></audio>
-  <ul class="large-block-grid-4 medium-block-grid-3">
+  <div class="player">
+    <audio preload></audio>
+  </div>
+  <ul class="audioplayer large-block-grid-4 medium-block-grid-3">
     <% @audio.each do |audio| %>
       <li class="breakup-container story-item background-light-teal" data-id="<%= audio.id %>">
         <%= link_to '#', :class=>'specific-story', :data => { :src => audio.url } do %>

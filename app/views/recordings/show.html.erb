@@ -6,7 +6,7 @@
     <%= link_to 'Back', story_path(@story) %>
   </div>
   <div class="large-8 medium-6 column">
-    <%= render_player(@story.id, @recording.id) %>
+    <%= render_player(@recording.url) %>
     <%= @story.name %>
     <%= @recording.source %>
     <%= link_to @recording.url, @recording.url %>

@@ -22,7 +22,7 @@
           <% if @recordings.count > 1 %>
             <li>
             <% if i == 0 %>
-              <%= render_player(story.id, recording.id) %>
+              <%= render_player(recording.url)  %>
             <% else %>
               <%= link_to story_recording_path(@story, recording) do %>
               Recording <%= recording.id %>
@@ -30,7 +30,7 @@
             <% end %>
             </li>
           <% else %>
-            <%= render_player(story.id, recording.id) %>
+            <%= render_player(recording.url)  %>
           <% end %>
           <% i = i + 1 %>
         <% end %>

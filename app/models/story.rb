@@ -33,8 +33,11 @@ class Story < ActiveRecord::Base
   def self.create_story_with_thread thread_id
     puts 'Ran create_story_with_thread thread_id'
     user = User.get_user_with_thread(thread_id)
+    thread = Thread.find(thread_id)
     story = user.stories.new(origin: 'sms_thread')
     story.save
+    thread.id = story.id
+    thread.save
     options = Textthread.thread_state
     return options[:welcome]
   end
