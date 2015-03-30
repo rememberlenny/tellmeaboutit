@@ -12,6 +12,8 @@ gem 'simple_form'
 gem 'twilio-ruby'
 gem 'chronic'
 gem 'ransack'
+gem 'mixpanel-ruby'
+gem 'rollbar', '~> 1.4.4'
 
 # Frontend
 gem 'acts-as-taggable-on', '~> 3.4'
