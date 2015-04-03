@@ -61,8 +61,8 @@ text-overflow: ellipsis; -o-text-overflow: ellipsis; -icab-text-overflow: ellips
 .audiojs .error { background: url("$1") -2px -61px no-repeat; }
 .audiojs .pause { background: url("$1") -2px -91px no-repeat; }
 .playing .play, .playing .loading, .playing .error {  }
-.playing{
-  background: #FF0;
+.breakup-container.playing{
+  background: lighten(#FF0, 10%);
 }
 .playing .pause { display: block; }
 .loading .play, .loading .pause, .loading .error {  }
