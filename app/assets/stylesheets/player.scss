@@ -72,6 +72,10 @@ text-overflow: ellipsis; -o-text-overflow: ellipsis; -icab-text-overflow: ellips
 .error .play-pause p { cursor: auto; }
 .error .error-message { display: block; }
 
+.audioplayer{
+  margin-top: 20px;
+}
+
 .player{
 	body { color: #666; font-family: sans-serif; line-height: 1.4; }
   h1 { color: #444; font-size: 1.2em; padding: 14px 2px 12px; margin: 0px; }
