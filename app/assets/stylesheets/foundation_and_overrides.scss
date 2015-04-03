@@ -1401,7 +1401,7 @@ $topbar-bg: #fff;
 
 // Height and margin
 
-$topbar-height: rem-calc(2);
+$topbar-height: rem-calc(20);
 
 // $topbar-margin-bottom: 0;
 
@@ -1410,20 +1410,20 @@ $topbar-height: rem-calc(2);
 $topbar-title-font-size: rem-calc(18);
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: #fff;
-// $topbar-dropdown-link-color: $white;
-$topbar-dropdown-link-bg: #fff;
-$topbar-dropdown-link-bg-hover: darken(#fff, 15%);
+$topbar-dropdown-bg: #666;
+$topbar-dropdown-link-color: #666;
+$topbar-dropdown-link-bg: #eee;
+$topbar-dropdown-link-bg-hover: darken(#666, 15%);
 // $topbar-dropdown-link-weight: $font-weight-normal;
-// $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: $white;
-// $topbar-dropdown-toggle-alpha: 0.4;
+$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: #666;
+$topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $yellow;
 $topbar-link-color-hover: $grey;
 $topbar-link-color-active: $grey;
-// $topbar-link-color-active-hover: $white;
+$topbar-link-color-active-hover: #666;
 // $topbar-link-weight: $font-weight-normal;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
