@@ -66,7 +66,7 @@ class VoiceexchangeController < ApplicationController
 
   def content_for_record
     puts 'Running content_for_record'
-    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"45\" method=\"GET\" action=\"" + base_url + "voice/after_recording\"/>";
+    response = "<Record transcribe=\"true\" finishOnKey=\"#\" maxLength=\"120\" method=\"GET\" action=\"" + base_url + "voice/after_recording\"/>";
     return response
   end
 
