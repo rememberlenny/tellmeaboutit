@@ -1,8 +1,36 @@
-<h1>Editing Story</h1>
-
+<h1>Tell us bout it</h1>
 <div class="row">
-  <%= render 'form' %>
+  <div class="large-4 medium-6 column show-for-medium-up">
+    <div class="panel" id="existing">
+      <h3>Last saved</h3>
+      <p>Updated at <%= @story.created_at %></p>
+      <div>
+        Name: <%= @story.name %><br>
+        <% if !@story.gender.blank? %> Gender: <%= @story.gender %><br><% end %>
+        <% if !@story.age.blank? %> Age: <%= @story.age %><br><% end %>
+        <% if !@story.location.blank? %> Location: <%= @story.location %><br><% end %>
+        <% if !@story.start_dating.blank? %> Start: <%= @story.start_dating.to_s %><br><% end %>
+        <% if !@story.end_dating.blank? %> End: <%= @story.end_dating.to_s %><br><% end %>
+        <% if !@story.breakup_role.blank? %> Role: <%= @story.breakup_role %><br><% end %>
+        <% if !@story.breakup_type.blank? %> Type: <%= @story.breakup_type %><br><% end %>
+      </div>
+      <p></p>
+      <div class="row">
+        <div class="column">
+          <%= link_to 'Save', '#', :class => 'save-proxy button success tiny' %>
+          <%= link_to 'Back without saving', :back, :class => 'button secondary tiny' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="large-8 medium-6 column">
+    <%= render 'form' %>
+  </div>
 </div>
 
-<%= link_to 'Show', @story %> |
-<%= link_to 'Back', stories_path %>
+
+<script>
+  $('#existing').scrollToFixed();
+</script>
+
+

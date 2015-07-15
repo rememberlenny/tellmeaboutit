@@ -1,40 +1,52 @@
-<p></p>
-<div class="large-3 column medium-12">
-  <%= render 'stories/sidebar' %>
-</div>
-<div class="large-9 column medium-12">
-  <div class="">
-    <div class="large-8 medium-10 panel background-light-magenta">
-      <div class="row">
-        <div class="">
-          <% if @story.previous %>
-            <%= link_to "Previous Story", @story.previous, :class => 'button small secondary left' %>
-          <% end %>
-          <% if @story.next %>
-            <%= link_to "Next  Story", @story.next, :class => 'button small secondary right' %>
-          <% end %>
-        </div>
-      </div>
-      <div class="story-<%= @story.id %> ">
-        <% @recordings.each do |recording| %>
-          <div class="row person">
-            <h2><%= @story.name %></h2>
-            <h3><%= @story.age %>,
-            <%= @story.location %>,
-            <%= @story.person %></h3>
-          </div>
-          <div class="row recording-<%= recording.id %>">
-            <audio src="<%= recording.url %>" controls>
-            </audio>
-          </div>
-        <% end %>
-      </div>
+<% story = @story %>
 
-      <div class="row">
-        <%= link_to 'Back', stories_path, :class => 'button small secondary' %>
-      </div>
-    </div>
+<div class="row">
+  <div class="large-4 medium-6 column">
+    <% if story.name %><h3><%= story.name %></h3><% end %>
+    <% if story.location %><%= story.location %><%end%>
+    <p>
+      <% if story.age %><%= story.age %>, <% end %><% if story.gender %><%= story.gender %><% end %>
+    </p>
+    <% if story.breakup_role %> Role: <%= story.breakup_role %><br> <% end %>
+    <% if story.breakup_type %> Type: <%= story.breakup_type %> <% end %>
+    <% if !current_user.nil? && current_user.id == story.user_id %>
+      <%= link_to 'Edit Story', edit_story_path(story), :class=>'button large-12 medium-12' %>
+    <% end %>
+  </div>
+  <div class="large-8 medium-6 column">
+    <h3>Recordings</h3>
+    <% if !@recordings.nil? %>
+      <ul>
+      <% i = 0 %>
+        <% @recordings.each do |recording| %>
+          <% if @recordings.count > 1 %>
+            <li>
+            <% if i == 0 %>
+              <%= render_player(recording.url)  %>
+            <% else %>
+              <%= link_to story_recording_path(@story, recording) do %>
+              Recording <%= recording.id %>
+              <% end %>
+            <% end %>
+            </li>
+          <% else %>
+            <%= render_player(recording.url)  %>
+          <% end %>
+          <% i = i + 1 %>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if !current_user.nil? && current_user.id == story.user_id %>
+      <% if !@recordings.nil? %>
+        <%= link_to 'Add Recording', new_story_recording_path(@story), :class => 'success button large large-6 medium-6 column' %>
+        <% if @story.recordings.any? %><%= link_to 'Edit Recordings', story_recordings_path(@story), :class => 'secondary button large large-6 medium-6 column' %><% end %>
+      <% else %>
+        <%= link_to 'Add Recording', new_story_recording_path(@story), :class => 'success button large large-12 medium-12' %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
-<%= render 'stories/featured' %>
+<hr>
+
+<%= link_to 'Back', :back, :class=>'button secondary' %>

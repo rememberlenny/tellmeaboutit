@@ -1,0 +1,2 @@
+module VoiceexchangeHelper
+end

@@ -1,33 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Recordings</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Url</th>
-      <th>Length</th>
-      <th>Transcript</th>
-      <th>Twilio</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h1>Recordings for <%= link_to @story.name, @story %></h1>
+<div class="row">
+  <div class="large-4 medium-6 column">
+    <p>Click the recording to modify.</p>
+  </div>
+  <div class="large-8 medium-6 column">
     <% @recordings.each do |recording| %>
-      <tr>
-        <td><%= recording.url %></td>
-        <td><%= recording.length %></td>
-        <td><%= recording.transcript %></td>
-        <td><%= recording.twilio_id %></td>
-        <td><%= link_to 'Show', recording %></td>
-        <td><%= link_to 'Edit', edit_recording_path(recording) %></td>
-        <td><%= link_to 'Destroy', recording, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="column">
+          <h4><%= link_to recording.source, [@story, recording] %></h4>
+          <time>Created <%= recording.created_at %></time>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Recording', new_recording_path %>
+  </div>
+</div>

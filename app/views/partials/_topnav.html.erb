@@ -1,0 +1,54 @@
+<div class="row top-margin">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to "Tell Me 'Bout It", root_path %></h1>
+      </li>
+       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <% if signed_in? %>
+        <li class="divider"></liX>
+        <li class="no-span login">
+          <%= link_to dash_path, :class=>'no-right-pad button radius' do %>
+            <span>Profile</span>
+          <% end %>
+        </li>
+        <li class="divider"></li>
+        <li class="no-span login">
+          <%= link_to destroy_user_session_path, :method => :delete do %>
+            <span>Logout</span>
+          <% end %>
+        </li>
+        <% if current_user.stories.any? %>
+        <li>
+          <%= link_to dash_path do %>
+          <span>My Stories</span>
+          <% end %>
+        </li>
+        <li class="divider"></liX>
+        <% end %>
+      <% else %>
+        <li class="divider"></li>
+        <li class="no-span login">
+          <%= link_to new_user_session_path, :class=>'no-right-pad button radius' do %>
+            <span>Sign In</span>
+          <% end %>
+        </li>
+        <li class="divider"></li>
+        <li class="no-span login no-right-pad">
+          <%= link_to new_user_registration_path, :class=>'no-right-pad button radius' do %>
+            <span>Sign Up</span>
+          <% end %>
+        </li>
+        <li class="divider"></li>
+      <% end %>
+      </ul>
+
+    </section>
+  </nav>
+</div>

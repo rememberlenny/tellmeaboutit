@@ -1,5 +1,23 @@
-<h1>New Recording</h1>
+<h1>Add a recording</h1>
+<div class="row">
+  <div class="column large-4 medium-6">
+    <p>Adding a recording to your story makes it easy to share and remember.</p>
+    <p>Either call in your story or add your own recording.</p>
+    <div class="row">
+      <div class="column">
+        <%= link_to 'Save', '#', :class => 'save-proxy button success tiny' %>
+        <%= link_to 'Back without saving', :back, :class => 'button secondary tiny' %>
+      </div>
+    </div>
+  </div>
+  <div class="column large-8 medium-6">
+    <%= render 'form' %>
+  </div>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', recordings_path %>
+<script>
+  $('.save-proxy').on('click', function(e){
+    e.preventDefault();
+    $('.save-button').click();
+  });
+</script>

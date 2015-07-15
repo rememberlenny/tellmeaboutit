@@ -1,58 +1,43 @@
 class StoriesController < ApplicationController
+  before_action :require_login, only: [:edit, :update, :destroy]
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
-  def slider
-    @stories = Story.all.where(was_checked: true)
-  end
-
-  def generate
-    number = rand(10 ** 6)
-
-    existing = Account.where(uid: number)
-    if existing.first == nil
-      a = Account.create(uid: number)
-      return a.uid
+  def dashboard
+    if signed_in?
+      @stories = current_user.stories
     else
-      generate
+      redirect_to new_user_session_path
     end
   end
 
   def index
-    if params[:search]
-      @stories = Story.search(params[:search]).where(was_checked: true).order("created_at DESC")
-    else
-      @stories = Story.all.where(was_checked: true)
-      # @stories = Story.all.where(was_checked: true)
-      respond_with(@stories)
-    end
-
+    redirect_to dash_path
   end
 
   def show
-    if @story.was_checked == false
-      redirect_to thankyou_path
-    else
-      @stories = Story.all.where(was_checked: true)
-      respond_with(@story)
-    end
+    @story = Story.find(params[:id])
+    @recordings = @story.recordings
+    respond_with(@story)
   end
 
   def new
-    @personal_code = generate
-    @story = Story.new
+    @story = current_user.stories.build
     respond_with(@story)
   end
 
   def edit
-
   end
 
   def create
-    @story = Story.new(story_params)
-    @story.save
-    respond_with(@story)
+    @story = current_user.stories.build(story_params)
+    if @story.save
+      flash[:success] = "story created!"
+      redirect_to root_url
+    else
+      render 'static_pages/home'
+    end
   end
 
   def update
@@ -62,17 +47,36 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
-    respond_with(@story)
+    respond_to do |format|
+      format.html { redirect_to dash_path }
+      format.json { head :no_content }
+    end
   end
 
   private
     def set_story
+
       @story = Story.find(params[:id])
-      @recordings = Recording.where(story_id: params[:id])
+    end
+
+    def require_verification
+      unless current_user.phone_verified?
+        # flash[:error] = "Your account must be verified to access this section"
+        # redirect_to verify_path # halts request cycle
+      end
+    end
+
+    def require_login
+      unless signed_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to new_user_session_path # halts request cycle
+      end
     end
 
     def story_params
-      accessible = [ :name, :gender, :contact, :breakup_role, :notes, :person, :age, :location, :was_checked, :selected_recording_id] # extend with your own params
-      params.require(:story).permit(accessible)
+      params.require(:story).permit(
+        :name, :gender, :age, :location,
+        :selected_recording_id, :breakup_role,
+        :pullquote, :breakup_type, :user_id)
     end
 end

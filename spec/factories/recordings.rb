@@ -1,9 +1,10 @@
-FactoryGirl.define do
-  factory :recording do
-    url "MyString"
-length "MyString"
-transcript "MyString"
-twilio_id "MyString"
-  end
+# FactoryGirl.define do
+#   factory :recording do
+#     story nil
+# url "MyString"
+# length "MyString"
+# transcript "MyText"
+# sid "MyString"
+#   end
 
-end
+# end

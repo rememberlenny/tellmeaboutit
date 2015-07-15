@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '4996e8c505163dc517a87838639b3de7f36de71b7405d3067cf7291ea36867f47c6037e42274470fcdb98583bcb3d3ae03296de5d8a8b886efaa37c484f2ce8e'
+  # config.secret_key = '0040e08a81c7bcb41e4719028ee1e24f671cadda7aadaefb58d16e42f8f21d3c3e514d9464b62fcc91f94e4debfe88718558c919660162bbfac936324729afd2'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -29,7 +29,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [ :email ]
+  config.authentication_keys = [ :phone_number ]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -41,12 +41,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [ :phone_number ]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [ :phone_number ]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '27f316f10d8aa576fbf01b25349a441eb10e45d77db2f878380dc2e325763556c08a0aa81739dcac510ed440643c5f24a55a962b7515aba930fbf88e513706a2'
+  # config.pepper = '7e4e53dce9ea1e0e713eb6ac67f65cfa6736b7d71237ca94ade36a45c8dbbd92a1dabedc3dc266ac25bd960d314334833975c4102b6ddb6ce601b77dea1dbd81'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without

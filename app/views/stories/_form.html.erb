@@ -1,34 +1,44 @@
-<div class="row">
+<%= simple_form_for(@story) do |f| %>
+  <%= render 'partials/error_messages', object: f.object %>
 
-  <%= simple_form_for(@story) do |f| %>
-    <%= f.error_notification %>
+  <div>
+    <%= f.input :name, :label => 'What was the other person\'s name?' %>
+  </div>
 
-      <% if user_signed_in? %>
-        <% f.input :was_checked %>
-      <% end %>
+  <div>
+    <label for=""><%= 'What was the other person\'s gender' %></label>
+    <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+  </div>
 
-      <%= f.input :name %>
-      <%= f.input :age %>
-      <%= f.input :location %>
-      <%= f.input :contact %>
-      <label for="">What is your gender?</label>
-      <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['other', 'Other']], :first, :last %>
+  <div>
+    <%= f.input :age, :label => 'How old was the other person?' %>
+  </div>
 
-      <div class="row"></div>
-      <h1>Tell us more about the breakup</h1>
-      <div class="">
-          <span class="breakup-question">What was your role in the breakup?</span>
-          <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
-      </div>
-      <div class="row"></div>
-      <div class="">
-        <span class="breakup-question">Want to tell us anything else? Use the text box below:</span></br>
-        <%= f.input :notes %>
+  <div>
+    <%= f.input :location, :label => 'Where did this happen?' %>
+  </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, :class => 'button success large-12' %>
-        </div>
-      </div>
-  <% end %>
+  <div>
+    <%= f.input :start_dating, :label => 'When did it start?' %>
+    <%= f.input :end_dating, :label => 'When did it end?' %>
+  </div>
 
-</div>
+  <div class="">
+      <label class="breakup-question">What was your role in the breakup?</label>
+      <%= f.collection_radio_buttons :breakup_role, [['dumped', 'I was dumped'] ,['initiated', 'I initiated the breakup'],['mutual', 'the breakup was mutual']], :first, :last %>
+  </div>
+
+  <div class="field">
+    <label for="">What kind of breakup was it?</label>
+    <%= f.collection_radio_buttons :breakup_type, [['normal', 'Normal'] ,['messy', 'Messy'],['sad', 'Sad'],['funny', 'Funny'],['other', 'Other']], :first, :last %>
+  </div>
+
+  <%= f.submit "Save", class: "button success save-button large-12" %>
+<% end %>
+
+<script>
+  $('.save-proxy').on('click', function(e){
+    e.preventDefault();
+    $('.save-button').click();
+  });
+</script>

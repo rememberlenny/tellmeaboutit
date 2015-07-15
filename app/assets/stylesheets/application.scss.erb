@@ -12,35 +12,22 @@
  *
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
-
  */
 
-h3.black-color{
-  color: black;
+@import 'foundation_and_overrides';
+
+.divider{
+  width: .5em !important;
+  border: none;
 }
 
 p.text-left{
   text-align: left !important;
 }
 
-input[type="submit"].button{
-  color: rgb(255, 255, 255);
-  font-size: 0.9em;
-padding: 16px;
-  &:hover{
-    background: rgb(157, 128, 10);
-  }
-}
 
-.sticky *{
-  background: #01b988;
-  border-bottom: darken(#01b988, 10%) 5px solid;
-}
 
-h3.yellow-text{
-  color: #e4cc6d;
-}
+
 
 .left{
   float: left;
@@ -58,6 +45,10 @@ h3.yellow-text{
   background: #cbfdf0;
 }
 
+.top-margin{
+  padding: 1em 0.5em 0 0.5em;
+}
+
 .white{
   color: white;
 }
@@ -66,18 +57,17 @@ body a:visited{
   color: white;
 }
 
-a.vertical-button{
-  margin-bottom: 0em;
-}
+
 
 body {
   font-family: 'Muli', Helvetica, arial, sans-serif;
   margin: 0px;
-  color: #FFFFFF;
+  color: #999;
   font-size: 13pt;
   font-weight: 100;
   text-align: left;
-  background-color: #01b988; }
+  background-color: #01b988;
+}
 
 a {
   color: #dbbc3d;
@@ -90,15 +80,6 @@ audio {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9); }
 
-h1, h2 {
-  font-family: 'Ovo', garamond, serif;
-  color: #e4cc6d; }
-
-h1 {
-  font-size: 1.7em;
-  text-align: center;
-  margin: 0 0 .5em 0;
-  padding: .5em 0;}
 
 p {
   line-height: 1.5em;
@@ -184,17 +165,6 @@ p {
     .wrapper {
       width: 95%; } }
 
-.top-bar {
-  background-color: #3d183c; }
-
-.top-bar-section li.active:not(.has-form) a:not(.button) {
-  background: #dbbc3d; }
-
-.top-bar-section li:not(.has-form) a:not(.button) {
-  background: #3d183c; }
-
-.top-bar-section li.active:not(.has-form) a:not(.button):hover, .top-bar-section li:not(.has-form) a:not(.button):hover {
-  background: #832981; }
 
 .breakup-pullquote.play{
   background: url('<%= asset_path('play.png') %>');
@@ -290,7 +260,6 @@ input[type="submit"] {
 
 .personal-code {
   text-align: center;
-  background-color: #99fbe1;
   padding: 20px 10px;
   margin: 1em 0; }
   .personal-code p {
@@ -303,3 +272,25 @@ input[type="submit"] {
 span.breakup-question {
   font-size: 1.3em;
   line-height: 1.6em; }
+
+
+iframe.recording {
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+body{
+  background: #FFFFFF;
+
+}
+
+body a:hover, body a:focus{
+  color: white;
+  opacity: .8;
+}
+
+

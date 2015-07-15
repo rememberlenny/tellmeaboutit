@@ -1,47 +1,60 @@
 class RecordingsController < ApplicationController
-  before_action :set_recording, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  skip_before_filter :show
 
-  def index
-    @recordings = Recording.all
-    respond_with(@recordings)
-  end
-
-  def show
-    respond_with(@recording)
-  end
+  # respond_to :html, :xml
 
   def new
-    @recording = Recording.new
-    respond_with(@recording)
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.build
   end
 
   def edit
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.find(params[:id])
   end
 
   def create
-    @recording = Recording.new(recording_params)
-    @recording.save
-    respond_with(@recording)
-  end
-
-  def update
-    @recording.update(recording_params)
-    respond_with(@recording)
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.build(recording_params)
+    if @recording.save
+      flash[:success] = "recording created!"
+      redirect_to story_url(@story)
+    else
+      render 'static_pages/home'
+    end
   end
 
   def destroy
+    @story = current_user.stories.find(params[:story_id])
+    @recording = @story.recordings.find(params[:id])
     @recording.destroy
-    respond_with(@recording)
+    respond_to do |format|
+      format.html { redirect_to @story }
+      format.json { head :no_content }
+    end
+  end
+
+  def show
+    @story = Story.find(params[:story_id])
+    @recording = @story.recordings.find(params[:id])
+  end
+
+  def index
+    @story = Story.find(params[:story_id])
+    @recordings = @story.recordings
   end
 
   private
-    def set_recording
-      @recording = Recording.find(params[:id])
+
+    def require_login
+      unless signed_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to new_user_session_path # halts request cycle
+      end
     end
 
     def recording_params
-      params.require(:recording).permit(:url, :length, :transcript, :twilio_id, :sid)
+      params.require(:recording).permit(:source, :url)
     end
 end
