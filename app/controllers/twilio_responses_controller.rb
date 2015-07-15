@@ -54,7 +54,8 @@ class TwilioResponsesController < ApplicationController
 
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     response << "<Response>";
-    response << provide_options
+    response = "<Play>" + audio_thank + "</Play>"
+    # response << provide_options
     response << "</Response>";
     render text: response
   end
