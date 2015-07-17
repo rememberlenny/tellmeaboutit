@@ -19,4 +19,6 @@ This web app and call-in number is intended to help you share your painful exper
 
 The idea for this project came from responses that one of the creators received after working through her divorce through data visualizations on her blog Quantified Breakup.
 
+# Who 
+
 This app was made by Leonard Bogdonoff and Lam Thuy Vo.
