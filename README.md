@@ -1,5 +1,6 @@
-# Tell Me Bout It 
+![](http://i.imgur.com/A6aTw83.png)
 
+# Tell Me Bout It 
 
 Tell me bout it is a web app and call-in number that allows you to listen to and share your breakup stories.
 
